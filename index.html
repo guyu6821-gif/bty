@@ -7,8 +7,8 @@
     <meta name="theme-color" content="#4A90E2">
     <title>BDU Tələbə Hesablayıcı</title>
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/png" href="/icon-192.png">
-    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -24,10 +24,21 @@
         </div>
     </div>
 
+    <!-- Endirmə Düyməsi (PWA Install) -->
+    <button id="install-button" class="install-btn" onclick="installApp()" style="display: none;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        <span>Tətbiqi Endir</span>
+    </button>
+
     <!-- Ana Container -->
     <div class="container">
         <!-- Ana Səhifə -->
         <div id="home-page" class="page active">
+            <div class="logo-container">
+                <img src="/logo.png" alt="BDU Logo" class="main-logo">
+            </div>
             <h1 class="main-title">BDU Tələbə Hesablayıcı</h1>
             
             <div class="menu-grid">
@@ -51,11 +62,6 @@
                     <span class="menu-text">Yaş Hesablayıcı</span>
                 </button>
                 
-                <button class="menu-btn" onclick="showPage('haqqinda-page')">
-                    <span class="menu-icon">ℹ️</span>
-                    <span class="menu-text">Haqqında</span>
-                </button>
-                
                 <button class="menu-btn" onclick="showPage('luget-page')">
                     <span class="menu-icon">📖</span>
                     <span class="menu-text">Lüğət</span>
@@ -69,6 +75,11 @@
                 <button class="menu-btn" onclick="showPage('linkler-page')">
                     <span class="menu-icon">🔗</span>
                     <span class="menu-text">Sürətli Linklər</span>
+                </button>
+                
+                <button class="menu-btn" onclick="showPage('haqqinda-page')">
+                    <span class="menu-icon">ℹ️</span>
+                    <span class="menu-text">Haqqında</span>
                 </button>
             </div>
         </div>

@@ -1,11 +1,28 @@
 // ============================================
-// Səhifə Naviqasiyası
+// Səhifə Naviqasiyası və Scroll Pozisiyası
 // ============================================
+let lastScrollPosition = 0;
+
 function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-    window.scrollTo(0, 0);
+    
+    // Ana səhifəyə qayıdarkən scroll pozisiyasını saxla
+    if (pageId === 'home-page') {
+        pages.forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        
+        // Saxlanmış pozisiyaya qayıt
+        setTimeout(() => {
+            window.scrollTo(0, lastScrollPosition);
+        }, 10);
+    } else {
+        // Digər səhifələrə keçərkən cari pozisiyanı saxla
+        lastScrollPosition = window.scrollY || window.pageYOffset;
+        
+        pages.forEach(page => page.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
 }
 
 // ============================================
@@ -25,7 +42,7 @@ function generateSeminarInputs() {
         container.innerHTML += `
             <div class="dynamic-input">
                 <label>Seminar ${i} qiyməti (0-10):</label>
-                <input type="number" class="seminar-input" min="0" max="10" step="0.1" placeholder="Məsələn: 8.5">
+                <input type="number" class="seminar-input" min="0" max="10" step="0.1" placeholder="0" required>
             </div>
         `;
     }
@@ -45,7 +62,7 @@ function generateKollekviumInputs() {
         container.innerHTML += `
             <div class="dynamic-input">
                 <label>Kollekvium ${i} qiyməti (0-10):</label>
-                <input type="number" class="kollekvium-input" min="0" max="10" step="0.1" placeholder="Məsələn: 9">
+                <input type="number" class="kollekvium-input" min="0" max="10" step="0.1" placeholder="0" required>
             </div>
         `;
     }
@@ -222,11 +239,11 @@ function generateFennInputs() {
                 <h3>Fənn ${i}</h3>
                 <div class="input-group">
                     <label>Bal (maksimum 100):</label>
-                    <input type="number" class="fenn-bal" min="0" max="100" step="0.1" placeholder="Məsələn: 85.5">
+                    <input type="number" class="fenn-bal" min="0" max="100" step="0.1" placeholder="0" required>
                 </div>
                 <div class="input-group">
                     <label>Kredit:</label>
-                    <input type="number" class="fenn-kredit" min="1" placeholder="Məsələn: 5">
+                    <input type="number" class="fenn-kredit" min="1" placeholder="0" required>
                 </div>
             </div>
         `;
@@ -525,7 +542,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============================================
-// PWA Quraşdırma Promptu
+// PWA Quraşdırma Promptu və Endirmə Düyməsi
 // ============================================
 let deferredPrompt;
 
@@ -533,11 +550,47 @@ window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     
-    // Quraşdırma düyməsini göstər (istəyə bağlı)
-    console.log('PWA quraşdırıla bilər');
+    // Endirmə düyməsini göstər
+    showInstallButton();
 });
 
 window.addEventListener('appinstalled', () => {
     console.log('PWA quraşdırıldı');
     deferredPrompt = null;
+    
+    // Endirmə düyməsini gizlət
+    hideInstallButton();
 });
+
+// Endirmə düyməsini göstər
+function showInstallButton() {
+    // Yalnız standalone modda deyilsə göstər (yəni tətbiq kimi quraşdırılmayıb)
+    if (!window.matchMedia('(display-mode: standalone)').matches) {
+        const installBtn = document.getElementById('install-button');
+        if (installBtn) {
+            installBtn.style.display = 'flex';
+        }
+    }
+}
+
+// Endirmə düyməsini gizlət
+function hideInstallButton() {
+    const installBtn = document.getElementById('install-button');
+    if (installBtn) {
+        installBtn.style.display = 'none';
+    }
+}
+
+// Endirmə düyməsinə klik
+function installApp() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('İstifadəçi tətbiqi quraşdırdı');
+            }
+            deferredPrompt = null;
+            hideInstallButton();
+        });
+    }
+}

@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v1.0.1';
 const CACHE_NAME = `bdu-hesablayici-${CACHE_VERSION}`;
 
 // Cache ediləcək fayllar
@@ -9,6 +9,7 @@ const urlsToCache = [
     '/styles.css',
     '/app.js',
     '/manifest.json',
+    '/logo.png',
     '/icon-192.png',
     '/icon-512.png'
 ];
