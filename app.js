@@ -475,7 +475,7 @@ const suretliLinkler = [
         icon: "👥",
         text: "Tələbə Sosiallaşma Qrupu (Telegram)",
         url: "https://t.me/+WUKxtnDjo2E5YTcy"
-    }
+    },
     {
         icon: "😑",
         text: "Tələbə Sosiallaşma Qrupu 2 (Telegram)",
