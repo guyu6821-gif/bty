@@ -123,9 +123,10 @@ const CACHE_VERSION = 'v1.0.1'; // Nömrəni artır
 - **Auto-Deploy:** Aktiv
 
 ## URL-lər
-- **Local Test:** `file:///path/to/index.html` və ya local server
-- **Production:** Render.com deployment URL
-- **GitHub:** Repository URL
+- **Local Test (Sandbox):** https://3000-iz0j1dpya1ff5hwa2837s-b237eb32.sandbox.novita.ai
+- **Production (Render.com):** Deploy etdikdən sonra URL əldə ediləcək
+- **GitHub Repository:** https://github.com/guyu6821-gif/bty
+- **Project Backup:** https://www.genspark.ai/api/files/s/8ohDeVHP
 
 ## Son Yeniləmə
 - **Tarix:** 2025-03-02
