@@ -423,6 +423,10 @@ const lugetSozleri = [
         soz: "Mühazirə", 
         meana: "Müəllimin keçdiyi dərs" 
     },
+    { 
+        soz: "TEZLİKLƏ", 
+        meana: "Əlavə Ediləcək" 
+    },
     // Yeni sözlər əlavə etmək üçün aşağı formata əməl et:
     // { soz: "Söz", meana: "Açıqlama" },
 ];
@@ -430,6 +434,7 @@ const lugetSozleri = [
 // Akademik məlumatlar - Buraya yeni məlumatlar əlavə et
 const akademikMelumatlar = [
     "Əlaçı olmaq üçün bütün fənlər 91+ olmalıdır.",
+    "Tezliklə Əlavə Ediləcək",
     // Yeni məlumatlar əlavə etmək üçün dırnaq içində yaz:
     // "Yeni məlumat buraya",
 ];
