@@ -477,8 +477,8 @@ const suretliLinkler = [
         url: "https://t.me/+WUKxtnDjo2E5YTcy"
     }
     {
-        icon: "👥",
-        text: "Tələbə Sosiallaşma Qrupu (Telegram)",
+        icon: "😑",
+        text: "Tələbə Sosiallaşma Qrupu 2 (Telegram)",
         url: "https://www.youtube.com/watch?v=yJtiJf2TxGw&list=RDMMcEzaZOnPn3Y&index=6"
     }
     // Yeni link əlavə etmək üçün:
