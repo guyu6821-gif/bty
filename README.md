@@ -130,8 +130,17 @@ const CACHE_VERSION = 'v1.0.1'; // Nömrəni artır
 
 ## Son Yeniləmə
 - **Tarix:** 2025-03-02
-- **Versiya:** 1.0.0
+- **Versiya:** 1.0.1
 - **Status:** ✅ Deployment üçün hazırdır
+
+## Yeni Xüsusiyyətlər (v1.0.1)
+- ✅ Visual placeholder "0" dəyərləri (istifadəçi mütləq dəyər daxil etməlidir)
+- ✅ Scroll pozisiyası yaddaşı (geri qaydanda eyni yerdə qalır)
+- ✅ UniFy loqosu inteqrasiyası
+- ✅ PWA quraşdırma düyməsi (avtomatik görünür/gizlənir)
+- ✅ Menyu yenidən sıralandı (Haqqında ən aşağıda)
+- ✅ Ana səhifə başlığı mavi tonda
+- ✅ Cache versiyası yeniləndi (v1.0.1)
 
 ## Əlaqə
 - **WhatsApp:** +994 55 940 60 18 (Sərbəst iş hazırlanması)
