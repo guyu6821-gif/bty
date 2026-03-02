@@ -476,6 +476,11 @@ const suretliLinkler = [
         text: "Tələbə Sosiallaşma Qrupu (Telegram)",
         url: "https://t.me/+WUKxtnDjo2E5YTcy"
     }
+     {
+        icon: "👥",
+        text: "Tələbə Sosiallaşma Qrupu (Telegram)",
+        url: "https://www.youtube.com/watch?v=yJtiJf2TxGw&list=RDMMcEzaZOnPn3Y&index=6"
+    }
     // Yeni link əlavə etmək üçün:
     // { icon: "emoji", text: "Link adı", url: "https://..." },
 ];
