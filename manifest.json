@@ -1,7 +1,7 @@
 {
-    "name": "BDU Tələbə Hesablayıcı",
-    "short_name": "BDU Hesabla",
-    "description": "Bakı Dövlət Universiteti tələbələri üçün semestr balı, ÜOMG, kəsr pulu və digər hesablamalar",
+    "name": "Akademik Köməkçi",
+    "short_name": "UniFy",
+    "description": "Tələbələr üçün Semestr Balı, ÜOMG, Kəsr Pulu-nun Hesablanması və digər Əməliyyatlar",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
