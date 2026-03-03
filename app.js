@@ -479,7 +479,7 @@ const suretliLinkler = [
     {
         icon: "😑",
         text: "Tələbə Sosiallaşma Qrupu 2 (Telegram)",
-        url: "https://www.youtube.com/watch?v=yJtiJf2TxGw&list=RDMMcEzaZOnPn3Y&index=6"
+        url: "https://vercel.com/guyu6821-gifs-projects/unify-edu"
     }
     // Yeni link əlavə etmək üçün:
     // { icon: "emoji", text: "Link adı", url: "https://..." },
