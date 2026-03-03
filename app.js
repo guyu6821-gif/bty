@@ -153,7 +153,55 @@ function hesablaSemestr() {
     // Davamiyyət balı
     const davamiyyetBali = hesablaDavamiyyet(fennSaat, qayibSayi);
     
-    // Əsas hesablama
+    // ÖNƏMLİ: Davamiyyətdə kəsr varsa (bal = 0), ümumi nəticə də kəsrdir
+    if (davamiyyetBali === 0) {
+        // Davamiyyət kəsr - Tələbə ümumillikdə kəsilmişdir
+        const resultBox = document.getElementById('semestr-result');
+        resultBox.className = 'result-box show danger';
+        resultBox.innerHTML = `
+            <div class="result-title">KƏSR - DAVAMIYYƏT</div>
+            <div class="result-score" style="font-size: 36px;">KƏSR</div>
+            <div class="result-stats">
+                <div class="stat-item" style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                    <span class="stat-label" style="display: block; text-align: center; font-size: 18px;">
+                        ⚠️ Davamiyyət limiti keçildi
+                    </span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Seçilən Fənn Saatı:</span>
+                    <span class="stat-value">${fennSaat} saat</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Qayıb Sayı:</span>
+                    <span class="stat-value">${qayibSayi} qayıb</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Davamiyyət Balı:</span>
+                    <span class="stat-value">0 / 10 (KƏSR)</span>
+                </div>
+                <div class="stat-item" style="border-top: 2px solid rgba(255,255,255,0.3); padding-top: 10px; margin-top: 10px;">
+                    <span class="stat-label">Seminar Ortalaması:</span>
+                    <span class="stat-value">${seminarOrta.toFixed(2)} / 10</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Kollekvium Ortalaması:</span>
+                    <span class="stat-value">${kollekviumOrta.toFixed(2)} / 10</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Sərbəst İş:</span>
+                    <span class="stat-value">${serbestIs.toFixed(2)} / 10</span>
+                </div>
+                <div class="stat-item" style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                    <span class="stat-label" style="display: block; text-align: center; font-size: 14px; font-style: italic;">
+                        Davamiyyət kəsr olduqda digər balların əhəmiyyəti yoxdur
+                    </span>
+                </div>
+            </div>
+        `;
+        return; // Funksiyadan çıx
+    }
+    
+    // Davamiyyət kəsr deyilsə, normal hesablama davam edir
     const seminarKollekviumBali = (seminarOrta * 0.4 + kollekviumOrta * 0.6) * 3;
     let umumiBal = seminarKollekviumBali + davamiyyetBali + serbestIs;
     
