@@ -170,22 +170,22 @@ function hesablaSemestr() {
         message = '0 BAL';
         resultClass = 'danger';
     } else if (umumiBal >= 50) {
-        message = 'MÜVƏFFƏQİYYƏTLƏ KEÇDİNİZ';
+        message = '🎉 MÜVƏFFƏQİYYƏTLƏ KEÇDİNİZ! ✅';
         resultClass = 'success';
     } else if (umumiBal >= 45) {
-        message = 'ÇOX YAXŞI';
+        message = '🔥 ÇOX YAXŞI 📊';
         resultClass = 'success';
     } else if (umumiBal >= 41) {
-        message = 'YAXŞI';
+        message = '💣 YAXŞI 📈';
         resultClass = 'info';
     } else if (umumiBal >= 36) {
-        message = 'KAFİ';
+        message = '🫂 KAFİ 📉';
         resultClass = 'warning';
     } else if (umumiBal >= 26) {
-        message = 'ZƏİF';
+        message = '🎭 ZƏİF 📴';
         resultClass = 'warning';
     } else {
-        message = 'YAXŞI OLACAQ';
+        message = '🗿 YAXŞI OLACAQ 🆒';
         resultClass = 'danger';
     }
     
@@ -285,22 +285,22 @@ function hesablaUOMG() {
         message = '0 BAL';
         resultClass = 'danger';
     } else if (uomg >= 91) {
-        message = 'MÜVƏFFƏQİYYƏTLƏ KEÇDİNİZ';
+        message = '🎉 MÜVƏFFƏQİYYƏTLƏ KEÇDİNİZ! ✅';
         resultClass = 'success';
     } else if (uomg >= 81) {
-        message = 'ÇOX YAXŞI';
+        message = '🔥 ÇOX YAXŞI 📊';
         resultClass = 'success';
     } else if (uomg >= 71) {
-        message = 'YAXŞI';
+        message = '💣 YAXŞI 📈';
         resultClass = 'info';
     } else if (uomg >= 61) {
-        message = 'KAFİ';
+        message = '🫂 KAFİ 📉';
         resultClass = 'warning';
     } else if (uomg >= 51) {
-        message = 'ZƏİF';
+        message = '🎭 ZƏİF 📴';
         resultClass = 'warning';
     } else {
-        message = 'YAXŞI OLACAQ';
+        message = '🗿 YAXŞI OLACAQ 🆒';
         resultClass = 'danger';
     }
     
