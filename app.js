@@ -443,43 +443,38 @@ const akademikMelumatlar = [
 const suretliLinkler = [
     {
         icon: "🌐",
-        text: "Bakı Dövlət Universiteti rəsmi web saytı",
+        text: "Bakı Dövlət Universitetinin Rəsmi Web Saytı",
         url: "https://share.google/M2ZIeZ1uGX63hbYwN"
     },
     {
         icon: "🎓",
-        text: "BDU Tələbə Akademik Web Saytı (SemsLogin)",
+        text: "Bakı Dövlət Universitetinin Tələbə Akademik Web Saytı (SemsLogin)",
         url: "https://share.google/7ljpthpUCiOMOeS82"
     },
     {
         icon: "💬",
-        text: "BDU WhatsApp Kanal",
+        text: "Bakı Dövlət Universitetinin WhatsApp Kanalı",
         url: "https://whatsapp.com/channel/0029Va85Ls85q08WyYoGeJ3r"
     },
     {
         icon: "📷",
-        text: "BDU Instagram",
+        text: "Bakı Dövlət Universitetinin Instagramı",
         url: "https://www.instagram.com/bdu_eduaz"
     },
     {
         icon: "✈️",
-        text: "BDU Telegram",
+        text: "Bakı Dövlət Universitetinin Telegramı",
         url: "https://t.me/bdu_eduaz"
     },
     {
         icon: "👤",
-        text: "Sayt Sahibinin Instagram",
+        text: "Sayt Sahibinin Instagramı",
         url: "https://www.instagram.com/desespere_etoile"
     },
     {
         icon: "👥",
         text: "Tələbə Sosiallaşma Qrupu (Telegram)",
         url: "https://t.me/+WUKxtnDjo2E5YTcy"
-    },
-    {
-        icon: "😑",
-        text: "Tələbə Sosiallaşma Qrupu 2 (Telegram)",
-        url: "https://mail.google.com/mail/u/0/#inbox"
     }
     // Yeni link əlavə etmək üçün:
     // { icon: "emoji", text: "Link adı", url: "https://..." },
