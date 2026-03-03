@@ -130,8 +130,14 @@ const CACHE_VERSION = 'v1.0.1'; // Nömrəni artır
 
 ## Son Yeniləmə
 - **Tarix:** 2025-03-02
-- **Versiya:** 1.0.1
+- **Versiya:** 1.0.2
 - **Status:** ✅ Deployment üçün hazırdır
+
+## Kritik Yeniləmə (v1.0.2)
+- 🔴 **Davamiyyət Kəsr:** Davamiyyətdə kəsr olanda (qayıb limiti keçildikdə) tələbə ümumillikdə kəsilir
+- ✅ Digər ballar (seminar, kollekvium, sərbəst iş) hesablanır amma nəticə "KƏSR" göstərilir
+- ✅ Xüsusi kəsr ekranı: Davamiyyət limitinin keçildiyi göstərilir
+- ✅ Bütün ballar statistikada göstərilir (məlumat üçün)
 
 ## Yeni Xüsusiyyətlər (v1.0.1)
 - ✅ Visual placeholder "0" dəyərləri (istifadəçi mütləq dəyər daxil etməlidir)
@@ -140,7 +146,6 @@ const CACHE_VERSION = 'v1.0.1'; // Nömrəni artır
 - ✅ PWA quraşdırma düyməsi (avtomatik görünür/gizlənir)
 - ✅ Menyu yenidən sıralandı (Haqqında ən aşağıda)
 - ✅ Ana səhifə başlığı mavi tonda
-- ✅ Cache versiyası yeniləndi (v1.0.1)
 
 ## Əlaqə
 - **WhatsApp:** +994 55 940 60 18 (Sərbəst iş hazırlanması)
