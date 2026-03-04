@@ -450,7 +450,7 @@ body {
 .centered-text {
     font-size: 24px;
     color: var(--text-dark);
-    font-style: italic;
+    font-style: serif;
 }
 
 /* Dictionary & Info Lists */
