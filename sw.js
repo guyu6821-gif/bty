@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v1.0.19';
+const CACHE_VERSION = 'v1.0.20';
 const CACHE_NAME = `bdu-hesablayici-${CACHE_VERSION}`;
 
 // Cache ediləcək fayllar
