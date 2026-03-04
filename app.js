@@ -468,13 +468,74 @@ function hesablaYas() {
 // Lüğət sözləri - Buraya yeni sözlər əlavə et
 const lugetSozleri = [
     { 
-        soz: "Mühazirə", 
-        meana: "Müəllimin keçdiyi dərs" 
+        soz: "Universitet", 
+        meana: "Ali təhsil verən böyük təhsil müəssisəsidir və bir neçə fakültədən ibarət olur." 
     },
     { 
-        soz: "TEZLİKLƏ", 
-        meana: "Əlavə Ediləcək" 
+        soz: "Korpus", 
+        meana: "Universitetin dərslərin və digər fəaliyyətlərin keçirildiyi binalarından biridir. Böyük universitetlərdə bir neçə korpus olur." 
     },
+    { 
+        soz: "Fakültə", 
+        meana: "Universitetin müəyyən ixtisasları birləşdirən bölməsidir. Məsələn, Filologiya fakültəsi." 
+    },
+    { 
+        soz: "Rektor", 
+        meana: "Universitetin ən yüksək rəhbəridir və bütün tədris, idarəetmə və rəsmi qərarlara cavabdeh şəxsdir. Universitetlə bağlı əsas qərarları o verir." 
+    },
+    { 
+        soz: "Rektor Müavini", 
+        meana: "Rektora kömək edir və adətən tədris, elm və ya inzibati işlər kimi müəyyən sahələrə nəzarət edir. Öz sahəsi üzrə işlərin düzgün getməsinə cavabdehdir." 
+    },
+    { 
+        soz: "Dekan", 
+        meana: "Fakültənin rəhbəridir və həmin fakültədə dərslərin və ümumi qaydaların təşkilinə nəzarət edir." 
+    },
+    { 
+        soz: "Dekan Müavini", 
+        meana: "Dekana kömək edir və tələbələrlə bağlı məsələlərdə, dərs cədvəlində və digər işlərdə dəstək göstərir." 
+    },
+    { 
+        soz: "Tyutor", 
+        meana: "Tələbələrə qeydiyyat və akademik məsələlərdə yol göstərən şəxsdir. Problemlər olduqda tələbələr ona müraciət edə bilərlər." 
+    },
+    { 
+        soz: "Mühazirə", 
+        meana: "Müəllimin mövzunu izah etdiyi dərs formasıdır və adətən çoxlu tələbə iştirak edir." 
+    },
+    { 
+        soz: "Seminar", 
+        meana: "Tələbələrin mövzu haqqında danışdığı, sual verdiyi və müzakirə etdiyi dərs formasıdır." 
+    },
+    { 
+        soz: "Sərbəst iş", 
+        meana: "Tələbənin dərsdən kənar vaxtda özü araşdırıb hazırladığı tapşırıq və ya layihədir." 
+    },
+    { 
+    soz: "Professor", 
+    meana: "Universitetdə ən yüksək elmi vəzifələrdən biridir və böyük təcrübəyə malik müəllimdir." 
+    },
+    { 
+    soz: "Dosent", 
+    meana: "Elmi dərəcəyə sahib olan və dərs deyən, professordan bir pillə aşağı vəzifədir." 
+    },
+    { 
+    soz: "Müəllim", 
+    meana: "Tələbələrə dərs keçən və mövzuları izah edən tədris işçisidir." 
+    },
+    { 
+    soz: "Doktorantura", 
+    meana: "Ali təhsilin ən yüksək pilləsidir və burada elmi araşdırma aparılıb dissertasiya yazılır." 
+    },
+    { 
+    soz: "Magistratura", 
+    meana: "Bakalavrdan sonrakı təhsil mərhələsidir və ixtisas üzrə biliklər daha dərindən öyrənilir." 
+    },
+    { 
+    soz: "Bakalavr", 
+    meana: "Ali təhsilin ilk pilləsidir və tələbə burada əsas ixtisas biliklərini əldə edir." 
+    },
+    
     // Yeni sözlər əlavə etmək üçün aşağı formata əməl et:
     // { soz: "Söz", meana: "Açıqlama" },
 ];
