@@ -542,8 +542,17 @@ const lugetSozleri = [
 
 // Akademik məlumatlar - Buraya yeni məlumatlar əlavə et
 const akademikMelumatlar = [
-    "Əlaçı olmaq üçün bütün fənlər 91+ olmalıdır.",
-    "Tezliklə Əlavə Ediləcək",
+    "Əlaçı təqaüd üçün semestr sonu imtahanlarında bütün fənlər üzrə yekun bal 91 və yuxarı olmalıdır.",
+    "Həvəsləndirici təqaüd almaq üçün ən azı 1 fəndən (1-dən çox da ola bilər) 91+ bal, digər fənlərin hər birindən isə minimum 71+ bal olmalıdır.",
+    "Adi təqaüd almaq üçün bütün fənlər üzrə yekun bal ən azı 51+ olmalıdır. Bu 51 balın minimum 17 balı imtahandan toplanmalıdır (ödənişli ixtisaslarda fərqlilik ola bilər).",
+    "Semestr ərzində toplanan bal maksimum 50 baldır. Bunun 10 balı sərbəst işdən, 10 balı davamiyyətdən, 30 balı isə seminar və kollekviumdan gəlir. Semestr balı bu düsturla hesablanır: (seminar balı orta × 0.4 + kollekvium balı orta × 0.6) × 3 + davamiyyət balı + sərbəst iş balı.",
+    "İmtahanda toplanılan bal maksimum 50 baldır. Semestr balı ilə imtahan balı toplanır və ümumi nəticə alınır. Bu nəticəyə əsasən tələbənin akademik göstəricisi müəyyən edilir.",
+    "Kəsr imtahanı: Əgər tələbə imtahandan minimum 17 bal toplamazsa və ya semestr balı ilə imtahan balının cəmi 51 balı keçməzsə (imtahan balı 17 və ya daha yuxarı olsa belə), tələbə kəsilmiş sayılır.",
+    "Kəsr fənni olan tələbə həmin fənnin kredit sayına uyğun olaraq, istəyə bağlı şəkildə 25% ödəniş edib ikinci şans imtahanında iştirak edə bilər. 25% ödəniş bu düsturla hesablanır: [((illik ödəniş / 60) × kredit sayı) / 4] + 1.",
+    "Əgər tələbə kəsilməzdən əvvəl təqaüd alırdısa, kəsildiyi halda təqaüdünü itirir və 25% ödənişlə imtahanı uğurla versə belə, təqaüd bərpa olunmur.",
+    "ÜOMG (Ümumi Orta Müvəffəqiyyət Göstəricisi) tələbənin ümumi akademik nəticəsidir və universiteti bitirərkən gələcək təhsilinə mühüm təsir göstərir. ÜOMG 100 ballıq sistemlə bu düsturla hesablanır: (bal1 × kredit1 + bal2 × kredit2 + ... + bal n × kredit n) / (kredit1 + kredit2 + ... + kredit n).",
+    "Qayıb limiti: Hər fənn üzrə dərs saatına uyğun qayıb limiti müəyyən edilir. Bu limiti aşan tələbə imtahana buraxılmır və avtomatik olaraq kəsilmiş sayılır. Mühazirə və seminar üzrə qayıb sayı ortaq hesablanır."
+    "91–100 bal A ilə qiymətləndirilir və əla qiymət sayılır; 81–90 bal B ilə qiymətləndirilir və çox yaxşı hesab olunur; 71–80 bal C ilə qiymətləndirilir və yaxşı qiymət sayılır; 61–70 bal D ilə qiymətləndirilir və kafi hesab olunur; 51–60 bal E ilə qiymətləndirilir və qaneedici hesab olunur; 51-dən aşağı bal F ilə qiymətləndirilir və qeyri-kafi hesab olunur.",
     // Yeni məlumatlar əlavə etmək üçün dırnaq içində yaz:
     // "Yeni məlumat buraya",
 ];
