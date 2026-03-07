@@ -591,8 +591,8 @@ const suretliLinkler = [
     },
     {
         icon: "👥",
-        text: "Tələbə Sosiallaşma Qrupu (Telegram)",
-        url: "https://t.me/+WUKxtnDjo2E5YTcy"
+        text: "Gənclər üçün Sosiallaşma Qrupu (Whatsapp)",
+        url: "https://chat.whatsapp.com/EMev3aCVkXg2FXDh8ztH0G?mode=wwc"
     }
     // Yeni link əlavə etmək üçün:
     // { icon: "emoji", text: "Link adı", url: "https://..." },
