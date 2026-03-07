@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Cache Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .test-result {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:active {
+            background: #0056b3;
+        }
+        #log {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .log-entry {
+            margin: 2px 0;
+            padding: 2px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 iOS Cache Test</h1>
+    
+    <div class="test-result info">
+        <strong>Cihaz:</strong> <span id="device-info"></span><br>
+        <strong>Browser:</strong> <span id="browser-info"></span><br>
+        <strong>Standalone:</strong> <span id="standalone-info"></span>
+    </div>
+    
+    <div class="test-result info">
+        <strong>Service Worker:</strong> <span id="sw-status">Yoxlanılır...</span><br>
+        <strong>Cache API:</strong> <span id="cache-status">Yoxlanılır...</span><br>
+        <strong>Navigator Online:</strong> <span id="online-status"></span>
+    </div>
+    
+    <h2>Testlər</h2>
+    
+    <button onclick="testServiceWorker()">Test 1: Service Worker</button>
+    <button onclick="testCache()">Test 2: Cache API</button>
+    <button onclick="testOffline()">Test 3: Offline Mod</button>
+    <button onclick="clearCache()">Cache Təmizlə</button>
+    <button onclick="clearLog()">Log Təmizlə</button>
+    
+    <h3>Test Logları</h3>
+    <div id="log"></div>
+    
+    <script>
+        // Device info
+        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                           (window.navigator.standalone === true);
+        
+        document.getElementById('device-info').textContent = isIOS ? 'iOS ✅' : 'Digər';
+        document.getElementById('browser-info').textContent = navigator.userAgent.split(' ').pop();
+        document.getElementById('standalone-info').textContent = isStandalone ? 'Bəli ✅' : 'Xeyr';
+        document.getElementById('online-status').textContent = navigator.onLine ? 'Online ✅' : 'Offline ❌';
+        
+        // Log function
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            const time = new Date().toLocaleTimeString();
+            entry.innerHTML = `[${time}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        // Test 1: Service Worker
+        async function testServiceWorker() {
+            log('🧪 Test 1: Service Worker başladı');
+            
+            if (!('serviceWorker' in navigator)) {
+                log('❌ Service Worker dəstəklənmir', 'error');
+                document.getElementById('sw-status').textContent = 'Dəstəklənmir ❌';
+                return;
+            }
+            
+            log('✅ Service Worker API mövcuddur');
+            document.getElementById('sw-status').textContent = 'API Mövcuddur ✅';
+            
+            try {
+                const registration = await navigator.serviceWorker.getRegistration();
+                if (registration) {
+                    log('✅ Service Worker qeydiyyatdan keçib');
+                    log(`  Scope: ${registration.scope}`);
+                    log(`  Active: ${registration.active ? 'Bəli' : 'Xeyr'}`);
+                    log(`  Installing: ${registration.installing ? 'Bəli' : 'Xeyr'}`);
+                    log(`  Waiting: ${registration.waiting ? 'Bəli' : 'Xeyr'}`);
+                    
+                    if (registration.active) {
+                        document.getElementById('sw-status').textContent = 'Aktiv ✅';
+                    } else {
+                        document.getElementById('sw-status').textContent = 'Qeydiyyatda';
+                    }
+                } else {
+                    log('❌ Service Worker qeydiyyatdan keçməyib');
+                    document.getElementById('sw-status').textContent = 'Qeydiyyatsız ❌';
+                }
+            } catch (error) {
+                log('❌ Xəta: ' + error.message, 'error');
+            }
+        }
+        
+        // Test 2: Cache API
+        async function testCache() {
+            log('🧪 Test 2: Cache API başladı');
+            
+            if (!('caches' in window)) {
+                log('❌ Cache API dəstəklənmir', 'error');
+                document.getElementById('cache-status').textContent = 'Dəstəklənmir ❌';
+                return;
+            }
+            
+            log('✅ Cache API mövcuddur');
+            
+            try {
+                const cacheNames = await caches.keys();
+                log(`📦 Cache sayı: ${cacheNames.length}`);
+                
+                if (cacheNames.length > 0) {
+                    cacheNames.forEach(name => log(`  - ${name}`));
+                    document.getElementById('cache-status').textContent = `${cacheNames.length} cache ✅`;
+                    
+                    // İlk cache-i yoxla
+                    const cache = await caches.open(cacheNames[0]);
+                    const requests = await cache.keys();
+                    log(`📄 Cache-də fayl sayı: ${requests.length}`);
+                    
+                    if (requests.length > 0) {
+                        requests.slice(0, 5).forEach(req => {
+                            log(`  - ${new URL(req.url).pathname}`);
+                        });
+                    }
+                } else {
+                    log('⚠️ Cache boşdur');
+                    document.getElementById('cache-status').textContent = 'Boş ⚠️';
+                }
+            } catch (error) {
+                log('❌ Xəta: ' + error.message, 'error');
+            }
+        }
+        
+        // Test 3: Offline
+        async function testOffline() {
+            log('🧪 Test 3: Offline mod testi');
+            
+            if (!navigator.onLine) {
+                log('✅ Artıq offline rejimindəsiniz');
+            } else {
+                log('⚠️ Hələ online rejimindəsiniz');
+                log('   İnterneti bağlayıb yenidən yoxlayın');
+            }
+            
+            // Cache-də nə var yoxla
+            try {
+                const response = await fetch('/index.html');
+                if (response.ok) {
+                    log('✅ index.html yükləndi (online və ya cache-dən)');
+                }
+            } catch (error) {
+                log('❌ index.html yüklənə bilmədi: ' + error.message);
+            }
+        }
+        
+        // Clear cache
+        async function clearCache() {
+            log('🗑️ Cache təmizlənir...');
+            
+            try {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                log('✅ Bütün cache-lər təmizləndi');
+                document.getElementById('cache-status').textContent = 'Təmizləndi';
+                
+                // SW-ni unregister et
+                const registration = await navigator.serviceWorker.getRegistration();
+                if (registration) {
+                    await registration.unregister();
+                    log('✅ Service Worker unregister edildi');
+                    log('⚠️ Səhifəni yeniləyin');
+                }
+            } catch (error) {
+                log('❌ Xəta: ' + error.message, 'error');
+            }
+        }
+        
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            log('🚀 Səhifə yükləndi');
+            setTimeout(() => {
+                testServiceWorker();
+                setTimeout(() => testCache(), 1000);
+            }, 500);
+        });
+        
+        // Online/Offline events
+        window.addEventListener('online', () => {
+            log('🌐 Online oldu');
+            document.getElementById('online-status').textContent = 'Online ✅';
+        });
+        
+        window.addEventListener('offline', () => {
+            log('📵 Offline oldu');
+            document.getElementById('online-status').textContent = 'Offline ❌';
+        });
+    </script>
+</body>
+</html>

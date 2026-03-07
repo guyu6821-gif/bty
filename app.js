@@ -637,30 +637,81 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================
-// PWA - Service Worker Qeydiyyatı
+// PWA - Service Worker Qeydiyyatı (iOS Optimized)
 // ============================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        // iOS Safari üçün xüsusi yoxlama
+        const isIOSDevice = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const swPath = '/sw.js';
+        
+        console.log('[App] Service Worker qeydiyyatı başlayır...');
+        console.log('[App] iOS cihazı:', isIOSDevice);
+        
+        navigator.serviceWorker.register(swPath, {
+            scope: '/',
+            updateViaCache: 'none' // iOS üçün vacib
+        })
             .then(registration => {
-                console.log('Service Worker qeydiyyatdan keçdi:', registration.scope);
+                console.log('[App] ✅ Service Worker qeydiyyatdan keçdi:', registration.scope);
+                
+                // iOS-da manual update yoxlaması
+                if (isIOSDevice) {
+                    registration.update();
+                    console.log('[App] iOS: Manual update yoxlaması aparıldı');
+                }
                 
                 // Yeniləmə yoxla
                 registration.addEventListener('updatefound', () => {
                     const newWorker = registration.installing;
+                    console.log('[App] Yeni Service Worker tapıldı');
+                    
                     newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // Yeni versiya mövcuddur
-                            if (confirm('Yeni versiya mövcuddur. Yeniləmək istəyirsiniz?')) {
-                                window.location.reload();
+                        console.log('[App] SW state:', newWorker.state);
+                        
+                        if (newWorker.state === 'installed') {
+                            if (navigator.serviceWorker.controller) {
+                                console.log('[App] Yeni versiya mövcuddur');
+                                
+                                // iOS-da avtomatik yenilə, digərlərində sor
+                                if (isIOSDevice) {
+                                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                    window.location.reload();
+                                } else {
+                                    if (confirm('Yeni versiya mövcuddur. Yeniləmək istəyirsiniz?')) {
+                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                        window.location.reload();
+                                    }
+                                }
+                            } else {
+                                console.log('[App] İlk quraşdırma tamamlandı');
                             }
                         }
                     });
                 });
+                
+                // İOS-da controller dəyişikliyi
+                if (isIOSDevice) {
+                    navigator.serviceWorker.addEventListener('controllerchange', () => {
+                        console.log('[App] iOS: Controller dəyişdi');
+                    });
+                }
             })
             .catch(error => {
-                console.log('Service Worker qeydiyyatı uğursuz oldu:', error);
+                console.error('[App] ❌ Service Worker qeydiyyatı uğursuz:', error);
             });
+            
+        // iOS-da ready event
+        navigator.serviceWorker.ready.then(registration => {
+            console.log('[App] Service Worker hazırdır');
+            
+            // iOS-da periodik update yoxlaması
+            if (isIOSDevice) {
+                setInterval(() => {
+                    registration.update();
+                }, 60000); // Hər dəqiqə
+            }
+        });
     });
 }
 

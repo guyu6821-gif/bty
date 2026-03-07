@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS PWA Test - UniFy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .test-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status.loading {
+            background: #fbbf24;
+            animation: pulse 2s infinite;
+        }
+        
+        .status.success {
+            background: #10b981;
+        }
+        
+        .status.error {
+            background: #ef4444;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .test-info {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .test-info p {
+            margin: 5px 0;
+        }
+        
+        .test-info strong {
+            color: #fbbf24;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #fff;
+            color: #667eea;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .log {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            margin: 3px 0;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 iOS PWA Test - UniFy</h1>
+        
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status" id="device-status"></span>
+                <span>Cihaz Məlumatı</span>
+            </div>
+            <div class="test-info" id="device-info">Yüklənir...</div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status" id="sw-status"></span>
+                <span>Service Worker</span>
+            </div>
+            <div class="test-info" id="sw-info">Yüklənir...</div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status" id="cache-status"></span>
+                <span>Cache Sistemi</span>
+            </div>
+            <div class="test-info" id="cache-info">Yüklənir...</div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">
+                <span class="status" id="offline-status"></span>
+                <span>Offline Dəstək</span>
+            </div>
+            <div class="test-info" id="offline-info">Yüklənir...</div>
+        </div>
+        
+        <button onclick="runTests()">🔄 Testləri Yenidən Başlat</button>
+        <button onclick="clearAllCaches()">🗑️ Bütün Cache-ləri Təmizlə</button>
+        <button onclick="window.location.href='/'">🏠 Ana Səhifəyə Qayıt</button>
+        
+        <div class="log" id="log"></div>
+    </div>
+    
+    <script>
+        const log = (message) => {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        };
+        
+        const setStatus = (id, status) => {
+            const el = document.getElementById(id);
+            el.className = `status ${status}`;
+        };
+        
+        const setInfo = (id, html) => {
+            document.getElementById(id).innerHTML = html;
+        };
+        
+        async function testDevice() {
+            log('📱 Cihaz məlumatı yoxlanılır...');
+            setStatus('device-status', 'loading');
+            
+            const ua = navigator.userAgent;
+            const isIOS = /iphone|ipad|ipod/i.test(ua);
+            const isAndroid = /android/i.test(ua);
+            const isSafari = /safari/i.test(ua) && !/chrome/i.test(ua);
+            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+            
+            const info = `
+                <p><strong>iOS Cihaz:</strong> ${isIOS ? '✅ Bəli' : '❌ Xeyr'}</p>
+                <p><strong>Android Cihaz:</strong> ${isAndroid ? '✅ Bəli' : '❌ Xeyr'}</p>
+                <p><strong>Safari Browser:</strong> ${isSafari ? '✅ Bəli' : '❌ Xeyr'}</p>
+                <p><strong>Standalone Mode:</strong> ${isStandalone ? '✅ Bəli (PWA quraşdırılıb)' : '❌ Xeyr (Browser-dən açılıb)'}</p>
+                <p><strong>User Agent:</strong> ${ua.substring(0, 60)}...</p>
+            `;
+            
+            setInfo('device-info', info);
+            setStatus('device-status', 'success');
+            log(`📱 Cihaz: iOS=${isIOS}, Safari=${isSafari}, Standalone=${isStandalone}`);
+        }
+        
+        async function testServiceWorker() {
+            log('🔧 Service Worker yoxlanılır...');
+            setStatus('sw-status', 'loading');
+            
+            if (!('serviceWorker' in navigator)) {
+                setInfo('sw-info', '<p><strong>❌ Service Worker dəstəklənmir</strong></p>');
+                setStatus('sw-status', 'error');
+                log('❌ Service Worker dəstəklənmir');
+                return;
+            }
+            
+            try {
+                const registration = await navigator.serviceWorker.getRegistration('/');
+                
+                if (!registration) {
+                    setInfo('sw-info', '<p><strong>⚠️ Service Worker qeydiyyatda deyil</strong></p><p>Səhifəni yeniləyin və ya ana səhifəyə gedin</p>');
+                    setStatus('sw-status', 'error');
+                    log('⚠️ Service Worker qeydiyyatda deyil');
+                    return;
+                }
+                
+                const state = registration.active ? registration.active.state : 'Qeydiyyatda';
+                const scope = registration.scope;
+                const updateTime = registration.updateViaCache;
+                
+                const info = `
+                    <p><strong>Status:</strong> ✅ Aktiv</p>
+                    <p><strong>State:</strong> ${state}</p>
+                    <p><strong>Scope:</strong> ${scope}</p>
+                    <p><strong>Update Cache:</strong> ${updateTime}</p>
+                `;
+                
+                setInfo('sw-info', info);
+                setStatus('sw-status', 'success');
+                log(`✅ Service Worker aktiv: state=${state}`);
+            } catch (error) {
+                setInfo('sw-info', `<p><strong>❌ Xəta:</strong> ${error.message}</p>`);
+                setStatus('sw-status', 'error');
+                log(`❌ SW xətası: ${error.message}`);
+            }
+        }
+        
+        async function testCache() {
+            log('💾 Cache sistemi yoxlanılır...');
+            setStatus('cache-status', 'loading');
+            
+            if (!('caches' in window)) {
+                setInfo('cache-info', '<p><strong>❌ Cache API dəstəklənmir</strong></p>');
+                setStatus('cache-status', 'error');
+                log('❌ Cache API dəstəklənmir');
+                return;
+            }
+            
+            try {
+                const cacheNames = await caches.keys();
+                log(`💾 ${cacheNames.length} cache tapıldı: ${cacheNames.join(', ')}`);
+                
+                if (cacheNames.length === 0) {
+                    setInfo('cache-info', '<p><strong>⚠️ Cache boşdur</strong></p><p>Səhifəni yeniləyin və ya ana səhifəyə gedin</p>');
+                    setStatus('cache-status', 'error');
+                    return;
+                }
+                
+                let totalFiles = 0;
+                let cacheDetails = '';
+                
+                for (const name of cacheNames) {
+                    const cache = await caches.open(name);
+                    const keys = await cache.keys();
+                    totalFiles += keys.length;
+                    
+                    cacheDetails += `<p><strong>${name}:</strong> ${keys.length} fayl</p>`;
+                    log(`  📦 ${name}: ${keys.length} fayl`);
+                    
+                    // İlk 5 faylı göstər
+                    keys.slice(0, 5).forEach(req => {
+                        log(`    - ${new URL(req.url).pathname}`);
+                    });
+                }
+                
+                const info = `
+                    <p><strong>Toplam Cache:</strong> ${cacheNames.length}</p>
+                    <p><strong>Toplam Fayl:</strong> ${totalFiles}</p>
+                    ${cacheDetails}
+                `;
+                
+                setInfo('cache-info', info);
+                setStatus('cache-status', 'success');
+                log(`✅ Cache aktiv: ${cacheNames.length} cache, ${totalFiles} fayl`);
+            } catch (error) {
+                setInfo('cache-info', `<p><strong>❌ Xəta:</strong> ${error.message}</p>`);
+                setStatus('cache-status', 'error');
+                log(`❌ Cache xətası: ${error.message}`);
+            }
+        }
+        
+        async function testOffline() {
+            log('🌐 Offline dəstək yoxlanılır...');
+            setStatus('offline-status', 'loading');
+            
+            const online = navigator.onLine;
+            
+            try {
+                // Ana səhifəni cache-dən yükləməyi test et
+                const cache = await caches.match('/');
+                const hasIndex = !!cache;
+                
+                const info = `
+                    <p><strong>İnternet:</strong> ${online ? '✅ Bağlıdır' : '❌ Kəsilib'}</p>
+                    <p><strong>Cache-də index.html:</strong> ${hasIndex ? '✅ Var' : '❌ Yoxdur'}</p>
+                    <p><strong>Offline İşləmə:</strong> ${hasIndex ? '✅ Mümkündür' : '❌ Mümkün deyil'}</p>
+                `;
+                
+                setInfo('offline-info', info);
+                setStatus('offline-status', hasIndex ? 'success' : 'error');
+                log(`🌐 Online=${online}, Cache index=${hasIndex}`);
+            } catch (error) {
+                setInfo('offline-info', `<p><strong>❌ Xəta:</strong> ${error.message}</p>`);
+                setStatus('offline-status', 'error');
+                log(`❌ Offline test xətası: ${error.message}`);
+            }
+        }
+        
+        async function runTests() {
+            log('🚀 Testlər başladı...');
+            document.getElementById('log').innerHTML = '';
+            
+            await testDevice();
+            await testServiceWorker();
+            await testCache();
+            await testOffline();
+            
+            log('✅ Bütün testlər tamamlandı!');
+        }
+        
+        async function clearAllCaches() {
+            if (!confirm('Bütün cache-lər silinəcək. Davam etmək istəyirsiniz?')) {
+                return;
+            }
+            
+            log('🗑️ Cache-lər təmizlənir...');
+            
+            try {
+                const cacheNames = await caches.keys();
+                
+                for (const name of cacheNames) {
+                    await caches.delete(name);
+                    log(`  ✅ Silindi: ${name}`);
+                }
+                
+                // Service Worker-i də unregister et
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (const registration of registrations) {
+                    await registration.unregister();
+                    log('  ✅ Service Worker unregister edildi');
+                }
+                
+                alert('Bütün cache-lər təmizləndi! Səhifə yenilənəcək.');
+                window.location.reload();
+            } catch (error) {
+                log(`❌ Xəta: ${error.message}`);
+                alert('Xəta baş verdi: ' + error.message);
+            }
+        }
+        
+        // Səhifə yüklənəndə testləri başlat
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>
