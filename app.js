@@ -592,7 +592,7 @@ const suretliLinkler = [
     {
         icon: "👥",
         text: "Gənclər üçün Sosiallaşma Qrupu (Whatsapp)",
-        url: "https://chat.whatsapp.com/EMev3aCVkXg2FXDh8ztH0G?mode=wwc"
+        url: "https://chat.whatsapp.com/Kli1OkYiJVs703G7zdjcRL?mode=gi_t"
     }
     // Yeni link əlavə etmək üçün:
     // { icon: "emoji", text: "Link adı", url: "https://..." },
