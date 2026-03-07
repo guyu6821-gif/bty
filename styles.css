@@ -327,6 +327,96 @@ body {
     height: 24px;
 }
 
+/* iOS Install Banner */
+.ios-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    color: white;
+    padding: 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    animation: slideInUp 0.5s ease;
+}
+
+.ios-banner-content {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.ios-banner-close {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ios-banner-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.ios-banner-icon {
+    float: left;
+    margin-right: 15px;
+}
+
+.ios-banner-text h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.ios-banner-text p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.95;
+}
+
+.ios-instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.ios-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ios-step svg {
+    flex-shrink: 0;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 @keyframes slideInRight {
     from {
         transform: translateX(100px);
@@ -569,6 +659,22 @@ body {
         right: 15px;
         padding: 12px 20px;
         font-size: 14px;
+    }
+
+    .ios-banner {
+        padding: 15px;
+    }
+
+    .ios-banner-text h3 {
+        font-size: 16px;
+    }
+
+    .ios-banner-text p {
+        font-size: 13px;
+    }
+
+    .ios-instructions {
+        font-size: 12px;
     }
 }
 

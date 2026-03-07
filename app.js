@@ -669,12 +669,55 @@ if ('serviceWorker' in navigator) {
 // ============================================
 let deferredPrompt;
 
+// iOS aşkarlaması
+function isIOS() {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(userAgent);
+}
+
+// Standalone modda olub-olmadığını yoxla (artıq quraşdırılıb)
+function isInStandaloneMode() {
+    return ('standalone' in window.navigator) && (window.navigator.standalone) ||
+           window.matchMedia('(display-mode: standalone)').matches;
+}
+
+// iOS Install Banner-i göstər/gizlət
+function showIOSInstallBanner() {
+    const banner = document.getElementById('ios-install-banner');
+    const alreadyShown = localStorage.getItem('ios-banner-closed');
+    
+    // Əgər banner əvvəllər bağlanıbsa və 7 gündən az keçibsə, göstərmə
+    if (alreadyShown) {
+        const closedTime = parseInt(alreadyShown);
+        const daysPassed = (Date.now() - closedTime) / (1000 * 60 * 60 * 24);
+        if (daysPassed < 7) {
+            return;
+        }
+    }
+    
+    if (banner && isIOS() && !isInStandaloneMode()) {
+        banner.style.display = 'block';
+    }
+}
+
+function closeIOSBanner() {
+    const banner = document.getElementById('ios-install-banner');
+    if (banner) {
+        banner.style.display = 'none';
+        // 7 gün ərzində göstərmə
+        localStorage.setItem('ios-banner-closed', Date.now().toString());
+    }
+}
+
+// Android/Desktop üçün beforeinstallprompt
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     
-    // Endirmə düyməsini göstər
-    showInstallButton();
+    // Endirmə düyməsini göstər (yalnız Android/Desktop)
+    if (!isIOS()) {
+        showInstallButton();
+    }
 });
 
 window.addEventListener('appinstalled', () => {
@@ -688,7 +731,7 @@ window.addEventListener('appinstalled', () => {
 // Endirmə düyməsini göstər
 function showInstallButton() {
     // Yalnız standalone modda deyilsə göstər (yəni tətbiq kimi quraşdırılmayıb)
-    if (!window.matchMedia('(display-mode: standalone)').matches) {
+    if (!isInStandaloneMode() && !isIOS()) {
         const installBtn = document.getElementById('install-button');
         if (installBtn) {
             installBtn.style.display = 'flex';
@@ -704,7 +747,7 @@ function hideInstallButton() {
     }
 }
 
-// Endirmə düyməsinə klik
+// Endirmə düyməsinə klik (Android/Desktop)
 function installApp() {
     if (deferredPrompt) {
         deferredPrompt.prompt();
@@ -717,3 +760,11 @@ function installApp() {
         });
     }
 }
+
+// Səhifə yüklənəndə iOS banner-ini göstər
+window.addEventListener('load', () => {
+    if (isIOS() && !isInStandaloneMode()) {
+        // 2 saniyə gözlə, sonra banner-i göstər
+        setTimeout(showIOSInstallBanner, 2000);
+    }
+});

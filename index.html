@@ -2,13 +2,37 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Semestr, ÜOMG, Kəsr Pulu və digər hesablamalar">
+    
+    <!-- Theme Colors -->
     <meta name="theme-color" content="#4A90E2">
-    <title>UniFy</title>
+    <meta name="msapplication-TileColor" content="#4A90E2">
+    
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="UniFy">
+    <meta name="format-detection" content="telephone=no">
+    
+    <title>UniFy - Akademik Köməkçi</title>
+    
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
+    
+    <!-- Icons -->
     <link rel="icon" type="image/png" href="/logo.png">
+    
+    <!-- iOS Specific Icons (Multiple Sizes for Better Quality) -->
     <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/logo.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/logo.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/logo.png">
+    
+    <!-- iOS Splash Screens (Optional but recommended) -->
+    <link rel="apple-touch-startup-image" href="/logo.png">
+    
     <link rel="stylesheet" href="/styles.css">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Q3VC90V6V"></script>
@@ -40,6 +64,25 @@
         </svg>
         <span>Tətbiqi Endir</span>
     </button>
+
+    <!-- iOS Install Banner -->
+    <div id="ios-install-banner" class="ios-banner" style="display: none;">
+        <div class="ios-banner-content">
+            <button class="ios-banner-close" onclick="closeIOSBanner()">✕</button>
+            <div class="ios-banner-icon">
+                <img src="/logo.png" alt="UniFy Logo" style="width: 48px; height: 48px; border-radius: 12px;">
+            </div>
+            <div class="ios-banner-text">
+                <h3>UniFy Tətbiqini Quraşdır</h3>
+                <p>Safari-də <strong>Paylaş</strong> düyməsinə basın və <strong>"Add to Home Screen"</strong> seçin</p>
+                <div class="ios-instructions">
+                    <span class="ios-step">1️⃣ Aşağıdakı <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg> düyməsinə basın</span>
+                    <span class="ios-step">2️⃣ "Add to Home Screen" seçin</span>
+                    <span class="ios-step">3️⃣ "Add" düyməsinə basın</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Ana Container -->
     <div class="container">
