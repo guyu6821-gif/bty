@@ -538,7 +538,7 @@ body {
 }
 
 .centered-text {
-    font-size: 16px;
+    font-size: 18px;
     color: var(--text-dark);
     font-style: serif;
 }
