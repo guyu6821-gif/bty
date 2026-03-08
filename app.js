@@ -585,14 +585,14 @@ const suretliLinkler = [
         url: "https://t.me/bdu_eduaz"
     },
     {
-        icon: "👤",
-        text: "Sayt Sahibinin Instagramı",
-        url: "https://www.instagram.com/desespere_etoile"
-    },
-    {
         icon: "👥",
         text: "Gənclər üçün Sosiallaşma Qrupu (Whatsapp)",
         url: "https://chat.whatsapp.com/Kli1OkYiJVs703G7zdjcRL?mode=gi_t"
+    },
+    {
+        icon: "👤",
+        text: "Sayt Sahibinin Instagramı",
+        url: "https://www.instagram.com/618_acc?igsh=eGZ6NDBqbnltbzJv"
     }
     // Yeni link əlavə etmək üçün:
     // { icon: "emoji", text: "Link adı", url: "https://..." },
