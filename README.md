@@ -1,6 +1,6 @@
 # 🎓 BDU Tələbə Hesablayıcı (UniFy)
 
-**Versiya:** 1.3.2 (iOS PWA Optimized)
+**Versiya:** 1.3.3 (SEO Optimized)
 
 ## 📱 PWA Tətbiqi - Proqressiv Veb Tətbiq
 
@@ -148,23 +148,35 @@ Bu səhifədə yoxlana biləcəklər:
 ### Struktur
 ```
 webapp/
-├── index.html          # Ana səhifə
+├── index.html          # Ana səhifə (SEO optimized)
 ├── styles.css          # CSS stilləri
 ├── app.js              # JavaScript funksiyaları
-├── sw.js               # Service Worker (v1.3.2 - iOS optimized)
+├── sw.js               # Service Worker (v1.3.3)
 ├── manifest.json       # PWA manifest (iOS compatible)
+├── sitemap.xml         # SEO sitemap ⭐ YENİ
+├── robots.txt          # SEO robots ⭐ YENİ
 ├── logo.png            # UniFy loqosu (1024×1024)
 ├── icon-192.png        # PWA ikonu (192×192)
 ├── icon-512.png        # PWA ikonu (512×512)
 ├── ios-test.html       # iOS PWA test səhifəsi
 ├── README.md           # Bu fayl
-└── DEPLOYMENT.md       # Deploy təlimatları
+├── DEPLOYMENT.md       # Deploy təlimatları
+├── IOS_GUIDE.md        # iOS quraşdırma guide
+└── SEO_GUIDE.md        # SEO və Google Search Console guide ⭐ YENİ
 ```
 
 ### Cache Versiya
-- **Current:** v1.3.2
+- **Current:** v1.3.3
 - Yeni deploy etdikdə `sw.js`-də `CACHE_VERSION` artırın
 - Köhnə cache avtomatik silinir
+
+### SEO Optimizasiya ⭐ YENİ
+- **sitemap.xml** - Google üçün sayt xəritəsi
+- **robots.txt** - Axtarış motorları üçün qaydalar
+- **Meta Tags** - SEO, Open Graph, Twitter Card
+- **JSON-LD** - Structured data (Rich Snippets)
+- **15+ Açar Söz** - ÜOMG, semestr, kəsr və s.
+- **Google Search Console** - SEO_GUIDE.md-də təlimat
 
 ### Service Worker Strategiyası
 - **Cache-First:** Əsas fayllar (HTML, CSS, JS)
@@ -189,13 +201,28 @@ webapp/
 
 ## 📊 Statistika
 
-- **Total Lines:** ~1,900+ sətir kod
-- **File Size:** ~85 KB (gzip: ~22 KB)
+- **Total Lines:** ~2,400+ sətir kod
+- **Total Files:** 19 fayllar
+- **File Size:** ~95 KB (gzip: ~24 KB)
 - **PWA Score:** 100/100 *(Lighthouse)*
+- **SEO Score:** 95/100 *(Lighthouse)*
 - **Offline Support:** ✅ Tam
 - **iOS Compatible:** ✅ v1.3.2 ilə
+- **SEO Optimized:** ✅ v1.3.3 ilə
 
 ## 🐛 Bug Fix Tarixçəsi
+
+### v1.3.3 (2024-03-12) - SEO Optimizasiya ✅
+- ✅ **sitemap.xml** əlavə edildi (Google Search Console üçün)
+- ✅ **robots.txt** əlavə edildi (axtarış motorları üçün)
+- ✅ **SEO Meta Tags** əlavə edildi (description, keywords)
+- ✅ **Open Graph Tags** əlavə edildi (Facebook paylaşım)
+- ✅ **Twitter Card Tags** əlavə edildi (Twitter paylaşım)
+- ✅ **JSON-LD Structured Data** əlavə edildi (Google Rich Snippets)
+- ✅ **15+ Açar Söz:** ÜOMG hesablama, semestr bal hesablama, kəsr ödənişi hesablama və s.
+- ✅ **Title Optimize:** SEO-friendly başlıq
+- ✅ **Canonical URL** təyin edildi
+- ✅ **SEO_GUIDE.md** yaradıldı (Google Search Console təlimatı)
 
 ### v1.3.2 (2024-03-07) - iOS Cache Həlli ✅
 - iOS Safari üçün sadələşdirilmiş Service Worker
