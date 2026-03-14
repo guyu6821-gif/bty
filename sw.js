@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v1.3.16';
+const CACHE_VERSION = 'v1.3.17';
 const CACHE_NAME = `bdu-hesablayici-${CACHE_VERSION}`;
 
 // iOS Safari üçün sadələşdirilmiş cache siyahısı
