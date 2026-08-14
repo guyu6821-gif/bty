@@ -585,11 +585,6 @@ const suretliLinkler = [
         url: "https://t.me/bdu_eduaz"
     },
     {
-        icon: "👥",
-        text: "Gənclər üçün Sosiallaşma Qrupu (Whatsapp)",
-        url: "https://chat.whatsapp.com/Kli1OkYiJVs703G7zdjcRL?mode=gi_t"
-    },
-    {
         icon: "👤",
         text: "Sayt Sahibinin Instagramı",
         url: "https://www.instagram.com/618_acc?igsh=eGZ6NDBqbnltbzJv"
