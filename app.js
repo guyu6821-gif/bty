@@ -580,11 +580,6 @@ const suretliLinkler = [
         url: "https://www.instagram.com/bdu_eduaz"
     },
     {
-        icon: "✈️",
-        text: "Bakı Dövlət Universitetinin Telegramı",
-        url: "https://t.me/bdu_eduaz"
-    },
-    {
         icon: "👤",
         text: "Sayt Sahibinin Instagramı",
         url: "https://www.instagram.com/618_acc?igsh=eGZ6NDBqbnltbzJv"
