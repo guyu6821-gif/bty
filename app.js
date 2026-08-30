@@ -706,6 +706,77 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============================================
+// Supabase İnteqrasiyası - "orders" cədvəlinə məlumat yaz
+// ============================================
+const SUPABASE_URL = 'https://glcgixnfjohomjoyyrwk.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsY2dpeG5mam9ob21qb3l5cndrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwODE4OTIsImV4cCI6MjEwMzY1Nzg5Mn0.8fSkJHpPza6BrF2qFowhqmR2gK7-ecyrE9cPhA5YR-c';
+
+function detectDevice() {
+    const ua = navigator.userAgent;
+    if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+        return 'Mobile';
+    }
+    return 'Desktop';
+}
+
+function detectBrowser() {
+    const ua = navigator.userAgent;
+    if (/Edg\//i.test(ua)) return 'Edge';
+    if (/OPR\/|Opera/i.test(ua)) return 'Opera';
+    if (/Chrome\/[0-9]/.test(ua) && !/Chromium/.test(ua)) return 'Chrome';
+    if (/Firefox\//i.test(ua)) return 'Firefox';
+    if (/Safari\/[0-9]/.test(ua) && !/Chrome/.test(ua)) return 'Safari';
+    if (/MSIE|Trident/i.test(ua)) return 'Internet Explorer';
+    return 'Unknown';
+}
+
+function detectOS() {
+    const ua = navigator.userAgent;
+    if (/Windows NT/i.test(ua)) return 'Windows';
+    if (/Mac OS X/i.test(ua) && !/iPhone|iPad|iPod/.test(ua)) return 'macOS';
+    if (/iPhone/i.test(ua)) return 'iOS (iPhone)';
+    if (/iPad/i.test(ua)) return 'iOS (iPad)';
+    if (/iPod/i.test(ua)) return 'iOS (iPod)';
+    if (/Android/i.test(ua)) return 'Android';
+    if (/Linux/i.test(ua)) return 'Linux';
+    if (/CrOS/i.test(ua)) return 'ChromeOS';
+    return 'Unknown';
+}
+
+async function logInstallClickToSupabase() {
+    try {
+        const payload = {
+            clicked_at: new Date().toISOString(),
+            page_url: window.location.href,
+            referrer: document.referrer || null,
+            device: detectDevice(),
+            browser: detectBrowser(),
+            operating_system: detectOS()
+        };
+
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            console.warn('[Supabase] Məlumat yazılmadı:', response.status, errText);
+        } else {
+            console.log('[Supabase] ✅ Klik məlumatı yazıldı:', payload);
+        }
+    } catch (err) {
+        console.warn('[Supabase] Xəta baş verdi:', err);
+    }
+}
+
+// ============================================
 // PWA Quraşdırma Promptu və Endirmə Düyməsi
 // ============================================
 let deferredPrompt;
@@ -738,6 +809,8 @@ function showIOSInstallBanner() {
     
     if (banner && isIOS() && !isInStandaloneMode()) {
         banner.style.display = 'block';
+        // iOS install banner göründükdə Supabase-ə klik məlumatını yaz
+        logInstallClickToSupabase();
     }
 }
 
@@ -790,6 +863,9 @@ function hideInstallButton() {
 
 // Endirmə düyməsinə klik (Android/Desktop)
 function installApp() {
+    // Supabase-ə klik məlumatını yaz
+    logInstallClickToSupabase();
+
     if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
