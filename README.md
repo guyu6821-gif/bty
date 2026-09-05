@@ -257,7 +257,7 @@ webapp/
 
 ## 📞 Əlaqə
 
-- **WhatsApp:** +994 55 940 60 18
+- **WhatsApp:** +994 77 800 09 83
 - **Instagram:** @desespere_etoile
 - **Developer:** BDU Tələbə Hesablayıcı Team
 

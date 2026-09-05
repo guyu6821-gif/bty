@@ -76,7 +76,7 @@
 - ✅ İstifadəçi istədiyi bölməyə daxil ola bilir
 - ✅ Geri düyməsi ilə ana səhifəyə qayıtma
 - ✅ Yuxarı hissədə sabit banner: "ən ucuz sərbəst iş hazırlanması"
-- ✅ Banner yanında WhatsApp ikonu (+994559406018)
+- ✅ Banner yanında WhatsApp ikonu (+994778000983)
 - ✅ WhatsApp tətbiqi üzərindən yönləndirmə
 - ✅ Banner bütün səhifələrdə sabit
 
@@ -266,7 +266,7 @@ const CACHE_VERSION = 'v1.0.1'; // Bu nömrəni artır
 
 ## 📞 Əlaqə və Dəstək
 
-**WhatsApp:** +994 55 940 60 18  
+**WhatsApp:** +994 77 800 09 83  
 **Instagram:** @desespere_etoile  
 **GitHub:** https://github.com/guyu6821-gif/bty
 
