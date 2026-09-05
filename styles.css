@@ -23,6 +23,12 @@
     --link-item-bg: #F8F9FA;
     --link-item-hover-bg: #FFFFFF;
     --dictionary-item-bg: #F8F9FA;
+    /* Lang button colors for light mode - visible on gradient bg */
+    --lang-bg: rgba(255,255,255,0.18);
+    --lang-border: rgba(255,255,255,0.35);
+    --lang-text: rgba(255,255,255,0.85);
+    --lang-active-bg: rgba(255,255,255,0.92);
+    --lang-active-text: #5a3e99;
 }
 
 /* Dark Mode Variables */
@@ -40,6 +46,12 @@ body.dark-mode {
     --link-item-bg: #1E2535;
     --link-item-hover-bg: #252D3D;
     --dictionary-item-bg: #1E2535;
+    /* Lang button colors for dark mode */
+    --lang-bg: rgba(74,144,226,0.18);
+    --lang-border: rgba(74,144,226,0.4);
+    --lang-text: rgba(200,215,255,0.85);
+    --lang-active-bg: rgba(74,144,226,0.85);
+    --lang-active-text: #FFFFFF;
 }
 
 body {
@@ -88,6 +100,7 @@ body {
     justify-content: center;
     transition: all 0.3s ease;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .whatsapp-btn:hover {
@@ -138,7 +151,7 @@ body {
     font-weight: 700;
 }
 
-/* Logo Container - NO animation */
+/* Logo Container */
 .logo-container {
     text-align: center;
     margin-bottom: 20px;
@@ -149,7 +162,6 @@ body {
     height: 120px;
     object-fit: contain;
     filter: drop-shadow(0 4px 12px rgba(74, 144, 226, 0.3));
-    /* NO animation - logo is static */
 }
 
 .page-title {
@@ -310,7 +322,7 @@ body {
     color: var(--text-dark);
 }
 
-/* Visual 0 effect for placeholders */
+/* Placeholder */
 .dynamic-input input::placeholder,
 .input-group input::placeholder {
     color: #BDC3C7;
@@ -429,34 +441,18 @@ body {
 }
 
 @keyframes slideInUp {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
 }
 
 @keyframes slideInRight {
-    from {
-        transform: translateX(100px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from { transform: translateX(100px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
 }
 
 @keyframes pulse {
-    0%, 100% {
-        box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4);
-    }
-    50% {
-        box-shadow: 0 4px 30px rgba(74, 144, 226, 0.7);
-    }
+    0%, 100% { box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4); }
+    50%       { box-shadow: 0 4px 30px rgba(74, 144, 226, 0.7); }
 }
 
 /* Result Box */
@@ -473,14 +469,8 @@ body {
 }
 
 @keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .result-box.success {
@@ -543,13 +533,8 @@ body {
     border-bottom: none;
 }
 
-.stat-label {
-    font-weight: 500;
-}
-
-.stat-value {
-    font-weight: 700;
-}
+.stat-label { font-weight: 500; }
+.stat-value { font-weight: 700; }
 
 /* Info Box */
 .info-box {
@@ -672,7 +657,7 @@ body.dark-mode .theme-toggle-btn {
 }
 
 /* ============================================
-   Language Selector
+   Language Selector - Fon rənginə uyğun, görünən
    ============================================ */
 .lang-selector {
     position: fixed;
@@ -680,40 +665,44 @@ body.dark-mode .theme-toggle-btn {
     left: 15px;
     z-index: 998;
     display: flex;
-    gap: 4px;
-    background: rgba(255,255,255,0.15);
+    gap: 3px;
+    background: var(--lang-bg);
     border-radius: 20px;
     padding: 4px;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid var(--lang-border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .lang-btn {
     background: transparent;
     border: none;
-    color: rgba(255,255,255,0.7);
+    color: var(--lang-text);
     font-size: 12px;
     font-weight: 700;
-    padding: 4px 8px;
+    padding: 5px 9px;
     border-radius: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
     letter-spacing: 0.5px;
+    line-height: 1;
 }
 
 .lang-btn:hover {
     color: #FFFFFF;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.2);
 }
 
 .lang-btn.active {
-    background: rgba(255,255,255,0.9);
-    color: #4A90E2;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    background: var(--lang-active-bg);
+    color: var(--lang-active-text);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.22);
 }
 
-body.dark-mode .lang-btn.active {
-    background: rgba(74, 144, 226, 0.85);
+body.dark-mode .lang-btn:hover {
+    background: rgba(74,144,226,0.3);
     color: #FFFFFF;
 }
 
