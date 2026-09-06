@@ -909,11 +909,6 @@ const suretliLinkler = [
         url: "https://share.google/7ljpthpUCiOMOeS82"
     },
     {
-        icon: "💬📢",
-        key: "link_whatsapp_group",
-        url: "https://chat.whatsapp.com/GDt5duGNCFcAzM5uzaygqu?s=cl&p=a&mlu=4&ilr=4"
-    },
-    {
         icon: "💬",
         key: "link_bdu_whatsapp",
         url: "https://whatsapp.com/channel/0029Va85Ls85q08WyYoGeJ3r"
