@@ -3,7 +3,7 @@
 // ============================================
 const translations = {
     az: {
-        banner_text: "Ən Ucuz Sərbəst İş Hazırlanması",
+        banner_text: "📲 Ən Ucuz və Mükəmməl Sərbəst İş Hazırlanması ➡️",
         install_app: "Tətbiqi Endir",
         ios_install_title: "UniFy Tətbiqini Quraşdır",
         ios_install_desc: "Safari-də <strong>Paylaş</strong> düyməsinə basın və <strong>\"Add to Home Screen\"</strong> seçin",
@@ -119,12 +119,13 @@ const translations = {
         // Link texts
         link_bdu_web: "Bakı Dövlət Universitetinin Rəsmi Web Saytı",
         link_bdu_student: "Bakı Dövlət Universitetinin Tələbə Akademik Web Saytı (SemsLogin)",
+        link_whatsapp_group: "Məlumat Qrupu (WhatsApp)",
         link_bdu_whatsapp: "Bakı Dövlət Universitetinin WhatsApp Kanalı",
         link_bdu_instagram: "Bakı Dövlət Universitetinin Instagramı",
-        link_owner_instagram: "Sayt Sahibinin Instagramı",
+        link_owner_instagram: "Tətbiq Sahibinin Instagramı",
     },
     ru: {
-        banner_text: "Самая Дешёвая Подготовка Самостоятельных Работ",
+        banner_text: "📲 Самая Дешёвая и Идеальная Подготовка Самостоятельных Работ ➡️",
         install_app: "Установить приложение",
         ios_install_title: "Установить приложение UniFy",
         ios_install_desc: "В Safari нажмите кнопку <strong>Поделиться</strong> и выберите <strong>\"Добавить на главный экран\"</strong>",
@@ -236,12 +237,13 @@ const translations = {
         wa_greeting: "Здравствуйте! Дайте мне информацию о самостоятельной работе.",
         link_bdu_web: "Официальный сайт Бакинского государственного университета",
         link_bdu_student: "Академический сайт студентов БГУ (SemsLogin)",
+        link_whatsapp_group: "Информационная Группа (WhatsApp)",
         link_bdu_whatsapp: "WhatsApp канал Бакинского государственного университета",
         link_bdu_instagram: "Instagram Бакинского государственного университета",
-        link_owner_instagram: "Instagram владельца сайта",
+        link_owner_instagram: "Instagram владельца приложения",
     },
     en: {
-        banner_text: "Cheapest Independent Study Preparation",
+        banner_text: "📲 Cheapest and Perfect Independent Study Preparation ➡️",
         install_app: "Install App",
         ios_install_title: "Install UniFy App",
         ios_install_desc: "In Safari, tap the <strong>Share</strong> button and select <strong>\"Add to Home Screen\"</strong>",
@@ -353,9 +355,10 @@ const translations = {
         wa_greeting: "Hello! Please give me information about the independent study.",
         link_bdu_web: "Official Website of Baku State University",
         link_bdu_student: "BSU Student Academic Website (SemsLogin)",
+        link_whatsapp_group: "Information Group (WhatsApp)",
         link_bdu_whatsapp: "Baku State University WhatsApp Channel",
         link_bdu_instagram: "Baku State University Instagram",
-        link_owner_instagram: "Site Owner's Instagram",
+        link_owner_instagram: "App Owner's Instagram",
     }
 };
 
@@ -904,6 +907,11 @@ const suretliLinkler = [
         icon: "🎓",
         key: "link_bdu_student",
         url: "https://share.google/7ljpthpUCiOMOeS82"
+    },
+    {
+        icon: "💬📢",
+        key: "link_whatsapp_group",
+        url: "https://chat.whatsapp.com/GDt5duGNCFcAzM5uzaygqu?s=cl&p=a&mlu=4&ilr=4"
     },
     {
         icon: "💬",
