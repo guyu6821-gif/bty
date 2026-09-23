@@ -13,6 +13,8 @@ const translations = {
         ios_step3: "\"Add to Home Screen\" Seçin",
         ios_step4: "\"Add və ya +\" Düyməsinə Basın",
         menu_semestr: "Semestr Balı",
+        menu_zeng: "Zəng Cədvəli",
+        menu_qayib: "Qayıb Limiti",
         menu_uomg: "ÜOMG Hesablama",
         menu_kesr: "25% İmtahan (Kəsr Pulu)",
         menu_yas: "Yaş Hesablayıcı",
@@ -57,6 +59,47 @@ const translations = {
         about_contact_link: "WhatsApp ilə əlaqə saxlayın",
         about_designer: "Tətbiqin dizaynı və funksionallığı Nurxan tərəfindən hazırlanıb.",
         about_thanks: "Dəstək Üçün: Nəbiyeva Nuray, Rəhimov Riyad və TT2-Qrupuna Təşəkkür.",
+        zeng_title: "Zəng Cədvəli",
+        zeng_sehər: "🌅 Səhər növbəsi",
+        zeng_gunorta: "☀️ Günorta növbəsi",
+        zeng_ders: "Dərs",
+        zeng_1ci_his: "1-ci hissə",
+        zeng_fasilə: "Fasilə",
+        zeng_2ci_his: "2-ci hissə",
+        zeng_1ci_ders: "1-ci dərs",
+        zeng_2ci_ders: "2-ci dərs",
+        zeng_3cu_ders: "3-cü dərs",
+        zeng_note: "📌 Qeyd: Fasilə zamanı zəng vurulur (dərs bitir) və fasilənin sonunda növbəti hissə başlayır.",
+        qayib_limit_title: "Qayıb Limiti",
+        qayib_30: "30 saatlıq fənn üzrə:",
+        qayib_45: "45 saatlıq fənn üzrə:",
+        qayib_60: "60 saatlıq fənn üzrə:",
+        qayib_75: "75 saatlıq fənn üzrə:",
+        qayib_90: "90 saatlıq fənn üzrə:",
+        qayib_105: "105 saatlıq fənn üzrə:",
+        qayib_120: "120 saatlıq fənn üzrə:",
+        qayib_2_1bal: "2 qayıb",
+        qayib_3_1bal: "3 qayıb",
+        qayib_3_2bal: "3 qayıb",
+        qayib_4_1bal: "4 qayıb",
+        qayib_5_1bal: "5 qayıb",
+        qayib_5_2bal: "5 qayıb",
+        qayib_6_1bal: "6 qayıb",
+        qayib_6_2bal: "6 qayıb",
+        qayib_8_2bal: "8 qayıb",
+        qayib_9_2bal: "9 qayıb",
+        qayib_11_2bal: "11 qayıb",
+        qayib_12_2bal: "12 qayıb",
+        qayib_4plus: "4 və daha artıq qayıb",
+        qayib_6plus: "6 və daha çox qayıb",
+        qayib_8plus: "8 və daha çox qayıb",
+        qayib_10plus: "10 və daha çox qayıb",
+        qayib_12plus: "12 və daha çox qayıb",
+        qayib_14plus: "14 və daha çox qayıb",
+        qayib_15plus: "15 və daha çox qayıb",
+        qayib_1bal: "- 1 bal",
+        qayib_2bal: "- 2 bal",
+        qayib_buraxilmir: "Buraxılmır",
         luget_title: "Akademik Lüğət",
         melumat_title: "Akademik Məlumat",
         links_title: "Sürətli Linklər",
@@ -135,6 +178,8 @@ const translations = {
         ios_step3: "Выберите \"Добавить на главный экран\"",
         ios_step4: "Нажмите \"Добавить\" или \"+\"",
         menu_semestr: "Семестровый Балл",
+        menu_zeng: "Расписание звонков",
+        menu_qayib: "Лимит пропусков",
         menu_uomg: "Расчёт ÜOMG",
         menu_kesr: "25% Экзамен (Кəср)",
         menu_yas: "Калькулятор Возраста",
@@ -179,6 +224,47 @@ const translations = {
         about_contact_link: "Связаться через WhatsApp",
         about_designer: "Дизайн и функциональность приложения разработаны Нурханом.",
         about_thanks: "Благодарим: Набиеву Нурай, Рахимова Рияда и Группу ТТ2.",
+        zeng_title: "Расписание звонков",
+        zeng_sehər: "🌅 Утренняя смена",
+        zeng_gunorta: "☀️ Дневная смена",
+        zeng_ders: "Урок",
+        zeng_1ci_his: "1-я часть",
+        zeng_fasilə: "Перерыв",
+        zeng_2ci_his: "2-я часть",
+        zeng_1ci_ders: "1-й урок",
+        zeng_2ci_ders: "2-й урок",
+        zeng_3cu_ders: "3-й урок",
+        zeng_note: "📌 Примечание: Звонок звонит во время перерыва (урок заканчивается), и следующая часть начинается в конце перерыва.",
+        qayib_limit_title: "Лимит пропусков",
+        qayib_30: "По 30-часовому предмету:",
+        qayib_45: "По 45-часовому предмету:",
+        qayib_60: "По 60-часовому предмету:",
+        qayib_75: "По 75-часовому предмету:",
+        qayib_90: "По 90-часовому предмету:",
+        qayib_105: "По 105-часовому предмету:",
+        qayib_120: "По 120-часовому предмету:",
+        qayib_2_1bal: "2 пропуска",
+        qayib_3_1bal: "3 пропуска",
+        qayib_3_2bal: "3 пропуска",
+        qayib_4_1bal: "4 пропуска",
+        qayib_5_1bal: "5 пропусков",
+        qayib_5_2bal: "5 пропусков",
+        qayib_6_1bal: "6 пропусков",
+        qayib_6_2bal: "6 пропусков",
+        qayib_8_2bal: "8 пропусков",
+        qayib_9_2bal: "9 пропусков",
+        qayib_11_2bal: "11 пропусков",
+        qayib_12_2bal: "12 пропусков",
+        qayib_4plus: "4 и более пропусков",
+        qayib_6plus: "6 и более пропусков",
+        qayib_8plus: "8 и более пропусков",
+        qayib_10plus: "10 и более пропусков",
+        qayib_12plus: "12 и более пропусков",
+        qayib_14plus: "14 и более пропусков",
+        qayib_15plus: "15 и более пропусков",
+        qayib_1bal: "- 1 балл",
+        qayib_2bal: "- 2 балла",
+        qayib_buraxilmir: "Не допускается",
         luget_title: "Академический Словарь",
         melumat_title: "Академическая Информация",
         links_title: "Быстрые Ссылки",
@@ -253,6 +339,8 @@ const translations = {
         ios_step3: "Select \"Add to Home Screen\"",
         ios_step4: "Tap \"Add or +\"",
         menu_semestr: "Semester Score",
+        menu_zeng: "Bell Schedule",
+        menu_qayib: "Absence Limit",
         menu_uomg: "GPA Calculator",
         menu_kesr: "25% Exam Fee",
         menu_yas: "Age Calculator",
@@ -297,6 +385,47 @@ const translations = {
         about_contact_link: "Contact via WhatsApp",
         about_designer: "The app's design and functionality were developed by Nurxan.",
         about_thanks: "Thanks to: Nabiyeva Nuray, Rahimov Riyad and TT2 Group.",
+        zeng_title: "Bell Schedule",
+        zeng_sehər: "🌅 Morning Shift",
+        zeng_gunorta: "☀️ Afternoon Shift",
+        zeng_ders: "Class",
+        zeng_1ci_his: "1st part",
+        zeng_fasilə: "Break",
+        zeng_2ci_his: "2nd part",
+        zeng_1ci_ders: "1st class",
+        zeng_2ci_ders: "2nd class",
+        zeng_3cu_ders: "3rd class",
+        zeng_note: "📌 Note: The bell rings during the break (class ends), and the next part begins at the end of the break.",
+        qayib_limit_title: "Absence Limit",
+        qayib_30: "For 30-hour subject:",
+        qayib_45: "For 45-hour subject:",
+        qayib_60: "For 60-hour subject:",
+        qayib_75: "For 75-hour subject:",
+        qayib_90: "For 90-hour subject:",
+        qayib_105: "For 105-hour subject:",
+        qayib_120: "For 120-hour subject:",
+        qayib_2_1bal: "2 absences",
+        qayib_3_1bal: "3 absences",
+        qayib_3_2bal: "3 absences",
+        qayib_4_1bal: "4 absences",
+        qayib_5_1bal: "5 absences",
+        qayib_5_2bal: "5 absences",
+        qayib_6_1bal: "6 absences",
+        qayib_6_2bal: "6 absences",
+        qayib_8_2bal: "8 absences",
+        qayib_9_2bal: "9 absences",
+        qayib_11_2bal: "11 absences",
+        qayib_12_2bal: "12 absences",
+        qayib_4plus: "4 or more absences",
+        qayib_6plus: "6 or more absences",
+        qayib_8plus: "8 or more absences",
+        qayib_10plus: "10 or more absences",
+        qayib_12plus: "12 or more absences",
+        qayib_14plus: "14 or more absences",
+        qayib_15plus: "15 or more absences",
+        qayib_1bal: "- 1 point",
+        qayib_2bal: "- 2 points",
+        qayib_buraxilmir: "Not admitted",
         luget_title: "Academic Dictionary",
         melumat_title: "Academic Information",
         links_title: "Quick Links",
@@ -1173,3 +1302,161 @@ window.addEventListener('load', () => {
         setTimeout(showIOSInstallBanner, 2000);
     }
 });
+
+// ============================================
+// Bildiriş Supabase (Ayrı - ikinci Supabase)
+// QEYD: Bu mövcud Supabase ilə KARINMASIN
+// ============================================
+const NOTIF_SUPABASE_URL = 'https://wkoxusepqljmtvgaynqk.supabase.co';
+const NOTIF_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indrb3h1c2VwcWxqbXR2Z2F5bnFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxODgyMjcsImV4cCI6MjEwNTc2NDIyN30.QVlM2d2lSkXMqOuvZPIMavlHQdR-9VNEABXvraUUolY';
+
+function notifFetch(path, options = {}) {
+    const headers = {
+        'Content-Type': 'application/json',
+        'apikey': NOTIF_ANON_KEY,
+        'Authorization': `Bearer ${NOTIF_ANON_KEY}`,
+        ...(options.headers || {})
+    };
+    return fetch(`${NOTIF_SUPABASE_URL}/rest/v1/${path}`, { ...options, headers });
+}
+
+// Push icazəsi istə (yalnız bir dəfə)
+let notifPermissionAsked = false;
+
+async function requestPushPermission() {
+    if (notifPermissionAsked) return;
+    if (!('Notification' in window) || !('serviceWorker' in navigator)) return;
+    if (Notification.permission === 'granted') {
+        notifPermissionAsked = true;
+        await subscribePush();
+        return;
+    }
+    if (Notification.permission === 'denied') return;
+    
+    // Yalnız bir dəfə soruş
+    const alreadyAsked = localStorage.getItem('unify_push_asked');
+    if (alreadyAsked) return;
+    
+    notifPermissionAsked = true;
+    localStorage.setItem('unify_push_asked', '1');
+    
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+        await subscribePush();
+    }
+}
+
+// Push abunəliyi yarat və Supabase-ə yaz
+async function subscribePush() {
+    try {
+        if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+        const reg = await navigator.serviceWorker.ready;
+        let sub = await reg.pushManager.getSubscription();
+        if (!sub) {
+            // VAPID key olmadan da işləyir (server-side push üçün key lazımdır,
+            // amma biz browser notification API istifadə edirik)
+            return;
+        }
+        const subJson = sub.toJSON();
+        // Supabase-ə yaz
+        await notifFetch('push_subscriptions', {
+            method: 'POST',
+            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
+            body: JSON.stringify({
+                endpoint: subJson.endpoint,
+                p256dh: subJson.keys?.p256dh || '',
+                auth: subJson.keys?.auth || '',
+                user_agent: navigator.userAgent.substring(0, 200),
+                is_active: true
+            })
+        });
+    } catch (e) {
+        // Səssiz uğursuzluq
+    }
+}
+
+// Bildiriş icazəsi saxla (Supabase-ə qeyd et)
+async function saveNotifPermission(endpoint) {
+    try {
+        await notifFetch('push_subscriptions', {
+            method: 'POST',
+            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
+            body: JSON.stringify({
+                endpoint: endpoint || window.location.href + '_' + Date.now(),
+                p256dh: 'browser_api',
+                auth: 'browser_api',
+                user_agent: navigator.userAgent.substring(0, 200),
+                is_active: true
+            })
+        });
+    } catch (e) {}
+}
+
+// Planlanmış bildirişləri yoxla
+async function checkScheduledNotifications() {
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+    try {
+        const now = new Date().toISOString();
+        const res = await notifFetch(
+            `notifications?select=*&status=eq.pending&scheduled_at=lte.${encodeURIComponent(now)}&limit=5`
+        );
+        if (!res.ok) return;
+        const notifications = await res.json();
+        if (!Array.isArray(notifications)) return;
+        
+        for (const notif of notifications) {
+            // Bildirişi göstər
+            if ('serviceWorker' in navigator) {
+                const reg = await navigator.serviceWorker.ready;
+                await reg.showNotification(notif.title || 'UniFy', {
+                    body: notif.body,
+                    icon: '/icon-192.png',
+                    badge: '/icon-192.png',
+                    vibrate: [200, 100, 200]
+                });
+            } else {
+                new Notification(notif.title || 'UniFy', { body: notif.body, icon: '/icon-192.png' });
+            }
+            // Statusu yenilə
+            await notifFetch(`notifications?id=eq.${notif.id}`, {
+                method: 'PATCH',
+                body: JSON.stringify({ status: 'sent', sent_at: new Date().toISOString() })
+            });
+        }
+    } catch (e) {}
+}
+
+// Bildiriş icazəsi sistemi - səhifə yükləndikdə işə sal
+document.addEventListener('DOMContentLoaded', function() {
+    // 3 saniyə sonra icazə istə (UX üçün)
+    setTimeout(async () => {
+        if (!('Notification' in window)) return;
+        const alreadyAsked = localStorage.getItem('unify_push_asked');
+        if (alreadyAsked) {
+            // Əvvəl icazə verilmişsə, bildirişləri yoxla
+            if (Notification.permission === 'granted') {
+                await saveNotifPermission('browser_' + (localStorage.getItem('unify_device_id') || generateDeviceId()));
+                checkScheduledNotifications();
+                // Hər 5 dəqiqədə bir yoxla
+                setInterval(checkScheduledNotifications, 5 * 60 * 1000);
+            }
+            return;
+        }
+        await requestPushPermission();
+        if (Notification.permission === 'granted') {
+            const deviceId = generateDeviceId();
+            await saveNotifPermission('browser_' + deviceId);
+            checkScheduledNotifications();
+            setInterval(checkScheduledNotifications, 5 * 60 * 1000);
+        }
+    }, 3000);
+});
+
+function generateDeviceId() {
+    let id = localStorage.getItem('unify_device_id');
+    if (!id) {
+        id = Math.random().toString(36).substring(2) + Date.now().toString(36);
+        localStorage.setItem('unify_device_id', id);
+    }
+    return id;
+}

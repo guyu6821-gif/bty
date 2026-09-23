@@ -59,6 +59,9 @@
     <!-- iOS Splash Screens (Optional but recommended) -->
     <link rel="apple-touch-startup-image" href="/logo.png">
     
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="preload" href="/app.js" as="script">
+    <link rel="preload" href="/logo.png" as="image">
     <link rel="stylesheet" href="/styles.css">
     
     <!-- JSON-LD Structured Data for SEO -->
@@ -232,6 +235,16 @@
                     <span class="menu-text" data-i18n="menu_semestr">Semestr Balı</span>
                 </button>
                 
+                <button class="menu-btn" onclick="showPage('zeng-page')">
+                    <span class="menu-icon">🔔</span>
+                    <span class="menu-text" data-i18n="menu_zeng">Zəng Cədvəli</span>
+                </button>
+                
+                <button class="menu-btn" onclick="showPage('qayib-page')">
+                    <span class="menu-icon">📋</span>
+                    <span class="menu-text" data-i18n="menu_qayib">Qayıb Limiti</span>
+                </button>
+                
                 <button class="menu-btn" onclick="showPage('uomg-page')">
                     <span class="menu-icon">📈</span>
                     <span class="menu-text" data-i18n="menu_uomg">ÜOMG Hesablama</span>
@@ -266,6 +279,174 @@
                     <span class="menu-icon">ℹ️</span>
                     <span class="menu-text" data-i18n="menu_about">Haqqında</span>
                 </button>
+            </div>
+        </div>
+
+        <!-- Zəng Cədvəli Səhifəsi -->
+        <div id="zeng-page" class="page">
+            <button class="back-btn" onclick="showPage('home-page')" data-i18n="back_btn">← Geri</button>
+            <h2 class="page-title" data-i18n="zeng_title">Zəng Cədvəli</h2>
+            
+            <div class="zeng-container">
+                <!-- Səhər növbəsi -->
+                <div class="zeng-section">
+                    <h3 class="zeng-section-title" data-i18n="zeng_sehər">🌅 Səhər növbəsi</h3>
+                    <div class="zeng-table">
+                        <div class="zeng-row zeng-header">
+                            <span data-i18n="zeng_ders">Dərs</span>
+                            <span data-i18n="zeng_1ci_his">1-ci hissə</span>
+                            <span data-i18n="zeng_fasilə">Fasilə</span>
+                            <span data-i18n="zeng_2ci_his">2-ci hissə</span>
+                        </div>
+                        <div class="zeng-row">
+                            <span class="zeng-ders-num" data-i18n="zeng_1ci_ders">1-ci dərs</span>
+                            <span class="zeng-time">08:30 - 09:15</span>
+                            <span class="zeng-fasilə">09:15 - 09:20</span>
+                            <span class="zeng-time">09:20 - 10:05</span>
+                        </div>
+                        <div class="zeng-row">
+                            <span class="zeng-ders-num" data-i18n="zeng_2ci_ders">2-ci dərs</span>
+                            <span class="zeng-time">10:15 - 11:00</span>
+                            <span class="zeng-fasilə">11:00 - 11:05</span>
+                            <span class="zeng-time">11:05 - 11:50</span>
+                        </div>
+                        <div class="zeng-row">
+                            <span class="zeng-ders-num" data-i18n="zeng_3cu_ders">3-cü dərs</span>
+                            <span class="zeng-time">12:00 - 12:45</span>
+                            <span class="zeng-fasilə">12:45 - 12:50</span>
+                            <span class="zeng-time">12:50 - 13:35</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Günorta növbəsi -->
+                <div class="zeng-section">
+                    <h3 class="zeng-section-title" data-i18n="zeng_gunorta">☀️ Günorta növbəsi</h3>
+                    <div class="zeng-table">
+                        <div class="zeng-row zeng-header">
+                            <span data-i18n="zeng_ders">Dərs</span>
+                            <span data-i18n="zeng_1ci_his">1-ci hissə</span>
+                            <span data-i18n="zeng_fasilə">Fasilə</span>
+                            <span data-i18n="zeng_2ci_his">2-ci hissə</span>
+                        </div>
+                        <div class="zeng-row">
+                            <span class="zeng-ders-num" data-i18n="zeng_1ci_ders">1-ci dərs</span>
+                            <span class="zeng-time">13:50 - 14:35</span>
+                            <span class="zeng-fasilə">14:35 - 14:40</span>
+                            <span class="zeng-time">14:40 - 15:25</span>
+                        </div>
+                        <div class="zeng-row">
+                            <span class="zeng-ders-num" data-i18n="zeng_2ci_ders">2-ci dərs</span>
+                            <span class="zeng-time">15:35 - 16:20</span>
+                            <span class="zeng-fasilə">16:20 - 16:25</span>
+                            <span class="zeng-time">16:25 - 17:10</span>
+                        </div>
+                        <div class="zeng-row">
+                            <span class="zeng-ders-num" data-i18n="zeng_3cu_ders">3-cü dərs</span>
+                            <span class="zeng-time">17:20 - 18:05</span>
+                            <span class="zeng-fasilə">18:05 - 18:10</span>
+                            <span class="zeng-time">18:10 - 18:55</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="zeng-note">
+                    <span data-i18n="zeng_note">📌 Qeyd: Fasilə zamanı zəng vurulur (dərs bitir) və fasilənin sonunda növbəti hissə başlayır.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Qayıb Limiti Səhifəsi -->
+        <div id="qayib-page" class="page">
+            <button class="back-btn" onclick="showPage('home-page')" data-i18n="back_btn">← Geri</button>
+            <h2 class="page-title" data-i18n="qayib_limit_title">Qayıb Limiti</h2>
+            
+            <div class="qayib-container">
+                <div class="qayib-grid">
+                    <!-- 30 saatlıq -->
+                    <div class="qayib-card">
+                        <div class="qayib-card-header">
+                            <span data-i18n="qayib_30">30 saatlıq fənn üzrə</span>
+                        </div>
+                        <div class="qayib-card-body">
+                            <div class="qayib-row"><span data-i18n="qayib_2_1bal">2 qayıb</span><span class="qayib-badge bal1" data-i18n="qayib_1bal">-1 bal</span></div>
+                            <div class="qayib-row"><span data-i18n="qayib_3_2bal">3 qayıb</span><span class="qayib-badge bal2" data-i18n="qayib_2bal">-2 bal</span></div>
+                            <div class="qayib-row danger-row"><span data-i18n="qayib_4plus">4 və daha artıq</span><span class="qayib-badge buraxilmir" data-i18n="qayib_buraxilmir">Buraxılmır</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 45 saatlıq -->
+                    <div class="qayib-card">
+                        <div class="qayib-card-header">
+                            <span data-i18n="qayib_45">45 saatlıq fənn üzrə</span>
+                        </div>
+                        <div class="qayib-card-body">
+                            <div class="qayib-row"><span data-i18n="qayib_3_1bal">3 qayıb</span><span class="qayib-badge bal1" data-i18n="qayib_1bal">-1 bal</span></div>
+                            <div class="qayib-row"><span data-i18n="qayib_5_2bal">5 qayıb</span><span class="qayib-badge bal2" data-i18n="qayib_2bal">-2 bal</span></div>
+                            <div class="qayib-row danger-row"><span data-i18n="qayib_6plus">6 və daha çox</span><span class="qayib-badge buraxilmir" data-i18n="qayib_buraxilmir">Buraxılmır</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 60 saatlıq -->
+                    <div class="qayib-card">
+                        <div class="qayib-card-header">
+                            <span data-i18n="qayib_60">60 saatlıq fənn üzrə</span>
+                        </div>
+                        <div class="qayib-card-body">
+                            <div class="qayib-row"><span data-i18n="qayib_3_1bal">3 qayıb</span><span class="qayib-badge bal1" data-i18n="qayib_1bal">-1 bal</span></div>
+                            <div class="qayib-row"><span data-i18n="qayib_6_2bal">6 qayıb</span><span class="qayib-badge bal2" data-i18n="qayib_2bal">-2 bal</span></div>
+                            <div class="qayib-row danger-row"><span data-i18n="qayib_8plus">8 və daha çox</span><span class="qayib-badge buraxilmir" data-i18n="qayib_buraxilmir">Buraxılmır</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 75 saatlıq -->
+                    <div class="qayib-card">
+                        <div class="qayib-card-header">
+                            <span data-i18n="qayib_75">75 saatlıq fənn üzrə</span>
+                        </div>
+                        <div class="qayib-card-body">
+                            <div class="qayib-row"><span data-i18n="qayib_4_1bal">4 qayıb</span><span class="qayib-badge bal1" data-i18n="qayib_1bal">-1 bal</span></div>
+                            <div class="qayib-row"><span data-i18n="qayib_8_2bal">8 qayıb</span><span class="qayib-badge bal2" data-i18n="qayib_2bal">-2 bal</span></div>
+                            <div class="qayib-row danger-row"><span data-i18n="qayib_10plus">10 və daha çox</span><span class="qayib-badge buraxilmir" data-i18n="qayib_buraxilmir">Buraxılmır</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 90 saatlıq -->
+                    <div class="qayib-card">
+                        <div class="qayib-card-header">
+                            <span data-i18n="qayib_90">90 saatlıq fənn üzrə</span>
+                        </div>
+                        <div class="qayib-card-body">
+                            <div class="qayib-row"><span data-i18n="qayib_5_1bal">5 qayıb</span><span class="qayib-badge bal1" data-i18n="qayib_1bal">-1 bal</span></div>
+                            <div class="qayib-row"><span data-i18n="qayib_9_2bal">9 qayıb</span><span class="qayib-badge bal2" data-i18n="qayib_2bal">-2 bal</span></div>
+                            <div class="qayib-row danger-row"><span data-i18n="qayib_12plus">12 və daha çox</span><span class="qayib-badge buraxilmir" data-i18n="qayib_buraxilmir">Buraxılmır</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 105 saatlıq -->
+                    <div class="qayib-card">
+                        <div class="qayib-card-header">
+                            <span data-i18n="qayib_105">105 saatlıq fənn üzrə</span>
+                        </div>
+                        <div class="qayib-card-body">
+                            <div class="qayib-row"><span data-i18n="qayib_6_1bal">6 qayıb</span><span class="qayib-badge bal1" data-i18n="qayib_1bal">-1 bal</span></div>
+                            <div class="qayib-row"><span data-i18n="qayib_11_2bal">11 qayıb</span><span class="qayib-badge bal2" data-i18n="qayib_2bal">-2 bal</span></div>
+                            <div class="qayib-row danger-row"><span data-i18n="qayib_14plus">14 və daha çox</span><span class="qayib-badge buraxilmir" data-i18n="qayib_buraxilmir">Buraxılmır</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 120 saatlıq -->
+                    <div class="qayib-card">
+                        <div class="qayib-card-header">
+                            <span data-i18n="qayib_120">120 saatlıq fənn üzrə</span>
+                        </div>
+                        <div class="qayib-card-body">
+                            <div class="qayib-row"><span data-i18n="qayib_6_1bal">6 qayıb</span><span class="qayib-badge bal1" data-i18n="qayib_1bal">-1 bal</span></div>
+                            <div class="qayib-row"><span data-i18n="qayib_12_2bal">12 qayıb</span><span class="qayib-badge bal2" data-i18n="qayib_2bal">-2 bal</span></div>
+                            <div class="qayib-row danger-row"><span data-i18n="qayib_15plus">15 və daha çox</span><span class="qayib-badge buraxilmir" data-i18n="qayib_buraxilmir">Buraxılmır</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -445,6 +626,6 @@
         </div>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="/app.js" defer></script>
 </body>
 </html>

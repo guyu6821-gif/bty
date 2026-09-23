@@ -792,6 +792,174 @@ body.dark-mode .lang-btn:hover {
     }
 }
 
+/* ============================================
+   Zəng Cədvəli Stilləri
+   ============================================ */
+.zeng-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.zeng-section {
+    background: var(--form-section-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: background 0.3s ease;
+}
+
+.zeng-section-title {
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    color: #fff;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.zeng-table {
+    padding: 0 12px 12px;
+}
+
+.zeng-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 0.7fr 1.4fr;
+    align-items: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border-color);
+    gap: 6px;
+    font-size: 14px;
+}
+
+.zeng-row:last-child {
+    border-bottom: none;
+}
+
+.zeng-row.zeng-header {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--primary-color);
+    background: rgba(74,144,226,0.07);
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+.zeng-ders-num {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.zeng-time {
+    background: linear-gradient(135deg, #27AE60, #229954);
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.zeng-fasilə {
+    background: linear-gradient(135deg, #F39C12, #E67E22);
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.zeng-note {
+    background: rgba(74,144,226,0.10);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--text-dark);
+    margin-top: 4px;
+}
+
+/* ============================================
+   Qayıb Limiti Stilləri
+   ============================================ */
+.qayib-container {
+    width: 100%;
+}
+
+.qayib-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.qayib-card {
+    background: var(--form-section-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    transition: background 0.3s ease;
+}
+
+.qayib-card-header {
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    color: #fff;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.qayib-card-body {
+    padding: 10px 14px 14px;
+}
+
+.qayib-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.qayib-row:last-child {
+    border-bottom: none;
+}
+
+.qayib-row.danger-row {
+    background: rgba(231,76,60,0.07);
+    border-radius: 6px;
+    padding: 8px 6px;
+    margin-top: 4px;
+}
+
+.qayib-badge {
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.qayib-badge.bal1 {
+    background: rgba(243,156,18,0.18);
+    color: #b7770d;
+    border: 1px solid rgba(243,156,18,0.35);
+}
+
+.qayib-badge.bal2 {
+    background: rgba(231,76,60,0.15);
+    color: #c0392b;
+    border: 1px solid rgba(231,76,60,0.3);
+}
+
+.qayib-badge.buraxilmir {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    color: #fff;
+    border: none;
+}
+
 @media (max-width: 480px) {
     .banner-content span {
         font-size: 12px;
@@ -807,7 +975,7 @@ body.dark-mode .lang-btn:hover {
     }
 
     .menu-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .container {
@@ -821,5 +989,20 @@ body.dark-mode .lang-btn:hover {
 
     .install-btn span {
         display: none;
+    }
+
+    .zeng-row {
+        grid-template-columns: 0.8fr 1.2fr 0.6fr 1.2fr;
+        font-size: 12px;
+        padding: 8px 4px;
+    }
+
+    .zeng-time, .zeng-fasilə {
+        font-size: 11px;
+        padding: 4px 4px;
+    }
+
+    .qayib-grid {
+        grid-template-columns: 1fr;
     }
 }

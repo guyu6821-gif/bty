@@ -1,8 +1,8 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v2.1.0';
+const CACHE_VERSION = 'v2.2.0';
 const CACHE_NAME = `bdu-hesablayici-${CACHE_VERSION}`;
 
-// iOS Safari üçün sadələşdirilmiş cache siyahısı
+// Cache siyahısı
 const urlsToCache = [
     '/',
     '/index.html',
@@ -11,107 +11,92 @@ const urlsToCache = [
     '/manifest.json',
     '/logo.png',
     '/icon-192.png',
-    '/icon-512.png',
-    '/sitemap.xml',
-    '/robots.txt'
+    '/icon-512.png'
 ];
 
-// Service Worker quraşdırma - iOS Safari uyğun
+// Service Worker quraşdırma
 self.addEventListener('install', (event) => {
-    console.log('[SW] Quraşdırılır:', CACHE_VERSION);
-    
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('[SW] Cache açıldı:', CACHE_NAME);
-                // iOS Safari üçün sadə addAll
-                return cache.addAll(urlsToCache);
-            })
-            .then(() => {
-                console.log('[SW] Fayllar cache edildi');
-                // iOS-da skipWaiting dərhal çağırılmalıdır
-                return self.skipWaiting();
-            })
-            .catch((err) => {
-                console.error('[SW] Install xətası:', err);
-                // Xəta olsa belə skipWaiting çağır
-                return self.skipWaiting();
-            })
+            .then((cache) => cache.addAll(urlsToCache))
+            .then(() => self.skipWaiting())
+            .catch(() => self.skipWaiting())
     );
 });
 
 // Köhnə cache-ləri təmizlə
 self.addEventListener('activate', (event) => {
-    console.log('[SW] Aktivləşdirilir:', CACHE_VERSION);
-    
     event.waitUntil(
         caches.keys()
-            .then((cacheNames) => {
-                return Promise.all(
-                    cacheNames.map((cacheName) => {
-                        if (cacheName !== CACHE_NAME) {
-                            console.log('[SW] Köhnə cache silinir:', cacheName);
-                            return caches.delete(cacheName);
-                        }
-                    })
-                );
-            })
-            .then(() => {
-                console.log('[SW] Hazırdır:', CACHE_VERSION);
-                return self.clients.claim();
-            })
-            .catch((err) => {
-                console.error('[SW] Activate xətası:', err);
-            })
+            .then((cacheNames) => Promise.all(
+                cacheNames.map((name) => {
+                    if (name !== CACHE_NAME) return caches.delete(name);
+                })
+            ))
+            .then(() => self.clients.claim())
     );
 });
 
-// iOS Safari üçün sadələşdirilmiş fetch handler
+// Fetch handler - stale-while-revalidate strategiyası
 self.addEventListener('fetch', (event) => {
-    const request = event.request;
+    const { request } = event;
     const url = new URL(request.url);
-    
-    // Yalnız GET və same-origin sorğuları
-    if (request.method !== 'GET' || url.origin !== location.origin) {
-        return;
-    }
-    
+
+    // Yalnız GET və same-origin
+    if (request.method !== 'GET' || url.origin !== location.origin) return;
+
+    // Supabase sorğuları cache edilməsin
+    if (url.hostname.includes('supabase.co')) return;
+
     event.respondWith(
-        caches.match(request)
-            .then((cachedResponse) => {
-                // Cache-dən cavab varsa qaytır
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
-                
-                // Network-dən yüklə və cache et
-                return fetch(request).then((response) => {
-                    // Əgər cavab uğurlu deyilsə, cache etmə
-                    if (!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
+        caches.open(CACHE_NAME).then((cache) =>
+            cache.match(request).then((cached) => {
+                const fetchPromise = fetch(request).then((response) => {
+                    if (response && response.status === 200 && response.type === 'basic') {
+                        cache.put(request, response.clone());
                     }
-                    
-                    // Cavabı klonla və cache et
-                    const responseToCache = response.clone();
-                    
-                    caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(request, responseToCache);
-                    });
-                    
                     return response;
                 });
+                return cached || fetchPromise;
             })
-            .catch(() => {
-                // Offline halında index.html qaytır
-                return caches.match('/index.html');
-            })
+        ).catch(() => caches.match('/index.html'))
     );
 });
 
-// iOS-da Service Worker yenilənməsi üçün
+// Push Notification handler
+self.addEventListener('push', (event) => {
+    let data = { title: 'UniFy', body: 'Yeni bildiriş', icon: '/icon-192.png' };
+    try {
+        if (event.data) {
+            data = Object.assign(data, event.data.json());
+        }
+    } catch (e) {}
+
+    const options = {
+        body: data.body,
+        icon: data.icon || '/icon-192.png',
+        badge: '/icon-192.png',
+        vibrate: [200, 100, 200],
+        data: data.data || {},
+        actions: data.actions || []
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(data.title, options)
+    );
+});
+
+// Notification click handler
+self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
+    event.waitUntil(
+        clients.openWindow('/')
+    );
+});
+
+// Skip waiting mesajı
 self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
-        console.log('[SW] Skip waiting mesajı alındı');
         self.skipWaiting();
     }
 });
