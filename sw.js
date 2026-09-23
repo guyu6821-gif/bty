@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v2.2.0';
+const CACHE_VERSION = 'v3.0.0';
 const CACHE_NAME = `bdu-hesablayici-${CACHE_VERSION}`;
 
 // Cache siyahısı
