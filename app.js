@@ -3,7 +3,7 @@
 // ============================================
 const translations = {
     az: {
-        banner_text: "📲 Əməkdaşlıq üçün Yazın ➡️",
+        banner_text: "📲 Ən Ucuz və Mükəmməl Sərbəst İş Hazırlanması ➡️",
         install_app: "Tətbiqi Endir",
         ios_install_title: "UniFy Tətbiqini Quraşdır",
         ios_install_desc: "Safari-də <strong>Paylaş</strong> düyməsinə basın və <strong>\"Add to Home Screen\"</strong> seçin",
@@ -13,8 +13,6 @@ const translations = {
         ios_step3: "\"Add to Home Screen\" Seçin",
         ios_step4: "\"Add və ya +\" Düyməsinə Basın",
         menu_semestr: "Semestr Balı",
-        menu_zeng: "Zəng Cədvəli",
-        menu_qayib: "Qayıb Limiti",
         menu_uomg: "ÜOMG Hesablama",
         menu_kesr: "25% İmtahan (Kəsr Pulu)",
         menu_yas: "Yaş Hesablayıcı",
@@ -55,49 +53,10 @@ const translations = {
         about_p2: "İstifadəçilər tətbiqin daxilində olan alətlərdən istifadə edərək işlərinə yarayacaq məlumatlar əldə edə bilərlər.",
         about_p3: "Tətbiqə giriş etdikdə \"Yeni versiya mövcuddur\" bildirişi gəlirsə, yeniləməyiniz tövsiyə olunur.",
         about_p4: "(Heç bir şəkildə məlumatlarınız toplanmır.)",
-        about_contact: "Əməkdaşlıq üçün:",
+        about_contact: "İş birliyi üçün:",
         about_contact_link: "WhatsApp ilə əlaqə saxlayın",
-        zeng_title: "Zəng Cədvəli",
-        zeng_sehər: "🌅 Səhər növbəsi",
-        zeng_gunorta: "☀️ Günorta növbəsi",
-        zeng_ders: "Dərs",
-        zeng_1ci_his: "1-ci hissə",
-        zeng_fasilə: "Fasilə",
-        zeng_2ci_his: "2-ci hissə",
-        zeng_1ci_ders: "1-ci dərs",
-        zeng_2ci_ders: "2-ci dərs",
-        zeng_3cu_ders: "3-cü dərs",
-        zeng_note: "📌 Qeyd: Fasilə zamanı zəng vurulur (dərs bitir) və fasilənin sonunda növbəti hissə başlayır.",
-        qayib_limit_title: "Qayıb Limiti",
-        qayib_30: "30 saatlıq fənn üzrə:",
-        qayib_45: "45 saatlıq fənn üzrə:",
-        qayib_60: "60 saatlıq fənn üzrə:",
-        qayib_75: "75 saatlıq fənn üzrə:",
-        qayib_90: "90 saatlıq fənn üzrə:",
-        qayib_105: "105 saatlıq fənn üzrə:",
-        qayib_120: "120 saatlıq fənn üzrə:",
-        qayib_2_1bal: "2 qayıb",
-        qayib_3_1bal: "3 qayıb",
-        qayib_3_2bal: "3 qayıb",
-        qayib_4_1bal: "4 qayıb",
-        qayib_5_1bal: "5 qayıb",
-        qayib_5_2bal: "5 qayıb",
-        qayib_6_1bal: "6 qayıb",
-        qayib_6_2bal: "6 qayıb",
-        qayib_8_2bal: "8 qayıb",
-        qayib_9_2bal: "9 qayıb",
-        qayib_11_2bal: "11 qayıb",
-        qayib_12_2bal: "12 qayıb",
-        qayib_4plus: "4 və daha artıq qayıb",
-        qayib_6plus: "6 və daha çox qayıb",
-        qayib_8plus: "8 və daha çox qayıb",
-        qayib_10plus: "10 və daha çox qayıb",
-        qayib_12plus: "12 və daha çox qayıb",
-        qayib_14plus: "14 və daha çox qayıb",
-        qayib_15plus: "15 və daha çox qayıb",
-        qayib_1bal: "- 1 bal",
-        qayib_2bal: "- 2 bal",
-        qayib_buraxilmir: "Buraxılmır",
+        about_designer: "Tətbiqin dizaynı və funksionallığı Nurxan tərəfindən hazırlanıb.",
+        about_thanks: "Dəstək Üçün: Nəbiyeva Nuray, Rəhimov Riyad və TT2-Qrupuna Təşəkkür.",
         luget_title: "Akademik Lüğət",
         melumat_title: "Akademik Məlumat",
         links_title: "Sürətli Linklər",
@@ -166,7 +125,7 @@ const translations = {
         link_owner_instagram: "Tətbiq Sahibinin Instagramı",
     },
     ru: {
-        banner_text: "📲 Пишите для Сотрудничества ➡️",
+        banner_text: "📲 Самая Дешёвая и Идеальная Подготовка Самостоятельных Работ ➡️",
         install_app: "Установить приложение",
         ios_install_title: "Установить приложение UniFy",
         ios_install_desc: "В Safari нажмите кнопку <strong>Поделиться</strong> и выберите <strong>\"Добавить на главный экран\"</strong>",
@@ -176,8 +135,6 @@ const translations = {
         ios_step3: "Выберите \"Добавить на главный экран\"",
         ios_step4: "Нажмите \"Добавить\" или \"+\"",
         menu_semestr: "Семестровый Балл",
-        menu_zeng: "Расписание звонков",
-        menu_qayib: "Лимит пропусков",
         menu_uomg: "Расчёт ÜOMG",
         menu_kesr: "25% Экзамен (Кəср)",
         menu_yas: "Калькулятор Возраста",
@@ -220,47 +177,8 @@ const translations = {
         about_p4: "(Ваши данные никоим образом не собираются.)",
         about_contact: "Для сотрудничества:",
         about_contact_link: "Связаться через WhatsApp",
-        zeng_title: "Расписание звонков",
-        zeng_sehər: "🌅 Утренняя смена",
-        zeng_gunorta: "☀️ Дневная смена",
-        zeng_ders: "Урок",
-        zeng_1ci_his: "1-я часть",
-        zeng_fasilə: "Перерыв",
-        zeng_2ci_his: "2-я часть",
-        zeng_1ci_ders: "1-й урок",
-        zeng_2ci_ders: "2-й урок",
-        zeng_3cu_ders: "3-й урок",
-        zeng_note: "📌 Примечание: Звонок звонит во время перерыва (урок заканчивается), и следующая часть начинается в конце перерыва.",
-        qayib_limit_title: "Лимит пропусков",
-        qayib_30: "По 30-часовому предмету:",
-        qayib_45: "По 45-часовому предмету:",
-        qayib_60: "По 60-часовому предмету:",
-        qayib_75: "По 75-часовому предмету:",
-        qayib_90: "По 90-часовому предмету:",
-        qayib_105: "По 105-часовому предмету:",
-        qayib_120: "По 120-часовому предмету:",
-        qayib_2_1bal: "2 пропуска",
-        qayib_3_1bal: "3 пропуска",
-        qayib_3_2bal: "3 пропуска",
-        qayib_4_1bal: "4 пропуска",
-        qayib_5_1bal: "5 пропусков",
-        qayib_5_2bal: "5 пропусков",
-        qayib_6_1bal: "6 пропусков",
-        qayib_6_2bal: "6 пропусков",
-        qayib_8_2bal: "8 пропусков",
-        qayib_9_2bal: "9 пропусков",
-        qayib_11_2bal: "11 пропусков",
-        qayib_12_2bal: "12 пропусков",
-        qayib_4plus: "4 и более пропусков",
-        qayib_6plus: "6 и более пропусков",
-        qayib_8plus: "8 и более пропусков",
-        qayib_10plus: "10 и более пропусков",
-        qayib_12plus: "12 и более пропусков",
-        qayib_14plus: "14 и более пропусков",
-        qayib_15plus: "15 и более пропусков",
-        qayib_1bal: "- 1 балл",
-        qayib_2bal: "- 2 балла",
-        qayib_buraxilmir: "Не допускается",
+        about_designer: "Дизайн и функциональность приложения разработаны Нурханом.",
+        about_thanks: "Благодарим: Набиеву Нурай, Рахимова Рияда и Группу ТТ2.",
         luget_title: "Академический Словарь",
         melumat_title: "Академическая Информация",
         links_title: "Быстрые Ссылки",
@@ -325,7 +243,7 @@ const translations = {
         link_owner_instagram: "Instagram владельца приложения",
     },
     en: {
-        banner_text: "📲 Write for Collaboration ➡️",
+        banner_text: "📲 Cheapest and Perfect Independent Study Preparation ➡️",
         install_app: "Install App",
         ios_install_title: "Install UniFy App",
         ios_install_desc: "In Safari, tap the <strong>Share</strong> button and select <strong>\"Add to Home Screen\"</strong>",
@@ -335,8 +253,6 @@ const translations = {
         ios_step3: "Select \"Add to Home Screen\"",
         ios_step4: "Tap \"Add or +\"",
         menu_semestr: "Semester Score",
-        menu_zeng: "Bell Schedule",
-        menu_qayib: "Absence Limit",
         menu_uomg: "GPA Calculator",
         menu_kesr: "25% Exam Fee",
         menu_yas: "Age Calculator",
@@ -379,47 +295,8 @@ const translations = {
         about_p4: "(Your data is not collected in any way.)",
         about_contact: "For cooperation:",
         about_contact_link: "Contact via WhatsApp",
-        zeng_title: "Bell Schedule",
-        zeng_sehər: "🌅 Morning Shift",
-        zeng_gunorta: "☀️ Afternoon Shift",
-        zeng_ders: "Class",
-        zeng_1ci_his: "1st part",
-        zeng_fasilə: "Break",
-        zeng_2ci_his: "2nd part",
-        zeng_1ci_ders: "1st class",
-        zeng_2ci_ders: "2nd class",
-        zeng_3cu_ders: "3rd class",
-        zeng_note: "📌 Note: The bell rings during the break (class ends), and the next part begins at the end of the break.",
-        qayib_limit_title: "Absence Limit",
-        qayib_30: "For 30-hour subject:",
-        qayib_45: "For 45-hour subject:",
-        qayib_60: "For 60-hour subject:",
-        qayib_75: "For 75-hour subject:",
-        qayib_90: "For 90-hour subject:",
-        qayib_105: "For 105-hour subject:",
-        qayib_120: "For 120-hour subject:",
-        qayib_2_1bal: "2 absences",
-        qayib_3_1bal: "3 absences",
-        qayib_3_2bal: "3 absences",
-        qayib_4_1bal: "4 absences",
-        qayib_5_1bal: "5 absences",
-        qayib_5_2bal: "5 absences",
-        qayib_6_1bal: "6 absences",
-        qayib_6_2bal: "6 absences",
-        qayib_8_2bal: "8 absences",
-        qayib_9_2bal: "9 absences",
-        qayib_11_2bal: "11 absences",
-        qayib_12_2bal: "12 absences",
-        qayib_4plus: "4 or more absences",
-        qayib_6plus: "6 or more absences",
-        qayib_8plus: "8 or more absences",
-        qayib_10plus: "10 or more absences",
-        qayib_12plus: "12 or more absences",
-        qayib_14plus: "14 or more absences",
-        qayib_15plus: "15 or more absences",
-        qayib_1bal: "- 1 point",
-        qayib_2bal: "- 2 points",
-        qayib_buraxilmir: "Not admitted",
+        about_designer: "The app's design and functionality were developed by Nurxan.",
+        about_thanks: "Thanks to: Nabiyeva Nuray, Rahimov Riyad and TT2 Group.",
         luget_title: "Academic Dictionary",
         melumat_title: "Academic Information",
         links_title: "Quick Links",
@@ -495,47 +372,41 @@ function t(key) {
         : (translations['az'][key] || key);
 }
 
-// Set Language - optimized with rAF to prevent freezes
+// Set Language
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('unify_lang', lang);
 
-    requestAnimationFrame(() => {
-        // Update active lang button
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        const activeBtn = document.getElementById('lang-' + lang);
-        if (activeBtn) activeBtn.classList.add('active');
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById('lang-' + lang);
+    if (activeBtn) activeBtn.classList.add('active');
 
-        // Translate all elements with data-i18n (batch)
-        const i18nEls = document.querySelectorAll('[data-i18n]');
-        i18nEls.forEach(el => {
-            el.innerHTML = t(el.getAttribute('data-i18n'));
-        });
-
-        // Translate placeholders
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
-        });
-
-        // Translate fenn-saat select first option
-        const selectEl = document.getElementById('fenn-saat');
-        if (selectEl && selectEl.options[0]) {
-            selectEl.options[0].textContent = t('select_option');
-        }
-
-        // Update WhatsApp banner link
-        updateWhatsAppLink();
-
-        // Notify ios-chrome-install.js about language change
-        document.dispatchEvent(new CustomEvent('unify-lang-change'));
-
-        // Re-render dynamic lists (deferred to next frame to stay smooth)
-        requestAnimationFrame(() => {
-            renderDictionaryList();
-            renderInfoList();
-            renderLinksList();
-        });
+    // Translate all elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.innerHTML = t(key);
     });
+
+    // Translate placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        el.placeholder = t(key);
+    });
+
+    // Translate fenn-saat select first option
+    const selectEl = document.getElementById('fenn-saat');
+    if (selectEl && selectEl.options[0]) {
+        selectEl.options[0].textContent = t('select_option');
+    }
+
+    // Update WhatsApp banner link with language-specific greeting
+    updateWhatsAppLink();
+
+    // Re-render dynamic lists
+    renderDictionaryList();
+    renderInfoList();
+    renderLinksList();
 }
 
 // WhatsApp link with auto greeting message
@@ -552,25 +423,26 @@ function updateWhatsAppLink() {
 // ============================================
 function toggleTheme() {
     const body = document.body;
-    // Use rAF to prevent layout thrash / freeze
-    requestAnimationFrame(() => {
-        const isDark = body.classList.toggle('dark-mode');
-        localStorage.setItem('unify_theme', isDark ? 'dark' : 'light');
-        const icon = document.getElementById('toggle-icon');
-        if (icon) icon.textContent = isDark ? '🌙' : '☀️';
-    });
+    const isDark = body.classList.toggle('dark-mode');
+    localStorage.setItem('unify_theme', isDark ? 'dark' : 'light');
+    updateThemeIcon(isDark);
 }
 
 function updateThemeIcon(isDark) {
     const icon = document.getElementById('toggle-icon');
-    if (icon) icon.textContent = isDark ? '🌙' : '☀️';
+    if (icon) {
+        icon.textContent = isDark ? '🌙' : '☀️';
+    }
 }
 
 function initTheme() {
     const saved = localStorage.getItem('unify_theme');
-    const isDark = saved === 'dark';
-    if (isDark) document.body.classList.add('dark-mode');
-    updateThemeIcon(isDark);
+    if (saved === 'dark') {
+        document.body.classList.add('dark-mode');
+        updateThemeIcon(true);
+    } else {
+        updateThemeIcon(false);
+    }
 }
 
 // ============================================
@@ -582,12 +454,12 @@ function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
 
     if (pageId === 'home-page') {
-        pages.forEach(p => p.classList.remove('active'));
+        pages.forEach(page => page.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
-        window.scrollTo(0, lastScrollPosition);
+        setTimeout(() => { window.scrollTo(0, lastScrollPosition); }, 10);
     } else {
         lastScrollPosition = window.scrollY || window.pageYOffset;
-        pages.forEach(p => p.classList.remove('active'));
+        pages.forEach(page => page.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         window.scrollTo(0, 0);
     }
@@ -1106,36 +978,74 @@ function renderLinksList() {
 document.addEventListener('DOMContentLoaded', function () {
     initTheme();
     setLanguage(currentLang);
-    initInstallUI();
+    renderDictionaryList();
+    renderInfoList();
+    renderLinksList();
 });
 
 // ============================================
-// PWA - Service Worker Qeydiyyatı
+// PWA - Service Worker Qeydiyyatı (iOS Optimized)
 // ============================================
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', {
-        scope: '/',
-        updateViaCache: 'none'
-    }).catch(() => {});
+    window.addEventListener('load', () => {
+        const isIOSDevice = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const swPath = '/sw.js';
+
+        navigator.serviceWorker.register(swPath, {
+            scope: '/',
+            updateViaCache: 'none'
+        })
+            .then(registration => {
+                if (isIOSDevice) {
+                    registration.update();
+                }
+
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed') {
+                            if (navigator.serviceWorker.controller) {
+                                if (isIOSDevice) {
+                                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                    window.location.reload();
+                                } else {
+                                    if (confirm(t('new_version'))) {
+                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                        window.location.reload();
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+
+                if (isIOSDevice) {
+                    navigator.serviceWorker.ready.then(reg => {
+                        setInterval(() => { reg.update(); }, 60000);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('[App] Service Worker qeydiyyatı uğursuz:', error);
+            });
+    });
 }
 
 // ============================================
-// Supabase İnteqrasiyası - Install Tracking
+// Supabase İnteqrasiyası
 // ============================================
 const SUPABASE_URL = 'https://glcgixnfjohomjoyyrwk.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsY2dpeG5mam9ob21qb3l5cndrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwODE4OTIsImV4cCI6MjEwMzY1Nzg5Mn0.8fSkJHpPza6BrF2qFowhqmR2gK7-ecyrE9cPhA5YR-c';
 
 function detectDevice() {
-    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-        ? 'Mobile' : 'Desktop';
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
 }
 
 function detectBrowser() {
     const ua = navigator.userAgent;
     if (/Edg\//i.test(ua)) return 'Edge';
     if (/OPR\/|Opera/i.test(ua)) return 'Opera';
-    if (/CriOS/i.test(ua)) return 'Chrome iOS';
-    if (/FxiOS/i.test(ua)) return 'Firefox iOS';
     if (/Chrome\/[0-9]/.test(ua) && !/Chromium/.test(ua)) return 'Chrome';
     if (/Firefox\//i.test(ua)) return 'Firefox';
     if (/Safari\/[0-9]/.test(ua) && !/Chrome/.test(ua)) return 'Safari';
@@ -1156,7 +1066,7 @@ function detectOS() {
     return 'Unknown';
 }
 
-async function logInstallToSupabase(source) {
+async function logInstallClickToSupabase() {
     try {
         const payload = {
             clicked_at: new Date().toISOString(),
@@ -1164,10 +1074,10 @@ async function logInstallToSupabase(source) {
             referrer: document.referrer || null,
             device: detectDevice(),
             browser: detectBrowser(),
-            operating_system: detectOS(),
-            install_source: source || 'unknown'
+            operating_system: detectOS()
         };
-        await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1177,7 +1087,14 @@ async function logInstallToSupabase(source) {
             },
             body: JSON.stringify(payload)
         });
-    } catch (_) {}
+
+        if (!response.ok) {
+            const errText = await response.text();
+            console.warn('[Supabase] Məlumat yazılmadı:', response.status, errText);
+        }
+    } catch (err) {
+        console.warn('[Supabase] Xəta:', err);
+    }
 }
 
 // ============================================
@@ -1186,34 +1103,26 @@ async function logInstallToSupabase(source) {
 let deferredPrompt;
 
 function isIOS() {
-    return /iphone|ipad|ipod/i.test(navigator.userAgent);
+    return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
 }
 
 function isInStandaloneMode() {
-    return (navigator.standalone === true) ||
+    return (('standalone' in window.navigator) && window.navigator.standalone) ||
         window.matchMedia('(display-mode: standalone)').matches;
 }
 
-function showInstallButton() {
-    if (!isInStandaloneMode() && !isIOS()) {
-        const btn = document.getElementById('install-button');
-        if (btn) btn.style.display = 'flex';
+function showIOSInstallBanner() {
+    const banner = document.getElementById('ios-install-banner');
+    const alreadyShown = localStorage.getItem('ios-banner-closed');
+
+    if (alreadyShown) {
+        const daysPassed = (Date.now() - parseInt(alreadyShown)) / (1000 * 60 * 60 * 24);
+        if (daysPassed < 7) return;
     }
-}
 
-function hideInstallButton() {
-    const btn = document.getElementById('install-button');
-    if (btn) btn.style.display = 'none';
-}
-
-function installApp() {
-    if (deferredPrompt) {
-        logInstallToSupabase('android_prompt');
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(() => {
-            deferredPrompt = null;
-            hideInstallButton();
-        });
+    if (banner && isIOS() && !isInStandaloneMode()) {
+        banner.style.display = 'block';
+        logInstallClickToSupabase();
     }
 }
 
@@ -1234,22 +1143,33 @@ window.addEventListener('beforeinstallprompt', (e) => {
 window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
     hideInstallButton();
-    logInstallToSupabase('installed');
 });
 
-function initInstallUI() {
-    if (isInStandaloneMode()) return;
-
-    if (isIOS()) {
-        const alreadyShown = localStorage.getItem('ios-banner-closed');
-        if (alreadyShown) {
-            const daysPassed = (Date.now() - parseInt(alreadyShown)) / (1000 * 60 * 60 * 24);
-            if (daysPassed < 7) return;
-        }
-        const banner = document.getElementById('ios-install-banner');
-        if (banner) {
-            banner.style.display = 'block';
-            logInstallToSupabase('ios_banner_shown');
-        }
+function showInstallButton() {
+    if (!isInStandaloneMode() && !isIOS()) {
+        const installBtn = document.getElementById('install-button');
+        if (installBtn) installBtn.style.display = 'flex';
     }
 }
+
+function hideInstallButton() {
+    const installBtn = document.getElementById('install-button');
+    if (installBtn) installBtn.style.display = 'none';
+}
+
+function installApp() {
+    logInstallClickToSupabase();
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            deferredPrompt = null;
+            hideInstallButton();
+        });
+    }
+}
+
+window.addEventListener('load', () => {
+    if (isIOS() && !isInStandaloneMode()) {
+        setTimeout(showIOSInstallBanner, 2000);
+    }
+});
