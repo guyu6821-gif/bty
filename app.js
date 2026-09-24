@@ -3,7 +3,7 @@
 // ============================================
 const translations = {
     az: {
-        banner_text: "📲 Ən Ucuz və Mükəmməl Sərbəst İş Hazırlanması ➡️",
+        banner_text: "📲 Əməkdaşlıq üçün Yazın ➡️",
         install_app: "Tətbiqi Endir",
         ios_install_title: "UniFy Tətbiqini Quraşdır",
         ios_install_desc: "Safari-də <strong>Paylaş</strong> düyməsinə basın və <strong>\"Add to Home Screen\"</strong> seçin",
@@ -55,10 +55,8 @@ const translations = {
         about_p2: "İstifadəçilər tətbiqin daxilində olan alətlərdən istifadə edərək işlərinə yarayacaq məlumatlar əldə edə bilərlər.",
         about_p3: "Tətbiqə giriş etdikdə \"Yeni versiya mövcuddur\" bildirişi gəlirsə, yeniləməyiniz tövsiyə olunur.",
         about_p4: "(Heç bir şəkildə məlumatlarınız toplanmır.)",
-        about_contact: "İş birliyi üçün:",
+        about_contact: "Əməkdaşlıq üçün:",
         about_contact_link: "WhatsApp ilə əlaqə saxlayın",
-        about_designer: "Tətbiqin dizaynı və funksionallığı Nurxan tərəfindən hazırlanıb.",
-        about_thanks: "Dəstək Üçün: Nəbiyeva Nuray, Rəhimov Riyad və TT2-Qrupuna Təşəkkür.",
         zeng_title: "Zəng Cədvəli",
         zeng_sehər: "🌅 Səhər növbəsi",
         zeng_gunorta: "☀️ Günorta növbəsi",
@@ -168,7 +166,7 @@ const translations = {
         link_owner_instagram: "Tətbiq Sahibinin Instagramı",
     },
     ru: {
-        banner_text: "📲 Самая Дешёвая и Идеальная Подготовка Самостоятельных Работ ➡️",
+        banner_text: "📲 Пишите для Сотрудничества ➡️",
         install_app: "Установить приложение",
         ios_install_title: "Установить приложение UniFy",
         ios_install_desc: "В Safari нажмите кнопку <strong>Поделиться</strong> и выберите <strong>\"Добавить на главный экран\"</strong>",
@@ -222,8 +220,6 @@ const translations = {
         about_p4: "(Ваши данные никоим образом не собираются.)",
         about_contact: "Для сотрудничества:",
         about_contact_link: "Связаться через WhatsApp",
-        about_designer: "Дизайн и функциональность приложения разработаны Нурханом.",
-        about_thanks: "Благодарим: Набиеву Нурай, Рахимова Рияда и Группу ТТ2.",
         zeng_title: "Расписание звонков",
         zeng_sehər: "🌅 Утренняя смена",
         zeng_gunorta: "☀️ Дневная смена",
@@ -329,7 +325,7 @@ const translations = {
         link_owner_instagram: "Instagram владельца приложения",
     },
     en: {
-        banner_text: "📲 Cheapest and Perfect Independent Study Preparation ➡️",
+        banner_text: "📲 Write for Collaboration ➡️",
         install_app: "Install App",
         ios_install_title: "Install UniFy App",
         ios_install_desc: "In Safari, tap the <strong>Share</strong> button and select <strong>\"Add to Home Screen\"</strong>",
@@ -383,8 +379,6 @@ const translations = {
         about_p4: "(Your data is not collected in any way.)",
         about_contact: "For cooperation:",
         about_contact_link: "Contact via WhatsApp",
-        about_designer: "The app's design and functionality were developed by Nurxan.",
-        about_thanks: "Thanks to: Nabiyeva Nuray, Rahimov Riyad and TT2 Group.",
         zeng_title: "Bell Schedule",
         zeng_sehər: "🌅 Morning Shift",
         zeng_gunorta: "☀️ Afternoon Shift",
@@ -1305,10 +1299,14 @@ window.addEventListener('load', () => {
 
 // ============================================
 // Bildiriş Supabase (Ayrı - ikinci Supabase)
-// QEYD: Bu mövcud Supabase ilə KARINMASIN
+// QEYD: Bu mövcud Supabase ilə QARISMASIN
 // ============================================
 const NOTIF_SUPABASE_URL = 'https://wkoxusepqljmtvgaynqk.supabase.co';
 const NOTIF_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indrb3h1c2VwcWxqbXR2Z2F5bnFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxODgyMjcsImV4cCI6MjEwNTc2NDIyN30.QVlM2d2lSkXMqOuvZPIMavlHQdR-9VNEABXvraUUolY';
+
+// VAPID Public Key - Push Subscription üçün lazımdır
+// Bu key admin paneli ilə uyğun olmalıdır
+const VAPID_PUBLIC_KEY = 'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U';
 
 function notifFetch(path, options = {}) {
     const headers = {
@@ -1320,138 +1318,21 @@ function notifFetch(path, options = {}) {
     return fetch(`${NOTIF_SUPABASE_URL}/rest/v1/${path}`, { ...options, headers });
 }
 
-// Push icazəsi istə (yalnız bir dəfə)
-let notifPermissionAsked = false;
-
-async function requestPushPermission() {
-    if (notifPermissionAsked) return;
-    if (!('Notification' in window) || !('serviceWorker' in navigator)) return;
-    if (Notification.permission === 'granted') {
-        notifPermissionAsked = true;
-        await subscribePush();
-        return;
+// URL Base64 → Uint8Array çevirmə (VAPID key üçün)
+function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
+    const rawData = atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
     }
-    if (Notification.permission === 'denied') return;
-    
-    // Yalnız bir dəfə soruş
-    const alreadyAsked = localStorage.getItem('unify_push_asked');
-    if (alreadyAsked) return;
-    
-    notifPermissionAsked = true;
-    localStorage.setItem('unify_push_asked', '1');
-    
-    const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
-        await subscribePush();
-    }
+    return outputArray;
 }
 
-// Push abunəliyi yarat və Supabase-ə yaz
-async function subscribePush() {
-    try {
-        if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
-        const reg = await navigator.serviceWorker.ready;
-        let sub = await reg.pushManager.getSubscription();
-        if (!sub) {
-            // VAPID key olmadan da işləyir (server-side push üçün key lazımdır,
-            // amma biz browser notification API istifadə edirik)
-            return;
-        }
-        const subJson = sub.toJSON();
-        // Supabase-ə yaz
-        await notifFetch('push_subscriptions', {
-            method: 'POST',
-            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
-            body: JSON.stringify({
-                endpoint: subJson.endpoint,
-                p256dh: subJson.keys?.p256dh || '',
-                auth: subJson.keys?.auth || '',
-                user_agent: navigator.userAgent.substring(0, 200),
-                is_active: true
-            })
-        });
-    } catch (e) {
-        // Səssiz uğursuzluq
-    }
-}
-
-// Bildiriş icazəsi saxla (Supabase-ə qeyd et)
-async function saveNotifPermission(endpoint) {
-    try {
-        await notifFetch('push_subscriptions', {
-            method: 'POST',
-            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
-            body: JSON.stringify({
-                endpoint: endpoint || window.location.href + '_' + Date.now(),
-                p256dh: 'browser_api',
-                auth: 'browser_api',
-                user_agent: navigator.userAgent.substring(0, 200),
-                is_active: true
-            })
-        });
-    } catch (e) {}
-}
-
-// Planlanmış bildirişləri yoxla
-async function checkScheduledNotifications() {
-    if (!('Notification' in window) || Notification.permission !== 'granted') return;
-    try {
-        const now = new Date().toISOString();
-        const res = await notifFetch(
-            `notifications?select=*&status=eq.pending&scheduled_at=lte.${encodeURIComponent(now)}&limit=5`
-        );
-        if (!res.ok) return;
-        const notifications = await res.json();
-        if (!Array.isArray(notifications)) return;
-        
-        for (const notif of notifications) {
-            // Bildirişi göstər
-            if ('serviceWorker' in navigator) {
-                const reg = await navigator.serviceWorker.ready;
-                await reg.showNotification(notif.title || 'UniFy', {
-                    body: notif.body,
-                    icon: '/icon-192.png',
-                    badge: '/icon-192.png',
-                    vibrate: [200, 100, 200]
-                });
-            } else {
-                new Notification(notif.title || 'UniFy', { body: notif.body, icon: '/icon-192.png' });
-            }
-            // Statusu yenilə
-            await notifFetch(`notifications?id=eq.${notif.id}`, {
-                method: 'PATCH',
-                body: JSON.stringify({ status: 'sent', sent_at: new Date().toISOString() })
-            });
-        }
-    } catch (e) {}
-}
-
-// Bildiriş icazəsi sistemi - səhifə yükləndikdə işə sal
-document.addEventListener('DOMContentLoaded', function() {
-    // 3 saniyə sonra icazə istə (UX üçün)
-    setTimeout(async () => {
-        if (!('Notification' in window)) return;
-        const alreadyAsked = localStorage.getItem('unify_push_asked');
-        if (alreadyAsked) {
-            // Əvvəl icazə verilmişsə, bildirişləri yoxla
-            if (Notification.permission === 'granted') {
-                await saveNotifPermission('browser_' + (localStorage.getItem('unify_device_id') || generateDeviceId()));
-                checkScheduledNotifications();
-                // Hər 5 dəqiqədə bir yoxla
-                setInterval(checkScheduledNotifications, 5 * 60 * 1000);
-            }
-            return;
-        }
-        await requestPushPermission();
-        if (Notification.permission === 'granted') {
-            const deviceId = generateDeviceId();
-            await saveNotifPermission('browser_' + deviceId);
-            checkScheduledNotifications();
-            setInterval(checkScheduledNotifications, 5 * 60 * 1000);
-        }
-    }, 3000);
-});
-
+// Device ID yarat
 function generateDeviceId() {
     let id = localStorage.getItem('unify_device_id');
     if (!id) {
@@ -1460,3 +1341,216 @@ function generateDeviceId() {
     }
     return id;
 }
+
+// Push icazəsi istə (yalnız bir dəfə)
+let notifPermissionAsked = false;
+
+async function requestPushPermission() {
+    if (notifPermissionAsked) return;
+    if (!('Notification' in window) || !('serviceWorker' in navigator)) return;
+
+    if (Notification.permission === 'granted') {
+        notifPermissionAsked = true;
+        await subscribePush();
+        return;
+    }
+    if (Notification.permission === 'denied') return;
+
+    // Yalnız bir dəfə soruş
+    const alreadyAsked = localStorage.getItem('unify_push_asked');
+    if (alreadyAsked) return;
+
+    notifPermissionAsked = true;
+    localStorage.setItem('unify_push_asked', '1');
+
+    try {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+            await subscribePush();
+        }
+    } catch (e) {
+        console.warn('[UniFy] Notification permission error:', e);
+    }
+}
+
+// Push abunəliyi yarat (VAPID key ilə - mobil üçün kritik)
+async function subscribePush() {
+    try {
+        if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+            // PushManager yoxdursa browser Notification API ilə davam et
+            await saveNotifPermissionBrowser();
+            return;
+        }
+
+        const reg = await navigator.serviceWorker.ready;
+
+        // Mövcud subscription yoxla
+        let sub = await reg.pushManager.getSubscription();
+
+        // Yeni subscription yarat (VAPID key ilə - Android Chrome/Firefox üçün)
+        if (!sub) {
+            try {
+                sub = await reg.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+                });
+            } catch (subError) {
+                // VAPID key uyğun gəlmirsə, mövcud subscription-ı ləğv edib yenidən yarat
+                const existingSub = await reg.pushManager.getSubscription();
+                if (existingSub) {
+                    await existingSub.unsubscribe();
+                    try {
+                        sub = await reg.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+                        });
+                    } catch (e2) {
+                        console.warn('[UniFy] Push subscription failed:', e2);
+                        await saveNotifPermissionBrowser();
+                        return;
+                    }
+                } else {
+                    await saveNotifPermissionBrowser();
+                    return;
+                }
+            }
+        }
+
+        // Subscription məlumatlarını Supabase-ə yaz
+        const subJson = sub.toJSON();
+        const deviceId = generateDeviceId();
+
+        await notifFetch('push_subscriptions', {
+            method: 'POST',
+            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
+            body: JSON.stringify({
+                endpoint: subJson.endpoint,
+                p256dh: subJson.keys?.p256dh || '',
+                auth: subJson.keys?.auth || '',
+                user_agent: navigator.userAgent.substring(0, 200),
+                device_id: deviceId,
+                is_active: true
+            })
+        });
+
+    } catch (e) {
+        console.warn('[UniFy] subscribePush error:', e);
+        // Fallback: browser notification API
+        await saveNotifPermissionBrowser();
+    }
+}
+
+// Browser Notification API ilə saxla (iOS Safari / köhnə brouzerlər)
+async function saveNotifPermissionBrowser() {
+    try {
+        const deviceId = generateDeviceId();
+        await notifFetch('push_subscriptions', {
+            method: 'POST',
+            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
+            body: JSON.stringify({
+                endpoint: 'browser_' + deviceId,
+                p256dh: 'browser_api',
+                auth: 'browser_api',
+                user_agent: navigator.userAgent.substring(0, 200),
+                device_id: deviceId,
+                is_active: true
+            })
+        });
+    } catch (e) {
+        console.warn('[UniFy] saveNotifPermissionBrowser error:', e);
+    }
+}
+
+// Planlanmış bildirişləri yoxla və göstər
+async function checkScheduledNotifications() {
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+
+    try {
+        const now = new Date().toISOString();
+        const res = await notifFetch(
+            `notifications?select=*&status=eq.pending&scheduled_at=lte.${encodeURIComponent(now)}&limit=5`
+        );
+        if (!res.ok) return;
+
+        const notifications = await res.json();
+        if (!Array.isArray(notifications) || notifications.length === 0) return;
+
+        for (const notif of notifications) {
+            await showLocalNotification(notif.title || 'UniFy', notif.body || '');
+
+            // Statusu yenilə
+            try {
+                await notifFetch(`notifications?id=eq.${notif.id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({ status: 'sent', sent_at: new Date().toISOString() })
+                });
+            } catch (e) {}
+        }
+    } catch (e) {
+        console.warn('[UniFy] checkScheduledNotifications error:', e);
+    }
+}
+
+// Bildiriş göstər (Service Worker üzərindən - mobil üçün daha etibarlı)
+async function showLocalNotification(title, body) {
+    const options = {
+        body: body,
+        icon: '/icon-192.png',
+        badge: '/icon-192.png',
+        vibrate: [200, 100, 200],
+        tag: 'unify-' + Date.now(),
+        renotify: true,
+        requireInteraction: false,
+        silent: false
+    };
+
+    try {
+        if ('serviceWorker' in navigator) {
+            const reg = await navigator.serviceWorker.ready;
+            // Service Worker üzərindən göstər (mobil üçün daha etibarlı)
+            await reg.showNotification(title, options);
+        } else if ('Notification' in window && Notification.permission === 'granted') {
+            // Fallback: birbaşa Notification API
+            new Notification(title, options);
+        }
+    } catch (e) {
+        console.warn('[UniFy] showLocalNotification error:', e);
+        // Son fallback
+        try {
+            new Notification(title, { body: body, icon: '/icon-192.png' });
+        } catch (e2) {}
+    }
+}
+
+// ============================================
+// Bildiriş sistemi - səhifə yükləndikdə işə sal
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+    // 3 saniyə sonra icazə istə (UX üçün)
+    setTimeout(async () => {
+        if (!('Notification' in window)) return;
+
+        const alreadyAsked = localStorage.getItem('unify_push_asked');
+
+        if (alreadyAsked) {
+            // Əvvəl icazə verilmişsə
+            if (Notification.permission === 'granted') {
+                // Subscription-ı yenilə (cihaz dəyişikliyi üçün)
+                await subscribePush();
+                // Bildirişləri yoxla
+                checkScheduledNotifications();
+                // Hər 5 dəqiqədə bir yoxla
+                setInterval(checkScheduledNotifications, 5 * 60 * 1000);
+            }
+            return;
+        }
+
+        // Yeni istifadəçi - icazə istə
+        await requestPushPermission();
+
+        if (Notification.permission === 'granted') {
+            checkScheduledNotifications();
+            setInterval(checkScheduledNotifications, 5 * 60 * 1000);
+        }
+    }, 3000);
+});
