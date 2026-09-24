@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v5.1.0';
+const CACHE_VERSION = 'v6.0.0';
 const CACHE_NAME = `unify-${CACHE_VERSION}`;
 
 // Cache siyahısı
