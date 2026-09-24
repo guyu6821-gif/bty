@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v5.0.0';
+const CACHE_VERSION = 'v5.1.0';
 const CACHE_NAME = `unify-${CACHE_VERSION}`;
 
 // Cache siyahısı
@@ -8,6 +8,7 @@ const urlsToCache = [
     '/index.html',
     '/styles.css',
     '/app.js',
+    '/ios-chrome-install.js',
     '/manifest.json',
     '/logo.png',
     '/icon-192.png',

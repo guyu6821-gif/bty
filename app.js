@@ -495,41 +495,47 @@ function t(key) {
         : (translations['az'][key] || key);
 }
 
-// Set Language
+// Set Language - optimized with rAF to prevent freezes
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('unify_lang', lang);
 
-    // Update active button
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    const activeBtn = document.getElementById('lang-' + lang);
-    if (activeBtn) activeBtn.classList.add('active');
+    requestAnimationFrame(() => {
+        // Update active lang button
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById('lang-' + lang);
+        if (activeBtn) activeBtn.classList.add('active');
 
-    // Translate all elements with data-i18n
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        el.innerHTML = t(key);
+        // Translate all elements with data-i18n (batch)
+        const i18nEls = document.querySelectorAll('[data-i18n]');
+        i18nEls.forEach(el => {
+            el.innerHTML = t(el.getAttribute('data-i18n'));
+        });
+
+        // Translate placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+        });
+
+        // Translate fenn-saat select first option
+        const selectEl = document.getElementById('fenn-saat');
+        if (selectEl && selectEl.options[0]) {
+            selectEl.options[0].textContent = t('select_option');
+        }
+
+        // Update WhatsApp banner link
+        updateWhatsAppLink();
+
+        // Notify ios-chrome-install.js about language change
+        document.dispatchEvent(new CustomEvent('unify-lang-change'));
+
+        // Re-render dynamic lists (deferred to next frame to stay smooth)
+        requestAnimationFrame(() => {
+            renderDictionaryList();
+            renderInfoList();
+            renderLinksList();
+        });
     });
-
-    // Translate placeholders
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        el.placeholder = t(key);
-    });
-
-    // Translate fenn-saat select first option
-    const selectEl = document.getElementById('fenn-saat');
-    if (selectEl && selectEl.options[0]) {
-        selectEl.options[0].textContent = t('select_option');
-    }
-
-    // Update WhatsApp banner link with language-specific greeting
-    updateWhatsAppLink();
-
-    // Re-render dynamic lists
-    renderDictionaryList();
-    renderInfoList();
-    renderLinksList();
 }
 
 // WhatsApp link with auto greeting message
@@ -546,26 +552,25 @@ function updateWhatsAppLink() {
 // ============================================
 function toggleTheme() {
     const body = document.body;
-    const isDark = body.classList.toggle('dark-mode');
-    localStorage.setItem('unify_theme', isDark ? 'dark' : 'light');
-    updateThemeIcon(isDark);
+    // Use rAF to prevent layout thrash / freeze
+    requestAnimationFrame(() => {
+        const isDark = body.classList.toggle('dark-mode');
+        localStorage.setItem('unify_theme', isDark ? 'dark' : 'light');
+        const icon = document.getElementById('toggle-icon');
+        if (icon) icon.textContent = isDark ? '🌙' : '☀️';
+    });
 }
 
 function updateThemeIcon(isDark) {
     const icon = document.getElementById('toggle-icon');
-    if (icon) {
-        icon.textContent = isDark ? '🌙' : '☀️';
-    }
+    if (icon) icon.textContent = isDark ? '🌙' : '☀️';
 }
 
 function initTheme() {
     const saved = localStorage.getItem('unify_theme');
-    if (saved === 'dark') {
-        document.body.classList.add('dark-mode');
-        updateThemeIcon(true);
-    } else {
-        updateThemeIcon(false);
-    }
+    const isDark = saved === 'dark';
+    if (isDark) document.body.classList.add('dark-mode');
+    updateThemeIcon(isDark);
 }
 
 // ============================================
@@ -577,12 +582,12 @@ function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
 
     if (pageId === 'home-page') {
-        pages.forEach(page => page.classList.remove('active'));
+        pages.forEach(p => p.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
-        setTimeout(() => { window.scrollTo(0, lastScrollPosition); }, 10);
+        window.scrollTo(0, lastScrollPosition);
     } else {
         lastScrollPosition = window.scrollY || window.pageYOffset;
-        pages.forEach(page => page.classList.remove('active'));
+        pages.forEach(p => p.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         window.scrollTo(0, 0);
     }
@@ -1101,9 +1106,7 @@ function renderLinksList() {
 document.addEventListener('DOMContentLoaded', function () {
     initTheme();
     setLanguage(currentLang);
-    renderDictionaryList();
-    renderInfoList();
-    renderLinksList();
+    initInstallUI();
 });
 
 // ============================================
@@ -1117,8 +1120,65 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============================================
-// PWA Install Helpers (Supabase logging removed)
+// Supabase İnteqrasiyası - Install Tracking
 // ============================================
+const SUPABASE_URL = 'https://glcgixnfjohomjoyyrwk.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsY2dpeG5mam9ob21qb3l5cndrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwODE4OTIsImV4cCI6MjEwMzY1Nzg5Mn0.8fSkJHpPza6BrF2qFowhqmR2gK7-ecyrE9cPhA5YR-c';
+
+function detectDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        ? 'Mobile' : 'Desktop';
+}
+
+function detectBrowser() {
+    const ua = navigator.userAgent;
+    if (/Edg\//i.test(ua)) return 'Edge';
+    if (/OPR\/|Opera/i.test(ua)) return 'Opera';
+    if (/CriOS/i.test(ua)) return 'Chrome iOS';
+    if (/FxiOS/i.test(ua)) return 'Firefox iOS';
+    if (/Chrome\/[0-9]/.test(ua) && !/Chromium/.test(ua)) return 'Chrome';
+    if (/Firefox\//i.test(ua)) return 'Firefox';
+    if (/Safari\/[0-9]/.test(ua) && !/Chrome/.test(ua)) return 'Safari';
+    if (/MSIE|Trident/i.test(ua)) return 'Internet Explorer';
+    return 'Unknown';
+}
+
+function detectOS() {
+    const ua = navigator.userAgent;
+    if (/Windows NT/i.test(ua)) return 'Windows';
+    if (/Mac OS X/i.test(ua) && !/iPhone|iPad|iPod/.test(ua)) return 'macOS';
+    if (/iPhone/i.test(ua)) return 'iOS (iPhone)';
+    if (/iPad/i.test(ua)) return 'iOS (iPad)';
+    if (/iPod/i.test(ua)) return 'iOS (iPod)';
+    if (/Android/i.test(ua)) return 'Android';
+    if (/Linux/i.test(ua)) return 'Linux';
+    if (/CrOS/i.test(ua)) return 'ChromeOS';
+    return 'Unknown';
+}
+
+async function logInstallToSupabase(source) {
+    try {
+        const payload = {
+            clicked_at: new Date().toISOString(),
+            page_url: window.location.href,
+            referrer: document.referrer || null,
+            device: detectDevice(),
+            browser: detectBrowser(),
+            operating_system: detectOS(),
+            install_source: source || 'unknown'
+        };
+        await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(payload)
+        });
+    } catch (_) {}
+}
 
 // ============================================
 // PWA Quraşdırma
@@ -1126,25 +1186,34 @@ if ('serviceWorker' in navigator) {
 let deferredPrompt;
 
 function isIOS() {
-    return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+    return /iphone|ipad|ipod/i.test(navigator.userAgent);
 }
 
 function isInStandaloneMode() {
-    return (('standalone' in window.navigator) && window.navigator.standalone) ||
+    return (navigator.standalone === true) ||
         window.matchMedia('(display-mode: standalone)').matches;
 }
 
-function showIOSInstallBanner() {
-    const banner = document.getElementById('ios-install-banner');
-    const alreadyShown = localStorage.getItem('ios-banner-closed');
-
-    if (alreadyShown) {
-        const daysPassed = (Date.now() - parseInt(alreadyShown)) / (1000 * 60 * 60 * 24);
-        if (daysPassed < 7) return;
+function showInstallButton() {
+    if (!isInStandaloneMode() && !isIOS()) {
+        const btn = document.getElementById('install-button');
+        if (btn) btn.style.display = 'flex';
     }
+}
 
-    if (banner && isIOS() && !isInStandaloneMode()) {
-        banner.style.display = 'block';
+function hideInstallButton() {
+    const btn = document.getElementById('install-button');
+    if (btn) btn.style.display = 'none';
+}
+
+function installApp() {
+    if (deferredPrompt) {
+        logInstallToSupabase('android_prompt');
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+            deferredPrompt = null;
+            hideInstallButton();
+        });
     }
 }
 
@@ -1165,45 +1234,22 @@ window.addEventListener('beforeinstallprompt', (e) => {
 window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
     hideInstallButton();
+    logInstallToSupabase('installed');
 });
 
-function showInstallButton() {
-    if (!isInStandaloneMode() && !isIOS()) {
-        const installBtn = document.getElementById('install-button');
-        if (installBtn) installBtn.style.display = 'flex';
-    }
-}
-
-function hideInstallButton() {
-    const installBtn = document.getElementById('install-button');
-    if (installBtn) installBtn.style.display = 'none';
-}
-
-function installApp() {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            deferredPrompt = null;
-            hideInstallButton();
-        });
-    }
-}
-
-// iOS-da dərhal banner göstər (gecikmə yoxdur)
-(function initInstallUI() {
-    if (isInStandaloneMode()) return; // Artıq quraşdırılıbsa göstərmə
+function initInstallUI() {
+    if (isInStandaloneMode()) return;
 
     if (isIOS()) {
-        // iOS: dərhal göstər
         const alreadyShown = localStorage.getItem('ios-banner-closed');
         if (alreadyShown) {
             const daysPassed = (Date.now() - parseInt(alreadyShown)) / (1000 * 60 * 60 * 24);
             if (daysPassed < 7) return;
         }
         const banner = document.getElementById('ios-install-banner');
-        if (banner) banner.style.display = 'block';
+        if (banner) {
+            banner.style.display = 'block';
+            logInstallToSupabase('ios_banner_shown');
+        }
     }
-    // Android/Desktop: beforeinstallprompt hadisəsi gəldikdə göstər (yuxarıda handler var)
-})();
-
-// Bildiriş sistemi silindi - performans üçün
+}
