@@ -1107,118 +1107,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ============================================
-// PWA - Service Worker Qeydiyyatı (iOS Optimized)
+// PWA - Service Worker Qeydiyyatı
 // ============================================
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        const isIOSDevice = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-        const swPath = '/sw.js';
-
-        navigator.serviceWorker.register(swPath, {
-            scope: '/',
-            updateViaCache: 'none'
-        })
-            .then(registration => {
-                if (isIOSDevice) {
-                    registration.update();
-                }
-
-                registration.addEventListener('updatefound', () => {
-                    const newWorker = registration.installing;
-
-                    newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed') {
-                            if (navigator.serviceWorker.controller) {
-                                if (isIOSDevice) {
-                                    newWorker.postMessage({ type: 'SKIP_WAITING' });
-                                    window.location.reload();
-                                } else {
-                                    if (confirm(t('new_version'))) {
-                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
-                                        window.location.reload();
-                                    }
-                                }
-                            }
-                        }
-                    });
-                });
-
-                if (isIOSDevice) {
-                    navigator.serviceWorker.ready.then(reg => {
-                        setInterval(() => { reg.update(); }, 60000);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('[App] Service Worker qeydiyyatı uğursuz:', error);
-            });
-    });
+    navigator.serviceWorker.register('/sw.js', {
+        scope: '/',
+        updateViaCache: 'none'
+    }).catch(() => {});
 }
 
 // ============================================
-// Supabase İnteqrasiyası
+// PWA Install Helpers (Supabase logging removed)
 // ============================================
-const SUPABASE_URL = 'https://glcgixnfjohomjoyyrwk.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsY2dpeG5mam9ob21qb3l5cndrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwODE4OTIsImV4cCI6MjEwMzY1Nzg5Mn0.8fSkJHpPza6BrF2qFowhqmR2gK7-ecyrE9cPhA5YR-c';
-
-function detectDevice() {
-    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
-}
-
-function detectBrowser() {
-    const ua = navigator.userAgent;
-    if (/Edg\//i.test(ua)) return 'Edge';
-    if (/OPR\/|Opera/i.test(ua)) return 'Opera';
-    if (/Chrome\/[0-9]/.test(ua) && !/Chromium/.test(ua)) return 'Chrome';
-    if (/Firefox\//i.test(ua)) return 'Firefox';
-    if (/Safari\/[0-9]/.test(ua) && !/Chrome/.test(ua)) return 'Safari';
-    if (/MSIE|Trident/i.test(ua)) return 'Internet Explorer';
-    return 'Unknown';
-}
-
-function detectOS() {
-    const ua = navigator.userAgent;
-    if (/Windows NT/i.test(ua)) return 'Windows';
-    if (/Mac OS X/i.test(ua) && !/iPhone|iPad|iPod/.test(ua)) return 'macOS';
-    if (/iPhone/i.test(ua)) return 'iOS (iPhone)';
-    if (/iPad/i.test(ua)) return 'iOS (iPad)';
-    if (/iPod/i.test(ua)) return 'iOS (iPod)';
-    if (/Android/i.test(ua)) return 'Android';
-    if (/Linux/i.test(ua)) return 'Linux';
-    if (/CrOS/i.test(ua)) return 'ChromeOS';
-    return 'Unknown';
-}
-
-async function logInstallClickToSupabase() {
-    try {
-        const payload = {
-            clicked_at: new Date().toISOString(),
-            page_url: window.location.href,
-            referrer: document.referrer || null,
-            device: detectDevice(),
-            browser: detectBrowser(),
-            operating_system: detectOS()
-        };
-
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-            const errText = await response.text();
-            console.warn('[Supabase] Məlumat yazılmadı:', response.status, errText);
-        }
-    } catch (err) {
-        console.warn('[Supabase] Xəta:', err);
-    }
-}
 
 // ============================================
 // PWA Quraşdırma
@@ -1245,7 +1145,6 @@ function showIOSInstallBanner() {
 
     if (banner && isIOS() && !isInStandaloneMode()) {
         banner.style.display = 'block';
-        logInstallClickToSupabase();
     }
 }
 
@@ -1281,7 +1180,6 @@ function hideInstallButton() {
 }
 
 function installApp() {
-    logInstallClickToSupabase();
     if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
@@ -1291,266 +1189,21 @@ function installApp() {
     }
 }
 
-window.addEventListener('load', () => {
-    if (isIOS() && !isInStandaloneMode()) {
-        setTimeout(showIOSInstallBanner, 2000);
-    }
-});
+// iOS-da dərhal banner göstər (gecikmə yoxdur)
+(function initInstallUI() {
+    if (isInStandaloneMode()) return; // Artıq quraşdırılıbsa göstərmə
 
-// ============================================
-// Bildiriş Supabase (Ayrı - ikinci Supabase)
-// QEYD: Bu mövcud Supabase ilə QARISMASIN
-// ============================================
-const NOTIF_SUPABASE_URL = 'https://wkoxusepqljmtvgaynqk.supabase.co';
-const NOTIF_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indrb3h1c2VwcWxqbXR2Z2F5bnFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxODgyMjcsImV4cCI6MjEwNTc2NDIyN30.QVlM2d2lSkXMqOuvZPIMavlHQdR-9VNEABXvraUUolY';
-
-// VAPID Public Key - Push Subscription üçün lazımdır
-// Bu key admin paneli ilə uyğun olmalıdır
-const VAPID_PUBLIC_KEY = 'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U';
-
-function notifFetch(path, options = {}) {
-    const headers = {
-        'Content-Type': 'application/json',
-        'apikey': NOTIF_ANON_KEY,
-        'Authorization': `Bearer ${NOTIF_ANON_KEY}`,
-        ...(options.headers || {})
-    };
-    return fetch(`${NOTIF_SUPABASE_URL}/rest/v1/${path}`, { ...options, headers });
-}
-
-// URL Base64 → Uint8Array çevirmə (VAPID key üçün)
-function urlBase64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding)
-        .replace(/-/g, '+')
-        .replace(/_/g, '/');
-    const rawData = atob(base64);
-    const outputArray = new Uint8Array(rawData.length);
-    for (let i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-}
-
-// Device ID yarat
-function generateDeviceId() {
-    let id = localStorage.getItem('unify_device_id');
-    if (!id) {
-        id = Math.random().toString(36).substring(2) + Date.now().toString(36);
-        localStorage.setItem('unify_device_id', id);
-    }
-    return id;
-}
-
-// Push icazəsi istə (yalnız bir dəfə)
-let notifPermissionAsked = false;
-
-async function requestPushPermission() {
-    if (notifPermissionAsked) return;
-    if (!('Notification' in window) || !('serviceWorker' in navigator)) return;
-
-    if (Notification.permission === 'granted') {
-        notifPermissionAsked = true;
-        await subscribePush();
-        return;
-    }
-    if (Notification.permission === 'denied') return;
-
-    // Yalnız bir dəfə soruş
-    const alreadyAsked = localStorage.getItem('unify_push_asked');
-    if (alreadyAsked) return;
-
-    notifPermissionAsked = true;
-    localStorage.setItem('unify_push_asked', '1');
-
-    try {
-        const permission = await Notification.requestPermission();
-        if (permission === 'granted') {
-            await subscribePush();
+    if (isIOS()) {
+        // iOS: dərhal göstər
+        const alreadyShown = localStorage.getItem('ios-banner-closed');
+        if (alreadyShown) {
+            const daysPassed = (Date.now() - parseInt(alreadyShown)) / (1000 * 60 * 60 * 24);
+            if (daysPassed < 7) return;
         }
-    } catch (e) {
-        console.warn('[UniFy] Notification permission error:', e);
+        const banner = document.getElementById('ios-install-banner');
+        if (banner) banner.style.display = 'block';
     }
-}
+    // Android/Desktop: beforeinstallprompt hadisəsi gəldikdə göstər (yuxarıda handler var)
+})();
 
-// Push abunəliyi yarat (VAPID key ilə - mobil üçün kritik)
-async function subscribePush() {
-    try {
-        if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-            // PushManager yoxdursa browser Notification API ilə davam et
-            await saveNotifPermissionBrowser();
-            return;
-        }
-
-        const reg = await navigator.serviceWorker.ready;
-
-        // Mövcud subscription yoxla
-        let sub = await reg.pushManager.getSubscription();
-
-        // Yeni subscription yarat (VAPID key ilə - Android Chrome/Firefox üçün)
-        if (!sub) {
-            try {
-                sub = await reg.pushManager.subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
-                });
-            } catch (subError) {
-                // VAPID key uyğun gəlmirsə, mövcud subscription-ı ləğv edib yenidən yarat
-                const existingSub = await reg.pushManager.getSubscription();
-                if (existingSub) {
-                    await existingSub.unsubscribe();
-                    try {
-                        sub = await reg.pushManager.subscribe({
-                            userVisibleOnly: true,
-                            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
-                        });
-                    } catch (e2) {
-                        console.warn('[UniFy] Push subscription failed:', e2);
-                        await saveNotifPermissionBrowser();
-                        return;
-                    }
-                } else {
-                    await saveNotifPermissionBrowser();
-                    return;
-                }
-            }
-        }
-
-        // Subscription məlumatlarını Supabase-ə yaz
-        const subJson = sub.toJSON();
-        const deviceId = generateDeviceId();
-
-        await notifFetch('push_subscriptions', {
-            method: 'POST',
-            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
-            body: JSON.stringify({
-                endpoint: subJson.endpoint,
-                p256dh: subJson.keys?.p256dh || '',
-                auth: subJson.keys?.auth || '',
-                user_agent: navigator.userAgent.substring(0, 200),
-                device_id: deviceId,
-                is_active: true
-            })
-        });
-
-    } catch (e) {
-        console.warn('[UniFy] subscribePush error:', e);
-        // Fallback: browser notification API
-        await saveNotifPermissionBrowser();
-    }
-}
-
-// Browser Notification API ilə saxla (iOS Safari / köhnə brouzerlər)
-async function saveNotifPermissionBrowser() {
-    try {
-        const deviceId = generateDeviceId();
-        await notifFetch('push_subscriptions', {
-            method: 'POST',
-            headers: { 'Prefer': 'return=minimal,resolution=merge-duplicates' },
-            body: JSON.stringify({
-                endpoint: 'browser_' + deviceId,
-                p256dh: 'browser_api',
-                auth: 'browser_api',
-                user_agent: navigator.userAgent.substring(0, 200),
-                device_id: deviceId,
-                is_active: true
-            })
-        });
-    } catch (e) {
-        console.warn('[UniFy] saveNotifPermissionBrowser error:', e);
-    }
-}
-
-// Planlanmış bildirişləri yoxla və göstər
-async function checkScheduledNotifications() {
-    if (!('Notification' in window) || Notification.permission !== 'granted') return;
-
-    try {
-        const now = new Date().toISOString();
-        const res = await notifFetch(
-            `notifications?select=*&status=eq.pending&scheduled_at=lte.${encodeURIComponent(now)}&limit=5`
-        );
-        if (!res.ok) return;
-
-        const notifications = await res.json();
-        if (!Array.isArray(notifications) || notifications.length === 0) return;
-
-        for (const notif of notifications) {
-            await showLocalNotification(notif.title || 'UniFy', notif.body || '');
-
-            // Statusu yenilə
-            try {
-                await notifFetch(`notifications?id=eq.${notif.id}`, {
-                    method: 'PATCH',
-                    body: JSON.stringify({ status: 'sent', sent_at: new Date().toISOString() })
-                });
-            } catch (e) {}
-        }
-    } catch (e) {
-        console.warn('[UniFy] checkScheduledNotifications error:', e);
-    }
-}
-
-// Bildiriş göstər (Service Worker üzərindən - mobil üçün daha etibarlı)
-async function showLocalNotification(title, body) {
-    const options = {
-        body: body,
-        icon: '/icon-192.png',
-        badge: '/icon-192.png',
-        vibrate: [200, 100, 200],
-        tag: 'unify-' + Date.now(),
-        renotify: true,
-        requireInteraction: false,
-        silent: false
-    };
-
-    try {
-        if ('serviceWorker' in navigator) {
-            const reg = await navigator.serviceWorker.ready;
-            // Service Worker üzərindən göstər (mobil üçün daha etibarlı)
-            await reg.showNotification(title, options);
-        } else if ('Notification' in window && Notification.permission === 'granted') {
-            // Fallback: birbaşa Notification API
-            new Notification(title, options);
-        }
-    } catch (e) {
-        console.warn('[UniFy] showLocalNotification error:', e);
-        // Son fallback
-        try {
-            new Notification(title, { body: body, icon: '/icon-192.png' });
-        } catch (e2) {}
-    }
-}
-
-// ============================================
-// Bildiriş sistemi - səhifə yükləndikdə işə sal
-// ============================================
-document.addEventListener('DOMContentLoaded', function () {
-    // 3 saniyə sonra icazə istə (UX üçün)
-    setTimeout(async () => {
-        if (!('Notification' in window)) return;
-
-        const alreadyAsked = localStorage.getItem('unify_push_asked');
-
-        if (alreadyAsked) {
-            // Əvvəl icazə verilmişsə
-            if (Notification.permission === 'granted') {
-                // Subscription-ı yenilə (cihaz dəyişikliyi üçün)
-                await subscribePush();
-                // Bildirişləri yoxla
-                checkScheduledNotifications();
-                // Hər 5 dəqiqədə bir yoxla
-                setInterval(checkScheduledNotifications, 5 * 60 * 1000);
-            }
-            return;
-        }
-
-        // Yeni istifadəçi - icazə istə
-        await requestPushPermission();
-
-        if (Notification.permission === 'granted') {
-            checkScheduledNotifications();
-            setInterval(checkScheduledNotifications, 5 * 60 * 1000);
-        }
-    }, 3000);
-});
+// Bildiriş sistemi silindi - performans üçün
