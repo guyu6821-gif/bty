@@ -1140,12 +1140,20 @@ function renderLinksList() {
 }
 
 // ============================================
-// Səhifə yükləndikdə işə sal
+// Səhifə yükləndikdə işə sal - Sürətli başlanğıc
 // ============================================
-document.addEventListener('DOMContentLoaded', function () {
+function initApp() {
     initTheme();
     setLanguage(currentLang);
-});
+}
+
+// DOM hazır olduqda dərhal başla (gözləmə yoxdur)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    // DOM artıq hazırdır - dərhal işə sal
+    initApp();
+}
 
 // ============================================
 // PWA - Service Worker

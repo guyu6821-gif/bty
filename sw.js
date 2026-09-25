@@ -1,28 +1,42 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v6.1.0';
+const CACHE_VERSION = 'v6.2.0';
 const CACHE_NAME = `unify-${CACHE_VERSION}`;
 
-// Cache siyahısı
-const urlsToCache = [
+// Kritik resurslar - ilk açılışda mütləq lazım olanlar (kiçik fayllar)
+const CRITICAL_CACHE = [
     '/',
     '/index.html',
     '/styles.css',
     '/app.js',
-    '/ios-chrome-install.js',
     '/manifest.json',
-    '/logo.png',
     '/icon-192.png',
-    '/icon-512.png'
+];
+
+// Əlavə resurslar - arxa planda yüklənir (böyük fayllar)
+const SECONDARY_CACHE = [
+    '/icon-512.png',
+    '/logo.png',
+    '/ios-chrome-install.js',
 ];
 
 // ============================================
-// Service Worker quraşdırma
+// Service Worker quraşdırma - Sürətli başlanğıc
 // ============================================
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => cache.addAll(urlsToCache))
-            .then(() => self.skipWaiting())
+            .then((cache) => {
+                // Əvvəlcə yalnız kritik resursları yüklə (tez qurtarır)
+                return cache.addAll(CRITICAL_CACHE);
+            })
+            .then(() => {
+                // Dərhal aktiv et - gözləmə yoxdur
+                self.skipWaiting();
+                // Arxa planda əlavə resursları yüklə
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.addAll(SECONDARY_CACHE).catch(() => {});
+                });
+            })
             .catch(() => self.skipWaiting())
     );
 });

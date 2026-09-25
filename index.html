@@ -55,11 +55,21 @@
     <link rel="apple-touch-icon" sizes="120x120" href="/logo.png">
     <link rel="apple-touch-startup-image" href="/logo.png">
     
+    <!-- DNS prefetch & preconnect -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://glcgixnfjohomjoyyrwk.supabase.co">
+
     <!-- Preload kritik resurslar - anında yüklənmə üçün -->
-    <link rel="preload" href="/logo.png" as="image">
-    <link rel="preload" href="/styles.css" as="style">
-    <link rel="preload" href="/app.js" as="script">
+    <link rel="preload" href="/styles.css" as="style" fetchpriority="high">
+    <link rel="preload" href="/app.js" as="script" fetchpriority="high">
+    <link rel="preload" href="/icon-192.png" as="image" fetchpriority="high">
     <link rel="stylesheet" href="/styles.css">
+
+    <!-- Critical inline style: splash ekranını gizlət, əsas layout strukturunu göstər -->
+    <style>
+      body{visibility:visible;}
+      .container{opacity:1;}
+    </style>
     
     <!-- JSON-LD Structured Data for SEO -->
     <script type="application/ld+json">
@@ -385,6 +395,6 @@
         </div>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="/app.js" defer></script>
 </body>
 </html>

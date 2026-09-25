@@ -45,5 +45,8 @@
     "categories": ["education", "utilities"],
     "lang": "az",
     "dir": "ltr",
-    "scope": "/"
+    "scope": "/",
+    "launch_handler": {
+        "client_mode": "focus-existing"
+    }
 }
