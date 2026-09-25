@@ -13,6 +13,8 @@ const translations = {
         ios_step3: "\"Add to Home Screen\" Seçin",
         ios_step4: "\"Add və ya +\" Düyməsinə Basın",
         menu_semestr: "Semestr Balı",
+        menu_zeng: "Zəng Cədvəli",
+        menu_qayib: "Qayıb Limiti",
         menu_uomg: "ÜOMG Hesablama",
         menu_kesr: "25% İmtahan (Kəsr Pulu)",
         menu_yas: "Yaş Hesablayıcı",
@@ -22,6 +24,8 @@ const translations = {
         menu_about: "Haqqında",
         back_btn: "← Geri",
         semestr_title: "Semestr Balı Hesablama",
+        zeng_title: "Zəng Cədvəli",
+        qayib_limit_title: "Qayıb Limiti",
         seminar_label: "Seminar",
         seminar_count_label: "Seminar sayı (maksimum 9):",
         seminar_placeholder: "Məsələn: 6",
@@ -60,7 +64,6 @@ const translations = {
         luget_title: "Akademik Lüğət",
         melumat_title: "Akademik Məlumat",
         links_title: "Sürətli Linklər",
-        // Calc messages
         err_seminar_range: "Xahiş olunur 1-9 arası bir rəqəm daxil edin",
         err_kollekvium_range: "Xahiş olunur 1-4 arası bir rəqəm daxil edin",
         err_seminar_create: "Xahiş olunur seminar sayını daxil edib \"Yarat\" düyməsinə basın",
@@ -75,7 +78,6 @@ const translations = {
         err_kredit: "Xahiş olunur düzgün kredit sayı daxil edin",
         err_dogum: "Xahiş olunur doğum tarixini seçin",
         err_fenn_range: "Xahiş olunur 1-9 arası bir rəqəm daxil edin",
-        // Result labels
         res_kesr_davamiyyet: "KƏSR - DAVAMIYYƏT",
         res_kesr: "KƏSR",
         res_davamiyyet_warning: "⚠️ Davamiyyət limiti keçildi",
@@ -114,15 +116,32 @@ const translations = {
         msg_zero: "0 BAL",
         msg_try: "🗿 YAXŞI OLACAQ 🆒",
         new_version: "Yeni versiya mövcuddur. Yeniləmək istəyirsiniz?",
-        // WhatsApp greeting
         wa_greeting: "Salam! Mənə sərbəst iş haqqında məlumat verin.",
-        // Link texts
         link_bdu_web: "Bakı Dövlət Universitetinin Rəsmi Web Saytı",
         link_bdu_student: "Bakı Dövlət Universitetinin Tələbə Akademik Web Saytı (SemsLogin)",
         link_whatsapp_group: "Məlumat Qrupu (WhatsApp)",
         link_bdu_whatsapp: "Bakı Dövlət Universitetinin WhatsApp Kanalı",
         link_bdu_instagram: "Bakı Dövlət Universitetinin Instagramı",
         link_owner_instagram: "Tətbiq Sahibinin Instagramı",
+        // Zəng cədvəli
+        schedule_morning: "🌅 Səhər Növbəsi",
+        schedule_afternoon: "🌞 Günorta Növbəsi",
+        schedule_lesson: "Dərs",
+        schedule_part1: "1-ci hissə",
+        schedule_part2: "2-ci hissə",
+        schedule_break: "Fasilə",
+        schedule_note: "Fasilə vaxtı zəng vurulub bitir (məs. 16:20-16:25)",
+        // Qayıb limiti
+        qayib_count: "Qayıb sayı",
+        qayib_ball: "Bal",
+        qayib_expelled: "Buraxılmır",
+        qayib_hours_30: "30 saatlıq fənn üzrə",
+        qayib_hours_45: "45 saatlıq fənn üzrə",
+        qayib_hours_60: "60 saatlıq fənn üzrə",
+        qayib_hours_75: "75 saatlıq fənn üzrə",
+        qayib_hours_90: "90 saatlıq fənn üzrə",
+        qayib_hours_105: "105 saatlıq fənn üzrə",
+        qayib_hours_120: "120 saatlıq fənn üzrə",
     },
     ru: {
         banner_text: "📲 Самая Дешёвая и Идеальная Подготовка Самостоятельных Работ ➡️",
@@ -135,6 +154,8 @@ const translations = {
         ios_step3: "Выберите \"Добавить на главный экран\"",
         ios_step4: "Нажмите \"Добавить\" или \"+\"",
         menu_semestr: "Семестровый Балл",
+        menu_zeng: "Расписание Звонков",
+        menu_qayib: "Лимит Пропусков",
         menu_uomg: "Расчёт ÜOMG",
         menu_kesr: "25% Экзамен (Кəср)",
         menu_yas: "Калькулятор Возраста",
@@ -144,6 +165,8 @@ const translations = {
         menu_about: "О Приложении",
         back_btn: "← Назад",
         semestr_title: "Расчёт Семестрового Балла",
+        zeng_title: "Расписание Звонков",
+        qayib_limit_title: "Лимит Пропусков",
         seminar_label: "Семинар",
         seminar_count_label: "Количество семинаров (макс. 9):",
         seminar_placeholder: "Например: 6",
@@ -241,6 +264,23 @@ const translations = {
         link_bdu_whatsapp: "WhatsApp канал Бакинского государственного университета",
         link_bdu_instagram: "Instagram Бакинского государственного университета",
         link_owner_instagram: "Instagram владельца приложения",
+        schedule_morning: "🌅 Утренняя Смена",
+        schedule_afternoon: "🌞 Дневная Смена",
+        schedule_lesson: "Урок",
+        schedule_part1: "1-я часть",
+        schedule_part2: "2-я часть",
+        schedule_break: "Перерыв",
+        schedule_note: "Во время перерыва звонит звонок (напр. 16:20–16:25)",
+        qayib_count: "Кол-во пропусков",
+        qayib_ball: "Балл",
+        qayib_expelled: "Не допускается",
+        qayib_hours_30: "По предмету 30 часов",
+        qayib_hours_45: "По предмету 45 часов",
+        qayib_hours_60: "По предмету 60 часов",
+        qayib_hours_75: "По предмету 75 часов",
+        qayib_hours_90: "По предмету 90 часов",
+        qayib_hours_105: "По предмету 105 часов",
+        qayib_hours_120: "По предмету 120 часов",
     },
     en: {
         banner_text: "📲 Cheapest and Perfect Independent Study Preparation ➡️",
@@ -253,6 +293,8 @@ const translations = {
         ios_step3: "Select \"Add to Home Screen\"",
         ios_step4: "Tap \"Add or +\"",
         menu_semestr: "Semester Score",
+        menu_zeng: "Bell Schedule",
+        menu_qayib: "Absence Limit",
         menu_uomg: "GPA Calculator",
         menu_kesr: "25% Exam Fee",
         menu_yas: "Age Calculator",
@@ -262,6 +304,8 @@ const translations = {
         menu_about: "About",
         back_btn: "← Back",
         semestr_title: "Semester Score Calculator",
+        zeng_title: "Bell Schedule",
+        qayib_limit_title: "Absence Limit",
         seminar_label: "Seminar",
         seminar_count_label: "Number of seminars (max 9):",
         seminar_placeholder: "Example: 6",
@@ -359,6 +403,23 @@ const translations = {
         link_bdu_whatsapp: "Baku State University WhatsApp Channel",
         link_bdu_instagram: "Baku State University Instagram",
         link_owner_instagram: "App Owner's Instagram",
+        schedule_morning: "🌅 Morning Shift",
+        schedule_afternoon: "🌞 Afternoon Shift",
+        schedule_lesson: "Lesson",
+        schedule_part1: "Part 1",
+        schedule_part2: "Part 2",
+        schedule_break: "Break",
+        schedule_note: "Bell rings during break (e.g. 16:20–16:25)",
+        qayib_count: "Absences",
+        qayib_ball: "Score",
+        qayib_expelled: "Not admitted",
+        qayib_hours_30: "30-hour subject",
+        qayib_hours_45: "45-hour subject",
+        qayib_hours_60: "60-hour subject",
+        qayib_hours_75: "75-hour subject",
+        qayib_hours_90: "90-hour subject",
+        qayib_hours_105: "105-hour subject",
+        qayib_hours_120: "120-hour subject",
     }
 };
 
@@ -372,7 +433,9 @@ function t(key) {
         : (translations['az'][key] || key);
 }
 
-// Set Language
+// ============================================
+// Set Language - Gecikmə olmadan sürətli
+// ============================================
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('unify_lang', lang);
@@ -400,13 +463,15 @@ function setLanguage(lang) {
         selectEl.options[0].textContent = t('select_option');
     }
 
-    // Update WhatsApp banner link with language-specific greeting
+    // Update WhatsApp banner link
     updateWhatsAppLink();
 
-    // Re-render dynamic lists
+    // Re-render dynamic content
     renderDictionaryList();
     renderInfoList();
     renderLinksList();
+    renderSchedule();
+    renderAbsenceLimit();
 }
 
 // WhatsApp link with auto greeting message
@@ -419,20 +484,24 @@ function updateWhatsAppLink() {
 }
 
 // ============================================
-// Dark / Light Mode Toggle
+// Dark / Light Mode Toggle - Donmasız
 // ============================================
 function toggleTheme() {
     const body = document.body;
+    // Animasiyanı müvəqqəti söndür (donmanın qarşısı)
+    body.classList.add('theme-transitioning');
     const isDark = body.classList.toggle('dark-mode');
     localStorage.setItem('unify_theme', isDark ? 'dark' : 'light');
     updateThemeIcon(isDark);
+    // Animasiyanı geri aç
+    requestAnimationFrame(() => {
+        body.classList.remove('theme-transitioning');
+    });
 }
 
 function updateThemeIcon(isDark) {
     const icon = document.getElementById('toggle-icon');
-    if (icon) {
-        icon.textContent = isDark ? '🌙' : '☀️';
-    }
+    if (icon) icon.textContent = isDark ? '🌙' : '☀️';
 }
 
 function initTheme() {
@@ -452,17 +521,162 @@ let lastScrollPosition = 0;
 
 function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
-
     if (pageId === 'home-page') {
-        pages.forEach(page => page.classList.remove('active'));
+        pages.forEach(p => p.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         setTimeout(() => { window.scrollTo(0, lastScrollPosition); }, 10);
     } else {
         lastScrollPosition = window.scrollY || window.pageYOffset;
-        pages.forEach(page => page.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
+        pages.forEach(p => p.classList.remove('active'));
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
         window.scrollTo(0, 0);
+        // Render dynamic content when needed
+        if (pageId === 'zeng-page') renderSchedule();
+        if (pageId === 'qayib-page') renderAbsenceLimit();
+        if (pageId === 'luget-page') renderDictionaryList();
+        if (pageId === 'melumat-page') renderInfoList();
+        if (pageId === 'linkler-page') renderLinksList();
     }
+}
+
+// ============================================
+// Zəng Cədvəli Render
+// ============================================
+const scheduleData = {
+    morning: [
+        { lesson: 1, p1: '08:30–09:15', p2: '09:20–10:05', brk: '09:15–09:20' },
+        { lesson: 2, p1: '10:15–11:00', p2: '11:05–11:50', brk: '11:00–11:05' },
+        { lesson: 3, p1: '12:00–12:45', p2: '12:50–13:35', brk: '12:45–12:50' },
+    ],
+    afternoon: [
+        { lesson: 1, p1: '13:50–14:35', p2: '14:40–15:25', brk: '14:35–14:40' },
+        { lesson: 2, p1: '15:35–16:20', p2: '16:25–17:10', brk: '16:20–16:25' },
+        { lesson: 3, p1: '17:20–18:05', p2: '18:10–18:55', brk: '18:05–18:10' },
+    ]
+};
+
+function renderSchedule() {
+    const el = document.getElementById('schedule-content');
+    if (!el) return;
+
+    const renderShift = (title, rows) => `
+        <div class="schedule-shift-title">${title}</div>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>${t('schedule_lesson')}</th>
+                    <th>${t('schedule_part1')}</th>
+                    <th>${t('schedule_break')}</th>
+                    <th>${t('schedule_part2')}</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${rows.map(r => `
+                <tr>
+                    <td class="schedule-lesson-num">${r.lesson}</td>
+                    <td><span class="schedule-time-part">${r.p1}</span></td>
+                    <td><span class="schedule-break">🔔 ${r.brk}</span></td>
+                    <td><span class="schedule-time-part">${r.p2}</span></td>
+                </tr>`).join('')}
+            </tbody>
+        </table>
+    `;
+
+    el.innerHTML = `
+        <div class="schedule-section">
+            ${renderShift(t('schedule_morning'), scheduleData.morning)}
+            ${renderShift(t('schedule_afternoon'), scheduleData.afternoon)}
+            <p class="schedule-note">ℹ️ ${t('schedule_note')}</p>
+        </div>
+    `;
+}
+
+// ============================================
+// Qayıb Limiti Render
+// ============================================
+const absenceData = [
+    {
+        keyLabel: 'qayib_hours_30',
+        rows: [
+            { count: '2', result: '1', cls: 'ball-1' },
+            { count: '3', result: '2', cls: 'ball-2' },
+            { count: '4+', result: null, cls: 'fail' },
+        ]
+    },
+    {
+        keyLabel: 'qayib_hours_45',
+        rows: [
+            { count: '3', result: '1', cls: 'ball-1' },
+            { count: '5', result: '2', cls: 'ball-2' },
+            { count: '6+', result: null, cls: 'fail' },
+        ]
+    },
+    {
+        keyLabel: 'qayib_hours_60',
+        rows: [
+            { count: '3', result: '1', cls: 'ball-1' },
+            { count: '6', result: '2', cls: 'ball-2' },
+            { count: '8+', result: null, cls: 'fail' },
+        ]
+    },
+    {
+        keyLabel: 'qayib_hours_75',
+        rows: [
+            { count: '4', result: '1', cls: 'ball-1' },
+            { count: '8', result: '2', cls: 'ball-2' },
+            { count: '10+', result: null, cls: 'fail' },
+        ]
+    },
+    {
+        keyLabel: 'qayib_hours_90',
+        rows: [
+            { count: '5', result: '1', cls: 'ball-1' },
+            { count: '9', result: '2', cls: 'ball-2' },
+            { count: '12+', result: null, cls: 'fail' },
+        ]
+    },
+    {
+        keyLabel: 'qayib_hours_105',
+        rows: [
+            { count: '6', result: '1', cls: 'ball-1' },
+            { count: '11', result: '2', cls: 'ball-2' },
+            { count: '14+', result: null, cls: 'fail' },
+        ]
+    },
+    {
+        keyLabel: 'qayib_hours_120',
+        rows: [
+            { count: '6', result: '1', cls: 'ball-1' },
+            { count: '12', result: '2', cls: 'ball-2' },
+            { count: '15+', result: null, cls: 'fail' },
+        ]
+    },
+];
+
+function renderAbsenceLimit() {
+    const el = document.getElementById('absence-content');
+    if (!el) return;
+
+    el.innerHTML = `
+        <div class="absence-grid">
+            ${absenceData.map(group => `
+                <div class="absence-card">
+                    <div class="absence-card-title">📚 ${t(group.keyLabel)}</div>
+                    ${group.rows.map(row => `
+                        <div class="absence-row">
+                            <span>${t('qayib_count')}: <strong>${row.count}</strong></span>
+                            <span class="absence-result ${row.cls}">
+                                ${row.result !== null
+                                    ? `${t('qayib_ball')}: ${row.result}`
+                                    : t('qayib_expelled')}
+                            </span>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('')}
+        </div>
+    `;
 }
 
 // ============================================
@@ -471,40 +685,28 @@ function showPage(pageId) {
 function generateSeminarInputs() {
     const count = parseInt(document.getElementById('seminar-count').value);
     const container = document.getElementById('seminar-inputs');
-
-    if (!count || count < 1 || count > 9) {
-        alert(t('err_seminar_range'));
-        return;
-    }
-
+    if (!count || count < 1 || count > 9) { alert(t('err_seminar_range')); return; }
     container.innerHTML = '';
     for (let i = 1; i <= count; i++) {
         container.innerHTML += `
             <div class="dynamic-input">
                 <label>${t('seminar_input_label').replace('{n}', i)}</label>
                 <input type="number" class="seminar-input" min="0" max="10" step="0.1" placeholder="0" required>
-            </div>
-        `;
+            </div>`;
     }
 }
 
 function generateKollekviumInputs() {
     const count = parseInt(document.getElementById('kollekvium-count').value);
     const container = document.getElementById('kollekvium-inputs');
-
-    if (!count || count < 1 || count > 4) {
-        alert(t('err_kollekvium_range'));
-        return;
-    }
-
+    if (!count || count < 1 || count > 4) { alert(t('err_kollekvium_range')); return; }
     container.innerHTML = '';
     for (let i = 1; i <= count; i++) {
         container.innerHTML += `
             <div class="dynamic-input">
                 <label>${t('kollekvium_input_label').replace('{n}', i)}</label>
                 <input type="number" class="kollekvium-input" min="0" max="10" step="0.1" placeholder="0" required>
-            </div>
-        `;
+            </div>`;
     }
 }
 
@@ -517,7 +719,6 @@ function hesablaDavamiyyet(saat, qayib) {
         90:  { 0:10, 1:10, 2:10, 3:9, 4:9, 5:9, 6:9, 7:8, 8:8, 9:8, 10:8, 11:8, 12:0 },
         105: { 0:10, 1:10, 2:10, 3:9, 4:9, 5:9, 6:9, 7:9, 8:8, 9:8, 10:8, 11:8, 12:8, 13:8, 14:0 }
     };
-
     if (rules[saat] && rules[saat][qayib] !== undefined) return rules[saat][qayib];
     return 0;
 }
@@ -591,8 +792,7 @@ function hesablaSemestr() {
                 <div class="stat-item" style="background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;margin-top:10px;">
                     <span class="stat-label" style="display:block;text-align:center;font-size:14px;font-style:italic;">${t('res_davamiyyet_kesr_note')}</span>
                 </div>
-            </div>
-        `;
+            </div>`;
         return;
     }
 
@@ -601,13 +801,13 @@ function hesablaSemestr() {
     if (umumiBal > 50) umumiBal = 50;
 
     let message = '', resultClass = '';
-    if (umumiBal === 0) { message = t('msg_zero'); resultClass = 'danger'; }
-    else if (umumiBal >= 50) { message = t('msg_excellent'); resultClass = 'success'; }
-    else if (umumiBal >= 45) { message = t('msg_very_good'); resultClass = 'success'; }
-    else if (umumiBal >= 41) { message = t('msg_good'); resultClass = 'info'; }
-    else if (umumiBal >= 36) { message = t('msg_kafi'); resultClass = 'warning'; }
-    else if (umumiBal >= 26) { message = t('msg_zeif'); resultClass = 'warning'; }
-    else { message = t('msg_try'); resultClass = 'danger'; }
+    if (umumiBal === 0)       { message = t('msg_zero');      resultClass = 'danger'; }
+    else if (umumiBal >= 50)  { message = t('msg_excellent'); resultClass = 'success'; }
+    else if (umumiBal >= 45)  { message = t('msg_very_good'); resultClass = 'success'; }
+    else if (umumiBal >= 41)  { message = t('msg_good');      resultClass = 'info'; }
+    else if (umumiBal >= 36)  { message = t('msg_kafi');      resultClass = 'warning'; }
+    else if (umumiBal >= 26)  { message = t('msg_zeif');      resultClass = 'warning'; }
+    else                      { message = t('msg_try');       resultClass = 'danger'; }
 
     const resultBox = document.getElementById('semestr-result');
     resultBox.className = `result-box show ${resultClass}`;
@@ -635,8 +835,7 @@ function hesablaSemestr() {
                 <span class="stat-label">${t('res_kollekvium_orta')}</span>
                 <span class="stat-value">${kollekviumOrta.toFixed(2)} / 10</span>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
 // ============================================
@@ -645,12 +844,7 @@ function hesablaSemestr() {
 function generateFennInputs() {
     const count = parseInt(document.getElementById('fenn-count').value);
     const container = document.getElementById('fenn-inputs');
-
-    if (!count || count < 1 || count > 9) {
-        alert(t('err_fenn_range'));
-        return;
-    }
-
+    if (!count || count < 1 || count > 9) { alert(t('err_fenn_range')); return; }
     container.innerHTML = '';
     for (let i = 1; i <= count; i++) {
         container.innerHTML += `
@@ -664,15 +858,13 @@ function generateFennInputs() {
                     <label>${t('kredit_label')}</label>
                     <input type="number" class="fenn-kredit" min="1" placeholder="0" required>
                 </div>
-            </div>
-        `;
+            </div>`;
     }
 }
 
 function hesablaUOMG() {
     const balInputs = document.querySelectorAll('.fenn-bal');
     const kreditInputs = document.querySelectorAll('.fenn-kredit');
-
     if (balInputs.length === 0) { alert(t('err_fenn_create')); return; }
 
     let toplam = 0, kreditToplam = 0;
@@ -680,8 +872,7 @@ function hesablaUOMG() {
         const bal = parseFloat(balInputs[i].value);
         const kredit = parseFloat(kreditInputs[i].value);
         if (isNaN(bal) || isNaN(kredit) || bal < 0 || bal > 100 || kredit < 1) {
-            alert(t('err_fenn_data').replace('{n}', i + 1));
-            return;
+            alert(t('err_fenn_data').replace('{n}', i + 1)); return;
         }
         toplam += bal * kredit;
         kreditToplam += kredit;
@@ -689,13 +880,13 @@ function hesablaUOMG() {
 
     const uomg = toplam / kreditToplam;
     let message = '', resultClass = '';
-    if (uomg === 0) { message = t('msg_zero'); resultClass = 'danger'; }
-    else if (uomg >= 91) { message = t('msg_excellent'); resultClass = 'success'; }
-    else if (uomg >= 81) { message = t('msg_very_good'); resultClass = 'success'; }
-    else if (uomg >= 71) { message = t('msg_good'); resultClass = 'info'; }
-    else if (uomg >= 61) { message = t('msg_kafi'); resultClass = 'warning'; }
-    else if (uomg >= 51) { message = t('msg_zeif'); resultClass = 'warning'; }
-    else { message = t('msg_try'); resultClass = 'danger'; }
+    if (uomg === 0)       { message = t('msg_zero');      resultClass = 'danger'; }
+    else if (uomg >= 91)  { message = t('msg_excellent'); resultClass = 'success'; }
+    else if (uomg >= 81)  { message = t('msg_very_good'); resultClass = 'success'; }
+    else if (uomg >= 71)  { message = t('msg_good');      resultClass = 'info'; }
+    else if (uomg >= 61)  { message = t('msg_kafi');      resultClass = 'warning'; }
+    else if (uomg >= 51)  { message = t('msg_zeif');      resultClass = 'warning'; }
+    else                  { message = t('msg_try');       resultClass = 'danger'; }
 
     const resultBox = document.getElementById('uomg-result');
     resultBox.className = `result-box show ${resultClass}`;
@@ -711,8 +902,7 @@ function hesablaUOMG() {
                 <span class="stat-label">${t('res_kredit')}</span>
                 <span class="stat-value">${kreditToplam}</span>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
 // ============================================
@@ -721,12 +911,10 @@ function hesablaUOMG() {
 function hesablaKesr() {
     const illikOdenis = parseFloat(document.getElementById('illik-odenis').value);
     const fennKredit = parseFloat(document.getElementById('fenn-kredit').value);
-
     if (!illikOdenis || illikOdenis < 0) { alert(t('err_illik')); return; }
     if (!fennKredit || fennKredit < 1) { alert(t('err_kredit')); return; }
 
     const result = ((illikOdenis / 60) * fennKredit) / 4 + 1;
-
     const resultBox = document.getElementById('kesr-result');
     resultBox.className = 'result-box show info';
     resultBox.innerHTML = `
@@ -741,8 +929,7 @@ function hesablaKesr() {
                 <span class="stat-label">${t('res_kredit_sayi')}</span>
                 <span class="stat-value">${fennKredit}</span>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
 // ============================================
@@ -782,8 +969,7 @@ function hesablaYas() {
                 <span class="stat-label">${t('res_novbeti')}</span>
                 <span class="stat-value">${qalanGunler} ${t('res_gun_unit')}</span>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
 // ============================================
@@ -792,60 +978,60 @@ function hesablaYas() {
 const lugetSozleri = {
     az: [
         { soz: "Universitet", meana: "Ali təhsil verən böyük təhsil müəssisəsidir və bir neçə fakültədən ibarət olur." },
-        { soz: "Korpus", meana: "Universitetin dərslərin və digər fəaliyyətlərin keçirildiyi binalarından biridir. Böyük universitetlərdə bir neçə korpus olur." },
+        { soz: "Korpus", meana: "Universitetin dərslərin və digər fəaliyyətlərin keçirildiyi binalarından biridir." },
         { soz: "Fakültə", meana: "Universitetin müəyyən ixtisasları birləşdirən bölməsidir. Məsələn, Filologiya fakültəsi." },
-        { soz: "Rektor", meana: "Universitetin ən yüksək rəhbəridir və bütün tədris, idarəetmə və rəsmi qərarlara cavabdeh şəxsdir." },
-        { soz: "Rektor Müavini", meana: "Rektora kömək edir və adətən tədris, elm və ya inzibati işlər kimi müəyyən sahələrə nəzarət edir." },
-        { soz: "Dekan", meana: "Fakültənin rəhbəridir və həmin fakültədə dərslərin və ümumi qaydaların təşkilinə nəzarət edir." },
-        { soz: "Dekan Müavini", meana: "Dekana kömək edir və tələbələrlə bağlı məsələlərdə, dərs cədvəlində və digər işlərdə dəstək göstərir." },
+        { soz: "Rektor", meana: "Universitetin ən yüksək rəhbəridir." },
+        { soz: "Rektor Müavini", meana: "Rektora kömək edir və müəyyən sahələrə nəzarət edir." },
+        { soz: "Dekan", meana: "Fakültənin rəhbəridir." },
+        { soz: "Dekan Müavini", meana: "Dekana kömək edir." },
         { soz: "Tyutor", meana: "Tələbələrə qeydiyyat və akademik məsələlərdə yol göstərən şəxsdir." },
-        { soz: "Mühazirə", meana: "Müəllimin mövzunu izah etdiyi dərs formasıdır və adətən çoxlu tələbə iştirak edir." },
+        { soz: "Mühazirə", meana: "Müəllimin mövzunu izah etdiyi dərs formasıdır." },
         { soz: "Seminar", meana: "Tələbələrin mövzu haqqında danışdığı, sual verdiyi və müzakirə etdiyi dərs formasıdır." },
-        { soz: "Sərbəst iş", meana: "Tələbənin dərsdən kənar vaxtda özü araşdırıb hazırladığı tapşırıq və ya layihədir." },
-        { soz: "Professor", meana: "Universitetdə ən yüksək elmi vəzifələrdən biridir və böyük təcrübəyə malik müəllimdir." },
-        { soz: "Dosent", meana: "Elmi dərəcəyə sahib olan və dərs deyən, professordan bir pillə aşağı vəzifədir." },
-        { soz: "Müəllim", meana: "Tələbələrə dərs keçən və mövzuları izah edən tədris işçisidir." },
-        { soz: "Doktorantura", meana: "Ali təhsilin ən yüksək pilləsidir və burada elmi araşdırma aparılıb dissertasiya yazılır." },
-        { soz: "Magistratura", meana: "Bakalavrdan sonrakı təhsil mərhələsidir və ixtisas üzrə biliklər daha dərindən öyrənilir." },
-        { soz: "Bakalavr", meana: "Ali təhsilin ilk pilləsidir və tələbə burada əsas ixtisas biliklərini əldə edir." },
+        { soz: "Sərbəst iş", meana: "Tələbənin dərsdən kənar vaxtda özü araşdırıb hazırladığı tapşırıq." },
+        { soz: "Professor", meana: "Universitetdə ən yüksək elmi vəzifələrdən biridir." },
+        { soz: "Dosent", meana: "Elmi dərəcəyə sahib olan müəllim." },
+        { soz: "Müəllim", meana: "Tələbələrə dərs keçən tədris işçisidir." },
+        { soz: "Doktorantura", meana: "Ali təhsilin ən yüksək pilləsidir." },
+        { soz: "Magistratura", meana: "Bakalavrdan sonrakı təhsil mərhələsidir." },
+        { soz: "Bakalavr", meana: "Ali təhsilin ilk pilləsidir." },
     ],
     ru: [
         { soz: "Университет", meana: "Крупное высшее учебное заведение, состоящее из нескольких факультетов." },
-        { soz: "Корпус", meana: "Одно из зданий университета, где проводятся занятия и другие мероприятия." },
-        { soz: "Факультет", meana: "Подразделение университета, объединяющее определённые специальности. Например, филологический факультет." },
-        { soz: "Ректор", meana: "Высший руководитель университета, ответственный за все учебные, административные и официальные решения." },
-        { soz: "Проректор", meana: "Помогает ректору и обычно курирует определённые направления: учёбу, науку или административную работу." },
-        { soz: "Декан", meana: "Руководитель факультета, отвечающий за организацию занятий и общих правил на факультете." },
-        { soz: "Заместитель декана", meana: "Помогает декану в вопросах, связанных со студентами, расписанием и другими делами." },
-        { soz: "Тьютор", meana: "Лицо, направляющее студентов по вопросам регистрации и академическим вопросам." },
-        { soz: "Лекция", meana: "Форма занятия, на которой преподаватель объясняет тему, как правило, перед большой аудиторией." },
-        { soz: "Семинар", meana: "Форма занятия, где студенты обсуждают тему, задают вопросы и дискутируют." },
-        { soz: "Самостоятельная работа", meana: "Задание или проект, который студент исследует и готовит самостоятельно вне занятий." },
-        { soz: "Профессор", meana: "Одна из высших научных должностей в университете; преподаватель с большим опытом." },
-        { soz: "Доцент", meana: "Должность на ступень ниже профессора, имеющая учёную степень и ведущая занятия." },
-        { soz: "Преподаватель", meana: "Сотрудник учебного заведения, проводящий занятия и объясняющий темы студентам." },
-        { soz: "Докторантура", meana: "Высшая ступень высшего образования, на которой проводятся научные исследования и пишется диссертация." },
-        { soz: "Магистратура", meana: "Этап обучения после бакалавриата, где знания по специальности изучаются более углублённо." },
-        { soz: "Бакалавриат", meana: "Первая ступень высшего образования, на которой студент получает базовые знания по специальности." },
+        { soz: "Корпус", meana: "Одно из зданий университета, где проводятся занятия." },
+        { soz: "Факультет", meana: "Подразделение университета, объединяющее определённые специальности." },
+        { soz: "Ректор", meana: "Высший руководитель университета." },
+        { soz: "Проректор", meana: "Помогает ректору и курирует определённые направления." },
+        { soz: "Декан", meana: "Руководитель факультета." },
+        { soz: "Заместитель декана", meana: "Помогает декану." },
+        { soz: "Тьютор", meana: "Лицо, направляющее студентов по академическим вопросам." },
+        { soz: "Лекция", meana: "Форма занятия, на которой преподаватель объясняет тему." },
+        { soz: "Семинар", meana: "Форма занятия, где студенты обсуждают тему." },
+        { soz: "Самостоятельная работа", meana: "Задание, которое студент готовит самостоятельно." },
+        { soz: "Профессор", meana: "Одна из высших научных должностей в университете." },
+        { soz: "Доцент", meana: "Должность на ступень ниже профессора." },
+        { soz: "Преподаватель", meana: "Сотрудник, проводящий занятия." },
+        { soz: "Докторантура", meana: "Высшая ступень высшего образования." },
+        { soz: "Магистратура", meana: "Этап обучения после бакалавриата." },
+        { soz: "Бакалавриат", meana: "Первая ступень высшего образования." },
     ],
     en: [
         { soz: "University", meana: "A large higher education institution consisting of several faculties." },
-        { soz: "Building / Corps", meana: "One of the university buildings where classes and other activities take place." },
-        { soz: "Faculty", meana: "A division of a university grouping certain specializations. For example, the Faculty of Philology." },
-        { soz: "Rector", meana: "The highest authority of the university, responsible for all academic, administrative and official decisions." },
-        { soz: "Vice-Rector", meana: "Assists the rector and usually oversees specific areas such as education, science or administration." },
-        { soz: "Dean", meana: "The head of a faculty who oversees the organization of classes and general regulations within that faculty." },
-        { soz: "Vice-Dean", meana: "Assists the dean with student-related matters, timetables and other tasks." },
-        { soz: "Tutor", meana: "A person who guides students on registration and academic issues." },
-        { soz: "Lecture", meana: "A form of class where the teacher explains a topic, usually attended by many students." },
-        { soz: "Seminar", meana: "A form of class where students discuss a topic, ask questions and debate." },
-        { soz: "Independent Study", meana: "An assignment or project that a student researches and prepares outside of class time." },
-        { soz: "Professor", meana: "One of the highest academic positions in a university; a teacher with extensive experience." },
-        { soz: "Associate Professor", meana: "A position one step below professor, holding an academic degree and teaching classes." },
-        { soz: "Teacher / Lecturer", meana: "An academic staff member who conducts classes and explains topics to students." },
-        { soz: "Doctorate", meana: "The highest level of higher education, where scientific research is conducted and a dissertation is written." },
-        { soz: "Master's", meana: "A stage of education after the bachelor's degree, where knowledge in a specialization is studied more deeply." },
-        { soz: "Bachelor's", meana: "The first level of higher education, where the student acquires basic knowledge in their specialization." },
+        { soz: "Building / Corps", meana: "One of the university buildings where classes take place." },
+        { soz: "Faculty", meana: "A division of a university grouping certain specializations." },
+        { soz: "Rector", meana: "The highest authority of the university." },
+        { soz: "Vice-Rector", meana: "Assists the rector and oversees specific areas." },
+        { soz: "Dean", meana: "The head of a faculty." },
+        { soz: "Vice-Dean", meana: "Assists the dean." },
+        { soz: "Tutor", meana: "A person who guides students on academic issues." },
+        { soz: "Lecture", meana: "A form of class where the teacher explains a topic." },
+        { soz: "Seminar", meana: "A form of class where students discuss a topic." },
+        { soz: "Independent Study", meana: "An assignment that a student prepares outside of class." },
+        { soz: "Professor", meana: "One of the highest academic positions in a university." },
+        { soz: "Associate Professor", meana: "A position one step below professor." },
+        { soz: "Teacher / Lecturer", meana: "An academic staff member who conducts classes." },
+        { soz: "Doctorate", meana: "The highest level of higher education." },
+        { soz: "Master's", meana: "A stage of education after the bachelor's degree." },
+        { soz: "Bachelor's", meana: "The first level of higher education." },
     ]
 };
 
@@ -855,74 +1041,54 @@ const lugetSozleri = {
 const akademikMelumatlar = {
     az: [
         "Əlaçı təqaüd üçün semestr sonu imtahanlarında bütün fənlər üzrə yekun bal 91 və yuxarı olmalıdır.",
-        "Həvəsləndirici təqaüd almaq üçün ən azı 1 fəndən (1-dən çox da ola bilər) 91+ bal, digər fənlərin hər birindən isə minimum 71+ bal olmalıdır.",
-        "Adi təqaüd almaq üçün bütün fənlər üzrə yekun bal ən azı 51+ olmalıdır. Bu 51 balın minimum 17 balı imtahandan toplanmalıdır (ödənişli ixtisaslarda fərqlilik ola bilər).",
-        "Semestr ərzində toplanan bal maksimum 50 baldır. Bunun 10 balı sərbəst işdən, 10 balı davamiyyətdən, 30 balı isə seminar və kollekviumdan gəlir. Semestr balı bu düsturla hesablanır: (seminar balı orta × 0.4 + kollekvium balı orta × 0.6) × 3 + davamiyyət balı + sərbəst iş balı.",
-        "İmtahanda toplanılan bal maksimum 50 baldır. Semestr balı ilə imtahan balı toplanır və ümumi nəticə alınır.",
-        "Kəsr imtahanı: Əgər tələbə imtahandan minimum 17 bal toplamazsa və ya semestr balı ilə imtahan balının cəmi 51 balı keçməzsə, tələbə kəsilmiş sayılır.",
-        "Kəsr fənni olan tələbə 25% ödəniş edib ikinci şans imtahanında iştirak edə bilər. 25% ödəniş: [((illik ödəniş / 60) × kredit sayı) / 4] + 1.",
-        "Əgər tələbə kəsilməzdən əvvəl təqaüd alırdısa, kəsildiyi halda təqaüdünü itirir və 25% ödənişlə imtahanı uğurla versə belə, təqaüd bərpa olunmur.",
-        "ÜOMG (Ümumi Orta Müvəffəqiyyət Göstəricisi): (bal1 × kredit1 + bal2 × kredit2 + ...) / (kredit1 + kredit2 + ...).",
+        "Həvəsləndirici təqaüd almaq üçün ən azı 1 fəndən 91+ bal, digər fənlərindən minimum 71+ bal olmalıdır.",
+        "Adi təqaüd almaq üçün bütün fənlər üzrə yekun bal ən azı 51+ olmalıdır. 51 balın minimum 17 balı imtahandan toplanmalıdır.",
+        "Semestr ərzində toplanan bal maksimum 50 baldır. 10 balı sərbəst işdən, 10 balı davamiyyətdən, 30 balı seminar və kollekviumdan gəlir.",
+        "İmtahanda toplanılan bal maksimum 50 baldır. Semestr balı + imtahan balı = ümumi nəticə.",
+        "Kəsr imtahanı: Tələbə imtahandan minimum 17 bal toplamazsa və ya cəm 51 balı keçməzsə kəsilmiş sayılır.",
+        "Kəsr fənni olan tələbə 25% ödəniş edib ikinci şans imtahanında iştirak edə bilər. Formula: [((illik ödəniş / 60) × kredit sayı) / 4] + 1.",
+        "Əgər tələbə kəsilməzdən əvvəl təqaüd alırdısa, kəsildiyi halda təqaüdünü itirir.",
+        "ÜOMG: (bal1 × kredit1 + bal2 × kredit2 + ...) / (kredit1 + kredit2 + ...).",
         "Qayıb limiti aşan tələbə imtahana buraxılmır və avtomatik olaraq kəsilmiş sayılır.",
-        "91–100 bal: A (əla); 81–90: B (çox yaxşı); 71–80: C (yaxşı); 61–70: D (kafi); 51–60: E (qaneedici); 51-dən aşağı: F (qeyri-kafi).",
+        "91–100: A (əla); 81–90: B (çox yaxşı); 71–80: C (yaxşı); 61–70: D (kafi); 51–60: E (qaneedici); 51-dən aşağı: F (qeyri-kafi).",
     ],
     ru: [
-        "Для отличной стипендии итоговый балл по всем предметам на экзаменах в конце семестра должен быть 91 и выше.",
-        "Для поощрительной стипендии необходимо иметь 91+ баллов хотя бы по одному предмету и минимум 71+ по остальным.",
-        "Для обычной стипендии итоговый балл по всем предметам должен быть не менее 51+. Из этих 51 балла минимум 17 должно быть набрано на экзамене.",
-        "За семестр можно набрать максимум 50 баллов: 10 — самостоятельная работа, 10 — посещаемость, 30 — семинары и коллоквиумы. Формула: (ср. семинар × 0.4 + ср. коллоквиум × 0.6) × 3 + посещаемость + сам. работа.",
-        "На экзамене можно набрать максимум 50 баллов. Семестровый балл и экзаменационный балл суммируются для получения итогового результата.",
-        "Пересдача: если студент набрал менее 17 баллов на экзамене или сумма семестрового и экзаменационного баллов не превышает 51, студент считается отчисленным.",
-        "Студент, имеющий задолженность, может заплатить 25% и участвовать в пересдаче. Формула 25%: [((годовая оплата / 60) × кол-во кредитов) / 4] + 1.",
-        "Если студент получал стипендию до отчисления, при отчислении он её теряет, и даже при успешной сдаче пересдачи стипендия не восстанавливается.",
-        "ÜOMG (общий средний показатель успеваемости): (балл1 × кредит1 + балл2 × кредит2 + ...) / (кредит1 + кредит2 + ...).",
-        "Студент, превысивший лимит пропусков, не допускается к экзамену и автоматически считается отчисленным.",
-        "91–100: A (отлично); 81–90: B (очень хорошо); 71–80: C (хорошо); 61–70: D (удовл.); 51–60: E (приемлемо); ниже 51: F (неудовл.).",
+        "Для отличной стипендии итоговый балл по всем предметам должен быть 91 и выше.",
+        "Для поощрительной стипендии — 91+ хотя бы по одному предмету и 71+ по остальным.",
+        "Для обычной стипендии итоговый балл по всем предметам должен быть не менее 51+.",
+        "За семестр максимум 50 баллов: 10 — самостоятельная работа, 10 — посещаемость, 30 — семинары и коллоквиумы.",
+        "На экзамене максимум 50 баллов. Семестровый + экзаменационный = итог.",
+        "Пересдача: менее 17 баллов на экзамене или сумма не превышает 51 — студент отчислен.",
+        "Задолженник может заплатить 25% и участвовать в пересдаче. Формула: [((годовая / 60) × кредиты) / 4] + 1.",
+        "При отчислении студент теряет стипендию, и она не восстанавливается после пересдачи.",
+        "ÜOMG: (балл1 × кредит1 + ...) / (кредит1 + ...).",
+        "Превысивший лимит пропусков не допускается к экзамену.",
+        "91–100: A; 81–90: B; 71–80: C; 61–70: D; 51–60: E; ниже 51: F.",
     ],
     en: [
-        "For an excellence scholarship, the final score in all subjects at the end-of-semester exams must be 91 or above.",
-        "For an incentive scholarship, you need 91+ in at least one subject and a minimum of 71+ in each of the others.",
-        "For a regular scholarship, the final score in all subjects must be at least 51+. A minimum of 17 of these 51 points must come from the exam.",
-        "The maximum semester score is 50 points: 10 from independent study, 10 from attendance, 30 from seminars and colloquiums. Formula: (avg seminar × 0.4 + avg colloquium × 0.6) × 3 + attendance + independent study.",
-        "The maximum exam score is 50 points. The semester score and exam score are added together to get the final result.",
-        "Retake exam: If a student scores less than 17 on the exam, or the sum of semester and exam scores does not exceed 51, the student is considered to have failed.",
-        "A student with a failed subject can pay 25% and participate in a second-chance exam. Formula: [((annual tuition / 60) × credits) / 4] + 1.",
-        "If a student was receiving a scholarship before failing, they lose it upon failing, and the scholarship is not restored even if they pass the retake.",
-        "GPA (General Average Achievement Score): (score1 × credit1 + score2 × credit2 + ...) / (credit1 + credit2 + ...).",
-        "A student who exceeds the absence limit is not allowed to take the exam and is automatically considered to have failed.",
-        "91–100: A (excellent); 81–90: B (very good); 71–80: C (good); 61–70: D (satisfactory); 51–60: E (passing); below 51: F (failing).",
+        "For an excellence scholarship, the final score in all subjects must be 91 or above.",
+        "For an incentive scholarship: 91+ in at least one subject and 71+ in each of the others.",
+        "For a regular scholarship, the final score must be at least 51+. Minimum 17 from the exam.",
+        "Max semester score: 50 pts. 10 from independent study, 10 from attendance, 30 from seminars/colloquiums.",
+        "Max exam score: 50 pts. Semester + exam = final result.",
+        "Retake: less than 17 on exam or total under 51 = failed.",
+        "Failed student can pay 25% and retake. Formula: [((annual tuition / 60) × credits) / 4] + 1.",
+        "Scholarship is lost upon failing and not restored after retake.",
+        "GPA: (score1 × credit1 + ...) / (credit1 + ...).",
+        "Exceeding absence limit = not admitted to exam.",
+        "91–100: A; 81–90: B; 71–80: C; 61–70: D; 51–60: E; below 51: F.",
     ]
 };
 
 // ============================================
-// Sürətli Linklər (3 dildə link mətni)
+// Sürətli Linklər
 // ============================================
 const suretliLinkler = [
-    {
-        icon: "🌐",
-        key: "link_bdu_web",
-        url: "https://share.google/M2ZIeZ1uGX63hbYwN"
-    },
-    {
-        icon: "🎓",
-        key: "link_bdu_student",
-        url: "https://share.google/7ljpthpUCiOMOeS82"
-    },
-    {
-        icon: "💬",
-        key: "link_bdu_whatsapp",
-        url: "https://whatsapp.com/channel/0029Va85Ls85q08WyYoGeJ3r"
-    },
-    {
-        icon: "📷",
-        key: "link_bdu_instagram",
-        url: "https://www.instagram.com/bdu_eduaz"
-    },
-    {
-        icon: "👤",
-        key: "link_owner_instagram",
-        url: "https://www.instagram.com/618_acc?igsh=eGZ6NDBqbnltbzJv"
-    }
+    { icon: "🌐", key: "link_bdu_web",         url: "https://share.google/M2ZIeZ1uGX63hbYwN" },
+    { icon: "🎓", key: "link_bdu_student",      url: "https://share.google/7ljpthpUCiOMOeS82" },
+    { icon: "💬", key: "link_bdu_whatsapp",     url: "https://whatsapp.com/channel/0029Va85Ls85q08WyYoGeJ3r" },
+    { icon: "📷", key: "link_bdu_instagram",    url: "https://www.instagram.com/bdu_eduaz" },
+    { icon: "👤", key: "link_owner_instagram",  url: "https://www.instagram.com/618_acc?igsh=eGZ6NDBqbnltbzJv" }
 ];
 
 // ============================================
@@ -931,27 +1097,31 @@ const suretliLinkler = [
 function renderDictionaryList() {
     const dictionaryList = document.getElementById('dictionary-list');
     if (!dictionaryList) return;
-    dictionaryList.innerHTML = '';
     const items = lugetSozleri[currentLang] || lugetSozleri['az'];
+    const fragment = document.createDocumentFragment();
+    dictionaryList.innerHTML = '';
     items.forEach(item => {
         const div = document.createElement('div');
         div.className = 'dictionary-item';
         div.innerHTML = `<strong>${item.soz}</strong> ${item.meana}`;
-        dictionaryList.appendChild(div);
+        fragment.appendChild(div);
     });
+    dictionaryList.appendChild(fragment);
 }
 
 function renderInfoList() {
     const infoList = document.getElementById('info-list');
     if (!infoList) return;
-    infoList.innerHTML = '';
     const items = akademikMelumatlar[currentLang] || akademikMelumatlar['az'];
+    const fragment = document.createDocumentFragment();
+    infoList.innerHTML = '';
     items.forEach((melumat, index) => {
         const div = document.createElement('div');
         div.className = 'info-item';
         div.innerHTML = `<strong>${index + 1}.</strong> ${melumat}`;
-        infoList.appendChild(div);
+        fragment.appendChild(div);
     });
+    infoList.appendChild(fragment);
 }
 
 function renderLinksList() {
@@ -964,10 +1134,7 @@ function renderLinksList() {
         a.href = link.url;
         a.target = '_blank';
         a.rel = 'noopener';
-        a.innerHTML = `
-            <span class="link-icon">${link.icon}</span>
-            <span class="link-text">${t(link.key)}</span>
-        `;
+        a.innerHTML = `<span class="link-icon">${link.icon}</span><span class="link-text">${t(link.key)}</span>`;
         linksList.appendChild(a);
     });
 }
@@ -978,42 +1145,30 @@ function renderLinksList() {
 document.addEventListener('DOMContentLoaded', function () {
     initTheme();
     setLanguage(currentLang);
-    renderDictionaryList();
-    renderInfoList();
-    renderLinksList();
 });
 
 // ============================================
-// PWA - Service Worker Qeydiyyatı (iOS Optimized)
+// PWA - Service Worker
 // ============================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         const isIOSDevice = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-        const swPath = '/sw.js';
 
-        navigator.serviceWorker.register(swPath, {
-            scope: '/',
-            updateViaCache: 'none'
-        })
+        navigator.serviceWorker.register('/sw.js', { scope: '/', updateViaCache: 'none' })
             .then(registration => {
-                if (isIOSDevice) {
-                    registration.update();
-                }
+                if (isIOSDevice) registration.update();
 
                 registration.addEventListener('updatefound', () => {
                     const newWorker = registration.installing;
-
                     newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed') {
-                            if (navigator.serviceWorker.controller) {
-                                if (isIOSDevice) {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            if (isIOSDevice) {
+                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                window.location.reload();
+                            } else {
+                                if (confirm(t('new_version'))) {
                                     newWorker.postMessage({ type: 'SKIP_WAITING' });
                                     window.location.reload();
-                                } else {
-                                    if (confirm(t('new_version'))) {
-                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
-                                        window.location.reload();
-                                    }
                                 }
                             }
                         }
@@ -1022,13 +1177,11 @@ if ('serviceWorker' in navigator) {
 
                 if (isIOSDevice) {
                     navigator.serviceWorker.ready.then(reg => {
-                        setInterval(() => { reg.update(); }, 60000);
+                        setInterval(() => reg.update(), 60000);
                     });
                 }
             })
-            .catch(error => {
-                console.error('[App] Service Worker qeydiyyatı uğursuz:', error);
-            });
+            .catch(err => console.error('[SW] Qeydiyyat uğursuz:', err));
     });
 }
 
@@ -1039,13 +1192,22 @@ const SUPABASE_URL = 'https://glcgixnfjohomjoyyrwk.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsY2dpeG5mam9ob21qb3l5cndrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgwODE4OTIsImV4cCI6MjEwMzY1Nzg5Mn0.8fSkJHpPza6BrF2qFowhqmR2gK7-ecyrE9cPhA5YR-c';
 
 function detectDevice() {
-    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+    const ua = navigator.userAgent;
+    if (/iphone/i.test(ua)) return 'iPhone';
+    if (/ipad/i.test(ua)) return 'iPad';
+    if (/ipod/i.test(ua)) return 'iPod';
+    if (/android/i.test(ua)) return 'Android';
+    if (/Mobi/i.test(ua)) return 'Mobile';
+    return 'Desktop';
 }
 
 function detectBrowser() {
     const ua = navigator.userAgent;
     if (/Edg\//i.test(ua)) return 'Edge';
     if (/OPR\/|Opera/i.test(ua)) return 'Opera';
+    if (/SamsungBrowser/i.test(ua)) return 'Samsung Browser';
+    if (/CriOS/i.test(ua)) return 'Chrome (iOS)';
+    if (/FxiOS/i.test(ua)) return 'Firefox (iOS)';
     if (/Chrome\/[0-9]/.test(ua) && !/Chromium/.test(ua)) return 'Chrome';
     if (/Firefox\//i.test(ua)) return 'Firefox';
     if (/Safari\/[0-9]/.test(ua) && !/Chrome/.test(ua)) return 'Safari';
@@ -1055,29 +1217,40 @@ function detectBrowser() {
 
 function detectOS() {
     const ua = navigator.userAgent;
-    if (/Windows NT/i.test(ua)) return 'Windows';
-    if (/Mac OS X/i.test(ua) && !/iPhone|iPad|iPod/.test(ua)) return 'macOS';
     if (/iPhone/i.test(ua)) return 'iOS (iPhone)';
     if (/iPad/i.test(ua)) return 'iOS (iPad)';
     if (/iPod/i.test(ua)) return 'iOS (iPod)';
     if (/Android/i.test(ua)) return 'Android';
-    if (/Linux/i.test(ua)) return 'Linux';
+    if (/Windows NT/i.test(ua)) return 'Windows';
+    if (/Mac OS X/i.test(ua)) return 'macOS';
     if (/CrOS/i.test(ua)) return 'ChromeOS';
+    if (/Linux/i.test(ua)) return 'Linux';
     return 'Unknown';
 }
 
-async function logInstallClickToSupabase() {
+function detectInstallType() {
+    const ua = navigator.userAgent;
+    if (/iphone|ipad|ipod/i.test(ua)) return 'iOS Install Banner';
+    if (window.matchMedia('(display-mode: standalone)').matches) return 'Already Installed';
+    return 'Android/Desktop Install Prompt';
+}
+
+async function logInstallClickToSupabase(actionType) {
     try {
         const payload = {
+            action_type: actionType || 'install_click',
             clicked_at: new Date().toISOString(),
             page_url: window.location.href,
             referrer: document.referrer || null,
             device: detectDevice(),
             browser: detectBrowser(),
-            operating_system: detectOS()
+            operating_system: detectOS(),
+            install_type: detectInstallType(),
+            language: currentLang,
+            user_agent: navigator.userAgent.substring(0, 300)
         };
 
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+        await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1087,13 +1260,8 @@ async function logInstallClickToSupabase() {
             },
             body: JSON.stringify(payload)
         });
-
-        if (!response.ok) {
-            const errText = await response.text();
-            console.warn('[Supabase] Məlumat yazılmadı:', response.status, errText);
-        }
     } catch (err) {
-        console.warn('[Supabase] Xəta:', err);
+        // Sessizce iş keç - istifadəçi təcrübəsinə mane olma
     }
 }
 
@@ -1114,15 +1282,13 @@ function isInStandaloneMode() {
 function showIOSInstallBanner() {
     const banner = document.getElementById('ios-install-banner');
     const alreadyShown = localStorage.getItem('ios-banner-closed');
-
     if (alreadyShown) {
         const daysPassed = (Date.now() - parseInt(alreadyShown)) / (1000 * 60 * 60 * 24);
         if (daysPassed < 7) return;
     }
-
     if (banner && isIOS() && !isInStandaloneMode()) {
         banner.style.display = 'block';
-        logInstallClickToSupabase();
+        logInstallClickToSupabase('ios_banner_shown');
     }
 }
 
@@ -1131,6 +1297,7 @@ function closeIOSBanner() {
     if (banner) {
         banner.style.display = 'none';
         localStorage.setItem('ios-banner-closed', Date.now().toString());
+        logInstallClickToSupabase('ios_banner_closed');
     }
 }
 
@@ -1143,6 +1310,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
     hideInstallButton();
+    logInstallClickToSupabase('app_installed');
 });
 
 function showInstallButton() {
@@ -1158,10 +1326,11 @@ function hideInstallButton() {
 }
 
 function installApp() {
-    logInstallClickToSupabase();
+    logInstallClickToSupabase('install_button_clicked');
     if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
+            logInstallClickToSupabase('install_prompt_' + choiceResult.outcome);
             deferredPrompt = null;
             hideInstallButton();
         });
