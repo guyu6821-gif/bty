@@ -196,9 +196,9 @@
 
     function init() {
         if (!shouldShow()) return;
-        // Also log to Supabase if available
-        if (typeof logInstallToSupabase === 'function') {
-            logInstallToSupabase('ios_chrome_banner_shown');
+        // Also log to Supabase if available (app.js-dəki funksiya adı ilə uyğun)
+        if (typeof logInstallClickToSupabase === 'function') {
+            logInstallClickToSupabase('ios_chrome_banner_shown');
         }
         createBanner();
     }

@@ -1238,8 +1238,13 @@ function detectOS() {
 
 function detectInstallType() {
     const ua = navigator.userAgent;
-    if (/iphone|ipad|ipod/i.test(ua)) return 'iOS Install Banner';
-    if (window.matchMedia('(display-mode: standalone)').matches) return 'Already Installed';
+    const isIOSDevice = /iphone|ipad|ipod/i.test(ua);
+    const isStandalone = (('standalone' in window.navigator) && window.navigator.standalone) ||
+        window.matchMedia('(display-mode: standalone)').matches;
+
+    if (isIOSDevice && isStandalone) return 'iOS Standalone (Installed)';
+    if (isIOSDevice) return 'iOS Install Banner';
+    if (isStandalone) return 'Already Installed (Standalone)';
     return 'Android/Desktop Install Prompt';
 }
 
@@ -1297,6 +1302,26 @@ function logInstallSessionOnce() {
     logInstallClickToSupabase('app_install_session');
 }
 
+// ============================================
+// iOS Supabase Logging - Standalone yoxlama
+// iOS-da beforeinstallprompt işləmədiyi üçün
+// ayrı mexanizmlə izlənilir
+// ============================================
+function logIOSSessionOnce() {
+    // SessionStorage istifadə et - yalnız bu tab/session üçün 1 dəfə
+    const key = 'ios_session_logged';
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, '1');
+
+    if (isInStandaloneMode()) {
+        // Tətbiq artıq ana ekrana əlavə edilib və standalone olaraq açılıb
+        logInstallClickToSupabase('ios_standalone_open');
+    } else {
+        // iOS-da tətbiq brauzerdə açılıb (hələ quraşdırılmayıb)
+        logInstallClickToSupabase('ios_browser_visit');
+    }
+}
+
 function showIOSInstallBanner() {
     const banner = document.getElementById('ios-install-banner');
     const alreadyShown = localStorage.getItem('ios-banner-closed');
@@ -1306,6 +1331,13 @@ function showIOSInstallBanner() {
     }
     if (banner && isIOS() && !isInStandaloneMode()) {
         banner.style.display = 'block';
+        // Banner göstərildikdə Supabase-ə log et (ayrı event kimi)
+        // Bu yalnız banner ilk göstərildikdə işlər
+        const bannerLogKey = 'ios_banner_shown_' + new Date().toDateString();
+        if (!localStorage.getItem(bannerLogKey)) {
+            localStorage.setItem(bannerLogKey, '1');
+            logInstallClickToSupabase('ios_banner_shown');
+        }
     }
 }
 
@@ -1355,8 +1387,15 @@ function installApp() {
 }
 
 // iOS-da banner anında göstər (gecikmə yoxdur)
+// Eyni zamanda iOS sessiya log-unu göndər
 document.addEventListener('DOMContentLoaded', () => {
-    if (isIOS() && !isInStandaloneMode()) {
-        showIOSInstallBanner();
+    if (isIOS()) {
+        // iOS-da hər halda sessiya logunu göndər
+        // (standalone olub-olmadığından asılı olmayaraq)
+        logIOSSessionOnce();
+
+        if (!isInStandaloneMode()) {
+            showIOSInstallBanner();
+        }
     }
 });

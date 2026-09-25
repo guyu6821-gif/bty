@@ -9,12 +9,16 @@ CREATE TABLE IF NOT EXISTS orders (
     id              BIGSERIAL PRIMARY KEY,
     action_type     TEXT NOT NULL DEFAULT 'install_click',
     -- action_type dəyərləri:
-    --   'install_button_clicked'  → Android/Desktop install düyməsinə basıldı
-    --   'ios_banner_shown'        → iOS install banneri göründü
-    --   'ios_banner_closed'       → iOS install banneri bağlandı
-    --   'app_installed'           → Tətbiq uğurla quraşdırıldı
-    --   'install_prompt_accepted' → Quraşdırma təsdiqləndi
-    --   'install_prompt_dismissed'→ Quraşdırma ləğv edildi
+    --   'install_button_clicked'   → Android/Desktop install düyməsinə basıldı
+    --   'ios_banner_shown'         → iOS install banneri göründü (Safari)
+    --   'ios_banner_closed'        → iOS install banneri bağlandı
+    --   'ios_browser_visit'        → iOS istifadəçisi brauzerdə səhifəni açdı (quraşdırılmayıb)
+    --   'ios_standalone_open'      → iOS tətbiqi standalone rejimdə açıldı (artıq quraşdırılıb)
+    --   'ios_chrome_banner_shown'  → iOS Chrome banneri göründü
+    --   'app_installed'            → Tətbiq uğurla quraşdırıldı (Android/Desktop)
+    --   'app_install_session'      → Quraşdırma sessiyası loqu
+    --   'install_prompt_accepted'  → Quraşdırma təsdiqləndi
+    --   'install_prompt_dismissed' → Quraşdırma ləğv edildi
     clicked_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
     page_url        TEXT,
     referrer        TEXT,
