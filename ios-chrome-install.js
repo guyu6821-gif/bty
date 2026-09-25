@@ -196,10 +196,8 @@
 
     function init() {
         if (!shouldShow()) return;
-        // Also log to Supabase if available (app.js-dəki funksiya adı ilə uyğun)
-        if (typeof logInstallClickToSupabase === 'function') {
-            logInstallClickToSupabase('ios_chrome_banner_shown');
-        }
+        // Supabase log-u app.js-dəki logIOSSessionOnce() tərəfindən idarə olunur.
+        // Burada əlavə log göndərilmir - dublikat qeydlərin qarşısını alır.
         createBanner();
     }
 

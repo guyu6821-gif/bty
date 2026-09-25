@@ -1303,23 +1303,31 @@ function logInstallSessionOnce() {
 }
 
 // ============================================
-// iOS Supabase Logging - Standalone yoxlama
+// iOS Supabase Logging - Yalnız 1 dəfə qeyd
 // iOS-da beforeinstallprompt işləmədiyi üçün
-// ayrı mexanizmlə izlənilir
+// ayrı mexanizmlə izlənilir.
+// Bütün iOS log-ları bu tək funksiyadan keçir -
+// localStorage açarı ilə dublikat tamamilə bağlanır.
 // ============================================
 function logIOSSessionOnce() {
-    // SessionStorage istifadə et - yalnız bu tab/session üçün 1 dəfə
-    const key = 'ios_session_logged';
-    if (sessionStorage.getItem(key)) return;
-    sessionStorage.setItem(key, '1');
-
+    // Standalone (quraşdırılmış) rejim: ömür boyu yalnız 1 dəfə yaz
     if (isInStandaloneMode()) {
-        // Tətbiq artıq ana ekrana əlavə edilib və standalone olaraq açılıb
+        const key = 'ios_standalone_logged';
+        if (localStorage.getItem(key)) return;
+        localStorage.setItem(key, '1');
         logInstallClickToSupabase('ios_standalone_open');
-    } else {
-        // iOS-da tətbiq brauzerdə açılıb (hələ quraşdırılmayıb)
-        logInstallClickToSupabase('ios_browser_visit');
+        return;
     }
+
+    // Brauzer ziyarəti: hər 7 gündə 1 dəfə yaz
+    const key = 'ios_browser_logged';
+    const stored = localStorage.getItem(key);
+    if (stored) {
+        const daysPassed = (Date.now() - parseInt(stored, 10)) / (1000 * 60 * 60 * 24);
+        if (daysPassed < 7) return;
+    }
+    localStorage.setItem(key, Date.now().toString());
+    logInstallClickToSupabase('ios_browser_visit');
 }
 
 function showIOSInstallBanner() {
@@ -1329,15 +1337,9 @@ function showIOSInstallBanner() {
         const daysPassed = (Date.now() - parseInt(alreadyShown)) / (1000 * 60 * 60 * 24);
         if (daysPassed < 7) return;
     }
+    // Banneri göstər - əlavə Supabase log yoxdur (logIOSSessionOnce artıq cavabdehdir)
     if (banner && isIOS() && !isInStandaloneMode()) {
         banner.style.display = 'block';
-        // Banner göstərildikdə Supabase-ə log et (ayrı event kimi)
-        // Bu yalnız banner ilk göstərildikdə işlər
-        const bannerLogKey = 'ios_banner_shown_' + new Date().toDateString();
-        if (!localStorage.getItem(bannerLogKey)) {
-            localStorage.setItem(bannerLogKey, '1');
-            logInstallClickToSupabase('ios_banner_shown');
-        }
     }
 }
 
