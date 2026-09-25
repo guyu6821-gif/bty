@@ -3,7 +3,7 @@
 // ============================================
 const translations = {
     az: {
-        banner_text: "📲 Ən Ucuz və Mükəmməl Sərbəst İş Hazırlanması ➡️",
+        banner_text: "əməkdaşlıq üçün 🤝",
         install_app: "Tətbiqi Endir",
         ios_install_title: "UniFy Tətbiqini Quraşdır",
         ios_install_desc: "Safari-də <strong>Paylaş</strong> düyməsinə basın və <strong>\"Add to Home Screen\"</strong> seçin",
@@ -59,8 +59,8 @@ const translations = {
         about_p4: "(Heç bir şəkildə məlumatlarınız toplanmır.)",
         about_contact: "İş birliyi üçün:",
         about_contact_link: "WhatsApp ilə əlaqə saxlayın",
-        about_designer: "Tətbiqin dizaynı və funksionallığı Nurxan tərəfindən hazırlanıb.",
-        about_thanks: "Dəstək Üçün: Nəbiyeva Nuray, Rəhimov Riyad və TT2-Qrupuna Təşəkkür.",
+        about_designer: "",
+        about_thanks: "",
         luget_title: "Akademik Lüğət",
         melumat_title: "Akademik Məlumat",
         links_title: "Sürətli Linklər",
@@ -144,7 +144,7 @@ const translations = {
         qayib_hours_120: "120 saatlıq fənn üzrə",
     },
     ru: {
-        banner_text: "📲 Самая Дешёвая и Идеальная Подготовка Самостоятельных Работ ➡️",
+        banner_text: "сотрудничество 🤝",
         install_app: "Установить приложение",
         ios_install_title: "Установить приложение UniFy",
         ios_install_desc: "В Safari нажмите кнопку <strong>Поделиться</strong> и выберите <strong>\"Добавить на главный экран\"</strong>",
@@ -200,8 +200,8 @@ const translations = {
         about_p4: "(Ваши данные никоим образом не собираются.)",
         about_contact: "Для сотрудничества:",
         about_contact_link: "Связаться через WhatsApp",
-        about_designer: "Дизайн и функциональность приложения разработаны Нурханом.",
-        about_thanks: "Благодарим: Набиеву Нурай, Рахимова Рияда и Группу ТТ2.",
+        about_designer: "",
+        about_thanks: "",
         luget_title: "Академический Словарь",
         melumat_title: "Академическая Информация",
         links_title: "Быстрые Ссылки",
@@ -283,7 +283,7 @@ const translations = {
         qayib_hours_120: "По предмету 120 часов",
     },
     en: {
-        banner_text: "📲 Cheapest and Perfect Independent Study Preparation ➡️",
+        banner_text: "for collaboration 🤝",
         install_app: "Install App",
         ios_install_title: "Install UniFy App",
         ios_install_desc: "In Safari, tap the <strong>Share</strong> button and select <strong>\"Add to Home Screen\"</strong>",
@@ -339,8 +339,8 @@ const translations = {
         about_p4: "(Your data is not collected in any way.)",
         about_contact: "For cooperation:",
         about_contact_link: "Contact via WhatsApp",
-        about_designer: "The app's design and functionality were developed by Nurxan.",
-        about_thanks: "Thanks to: Nabiyeva Nuray, Rahimov Riyad and TT2 Group.",
+        about_designer: "",
+        about_thanks: "",
         luget_title: "Academic Dictionary",
         melumat_title: "Academic Information",
         links_title: "Quick Links",
@@ -1270,6 +1270,9 @@ async function logInstallClickToSupabase(actionType) {
 // ============================================
 let deferredPrompt;
 
+// Sessiya əsaslı Supabase log - hər sessiyada yalnız 1 dəfə
+let _sessionLogged = false;
+
 function isIOS() {
     return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
 }
@@ -1277,6 +1280,13 @@ function isIOS() {
 function isInStandaloneMode() {
     return (('standalone' in window.navigator) && window.navigator.standalone) ||
         window.matchMedia('(display-mode: standalone)').matches;
+}
+
+function logInstallSessionOnce() {
+    // 1 sessiyada yalnız 1 dəfə Supabase-ə yaz
+    if (_sessionLogged) return;
+    _sessionLogged = true;
+    logInstallClickToSupabase('app_install_session');
 }
 
 function showIOSInstallBanner() {
@@ -1288,7 +1298,6 @@ function showIOSInstallBanner() {
     }
     if (banner && isIOS() && !isInStandaloneMode()) {
         banner.style.display = 'block';
-        logInstallClickToSupabase('ios_banner_shown');
     }
 }
 
@@ -1297,7 +1306,6 @@ function closeIOSBanner() {
     if (banner) {
         banner.style.display = 'none';
         localStorage.setItem('ios-banner-closed', Date.now().toString());
-        logInstallClickToSupabase('ios_banner_closed');
     }
 }
 
@@ -1310,7 +1318,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 window.addEventListener('appinstalled', () => {
     deferredPrompt = null;
     hideInstallButton();
-    logInstallClickToSupabase('app_installed');
+    logInstallSessionOnce();
 });
 
 function showInstallButton() {
@@ -1326,19 +1334,21 @@ function hideInstallButton() {
 }
 
 function installApp() {
-    logInstallClickToSupabase('install_button_clicked');
     if (deferredPrompt) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
-            logInstallClickToSupabase('install_prompt_' + choiceResult.outcome);
+            if (choiceResult.outcome === 'accepted') {
+                logInstallSessionOnce();
+            }
             deferredPrompt = null;
             hideInstallButton();
         });
     }
 }
 
-window.addEventListener('load', () => {
+// iOS-da banner anında göstər (gecikmə yoxdur)
+document.addEventListener('DOMContentLoaded', () => {
     if (isIOS() && !isInStandaloneMode()) {
-        setTimeout(showIOSInstallBanner, 2000);
+        showIOSInstallBanner();
     }
 });
