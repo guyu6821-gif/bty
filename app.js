@@ -3,7 +3,7 @@
 // ============================================
 const translations = {
     az: {
-        banner_text: "əməkdaşlıq üçün 🤝",
+        banner_text: "ən ucuz və keyfiyyətli sərbəst işlərin hazırlanması 🤝",
         install_app: "Tətbiqi Endir",
         ios_install_title: "UniFy Tətbiqini Quraşdır",
         ios_install_desc: "Safari-də <strong>Paylaş</strong> düyməsinə basın və <strong>\"Add to Home Screen\"</strong> seçin",
@@ -144,7 +144,7 @@ const translations = {
         qayib_hours_120: "120 saatlıq fənn üzrə",
     },
     ru: {
-        banner_text: "сотрудничество 🤝",
+        banner_text: "подготовка самых дешёвых и качественных самостоятельных работ 🤝",
         install_app: "Установить приложение",
         ios_install_title: "Установить приложение UniFy",
         ios_install_desc: "В Safari нажмите кнопку <strong>Поделиться</strong> и выберите <strong>\"Добавить на главный экран\"</strong>",
@@ -283,7 +283,7 @@ const translations = {
         qayib_hours_120: "По предмету 120 часов",
     },
     en: {
-        banner_text: "for collaboration 🤝",
+        banner_text: "preparation of the cheapest and highest-quality independent works 🤝",
         install_app: "Install App",
         ios_install_title: "Install UniFy App",
         ios_install_desc: "In Safari, tap the <strong>Share</strong> button and select <strong>\"Add to Home Screen\"</strong>",
@@ -1087,8 +1087,7 @@ const suretliLinkler = [
     { icon: "🌐", key: "link_bdu_web",         url: "https://share.google/M2ZIeZ1uGX63hbYwN" },
     { icon: "🎓", key: "link_bdu_student",      url: "https://share.google/7ljpthpUCiOMOeS82" },
     { icon: "💬", key: "link_bdu_whatsapp",     url: "https://whatsapp.com/channel/0029Va85Ls85q08WyYoGeJ3r" },
-    { icon: "📷", key: "link_bdu_instagram",    url: "https://www.instagram.com/bdu_eduaz" },
-    { icon: "👤", key: "link_owner_instagram",  url: "https://www.instagram.com/618_acc?igsh=eGZ6NDBqbnltbzJv" }
+    { icon: "📷", key: "link_bdu_instagram",    url: "https://www.instagram.com/bdu_eduaz" }
 ];
 
 // ============================================
