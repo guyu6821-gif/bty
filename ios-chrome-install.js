@@ -133,7 +133,7 @@
 
         banner.innerHTML = [
             '<div class="icb-inner">',
-            '  <img src="/logo.png" alt="UniFy" class="icb-logo">',
+            '  <img src="/icon-192.png" alt="UniFy" class="icb-logo">',
             '  <div class="icb-body">',
             '    <p class="icb-title" id="icb-title">UniFy Tətbiqini Quraşdır</p>',
             '    <p class="icb-desc" id="icb-desc">Chrome-da <strong>Paylaş</strong> ' + shareIconSVG + ' düyməsinə basın və <strong>"Ana Ekrana Əlavə Et"</strong> seçin</p>',

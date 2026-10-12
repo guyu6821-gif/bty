@@ -142,6 +142,11 @@ const translations = {
         qayib_hours_90: "90 saatlıq fənn üzrə",
         qayib_hours_105: "105 saatlıq fənn üzrə",
         qayib_hours_120: "120 saatlıq fənn üzrə",
+        // Paylaşma kartı
+        share_modal_title: "Dostlarınla paylaş",
+        share_modal_subtitle: "Onlar da yararlansın 🎓",
+        share_modal_btn: "WhatsApp ilə paylaş",
+        share_message: "https://edu-unify.vercel.app/\nSemestr balını və ÜOMG-ni asan hesablamağa, akademik göstəriciləri izləməyə və digər faydalı akademik hesablamalar aparmağa imkan verir.\n\nAndroid üçün:\nLinkə keçid etdikdən sonra endirmə ikonuna basaraq tətbiqi ana ekrana əlavə edə bilərsiniz.\n\niOS üçün:\nLinkə keçid etdikdən sonra aşağıdakı mavi təlimat addımlarını izləyərək tətbiqi ana ekrana əlavə edə bilərsiniz.\n\nAna ekrana əlavə olunduqda offline işləyir.\n\nhttps://edu-unify.vercel.app/",
     },
     ru: {
         banner_text: "подготовка самых дешёвых и качественных самостоятельных работ 🤝",
@@ -281,6 +286,12 @@ const translations = {
         qayib_hours_90: "По предмету 90 часов",
         qayib_hours_105: "По предмету 105 часов",
         qayib_hours_120: "По предмету 120 часов",
+        // Карточка поделиться
+        share_modal_title: "Поделись с друзьями",
+        share_modal_subtitle: "Пусть они тоже воспользуются 🎓",
+        share_modal_btn: "Поделиться в WhatsApp",
+        share_modal_preview: "https://edu-unify.vercel.app/\nПозволяет легко рассчитывать семестровый балл и ÜOMG, отслеживать академические показатели и выполнять другие полезные академические расчёты.\n\nДля Android:\nПерейдя по ссылке, нажмите на иконку загрузки, чтобы добавить приложение на главный экран.\n\nДля iOS:\nПерейдя по ссылке, следуйте синим инструкциям ниже, чтобы добавить приложение на главный экран.\n\nПосле добавления на главный экран работает офлайн.\n\nhttps://edu-unify.vercel.app/",
+        share_message: "https://edu-unify.vercel.app/\nПозволяет легко рассчитывать семестровый балл и ÜOMG, отслеживать академические показатели и выполнять другие полезные академические расчёты.\n\nДля Android:\nПерейдя по ссылке, нажмите на иконку загрузки, чтобы добавить приложение на главный экран.\n\nДля iOS:\nПерейдя по ссылке, следуйте синим инструкциям ниже, чтобы добавить приложение на главный экран.\n\nПосле добавления на главный экран работает офлайн.\n\nhttps://edu-unify.vercel.app/",
     },
     en: {
         banner_text: "preparation of the cheapest and highest-quality independent works 🤝",
@@ -420,6 +431,12 @@ const translations = {
         qayib_hours_90: "90-hour subject",
         qayib_hours_105: "105-hour subject",
         qayib_hours_120: "120-hour subject",
+        // Share card
+        share_modal_title: "Share with your friends",
+        share_modal_subtitle: "So they can benefit too 🎓",
+        share_modal_btn: "Share via WhatsApp",
+        share_modal_preview: "https://edu-unify.vercel.app/\nIt lets you easily calculate your semester score and GPA (ÜOMG), track academic indicators, and perform other useful academic calculations.\n\nFor Android:\nAfter opening the link, tap the download icon to add the app to your home screen.\n\nFor iOS:\nAfter opening the link, follow the blue instruction steps below to add the app to your home screen.\n\nOnce added to the home screen, it works offline.\n\nhttps://edu-unify.vercel.app/",
+        share_message: "https://edu-unify.vercel.app/\nIt lets you easily calculate your semester score and GPA (ÜOMG), track academic indicators, and perform other useful academic calculations.\n\nFor Android:\nAfter opening the link, tap the download icon to add the app to your home screen.\n\nFor iOS:\nAfter opening the link, follow the blue instruction steps below to add the app to your home screen.\n\nOnce added to the home screen, it works offline.\n\nhttps://edu-unify.vercel.app/",
     }
 };
 
@@ -466,6 +483,9 @@ function setLanguage(lang) {
     // Update WhatsApp banner link
     updateWhatsAppLink();
 
+    // Update share card WhatsApp message
+    updateShareMessage();
+
     // Re-render dynamic content
     renderDictionaryList();
     renderInfoList();
@@ -482,6 +502,85 @@ function updateWhatsAppLink() {
         waLink.href = 'https://wa.me/994778000983?text=' + greeting;
     }
 }
+
+// ============================================
+// Paylaşma Kartı (Share Modal)
+// ============================================
+const SHARE_MAX_SHOWS = 3;          // Kart maksimum 3 dəfə göstərilir
+const SHARE_STORAGE_KEY = 'unify_share_shown';
+
+// Cari dilə uyğun paylaşma mesajını qaytarır (linklər qorunur)
+function getShareMessage() {
+    const msg = t('share_message');
+    return (msg && msg !== 'share_message') ? msg : t('share_modal_preview');
+}
+
+// WhatsApp paylaşma düyməsinin linkini yenilə
+function updateShareMessage() {
+    const btn = document.getElementById('share-whatsapp-btn');
+    if (!btn) return;
+    const text = encodeURIComponent(getShareMessage());
+    btn.href = 'https://wa.me/?text=' + text;
+}
+
+// Göstərilmə sayını oxu (təhlükəsiz)
+function getShareShownCount() {
+    try {
+        const raw = localStorage.getItem(SHARE_STORAGE_KEY);
+        const n = parseInt(raw, 10);
+        return isNaN(n) || n < 0 ? 0 : n;
+    } catch (e) {
+        return 0;
+    }
+}
+
+// Göstərilmə sayını yaz (təhlükəsiz)
+function setShareShownCount(n) {
+    try { localStorage.setItem(SHARE_STORAGE_KEY, String(n)); } catch (e) {}
+}
+
+// Kartı aç
+function openShareModal() {
+    const modal = document.getElementById('share-modal');
+    if (!modal) return;
+    updateShareMessage();
+    modal.style.display = 'flex';
+    document.body.classList.add('share-modal-open');
+}
+
+// Kartı bağla
+function closeShareModal() {
+    const modal = document.getElementById('share-modal');
+    if (!modal) return;
+    modal.style.display = 'none';
+    document.body.classList.remove('share-modal-open');
+}
+
+// WhatsApp paylaşma düyməsinə klik (statistika)
+function logShareClick() {
+    logInstallClickToSupabase('share_whatsapp');
+}
+
+// Bir səhifə yükləməsində yalnız bir dəfə cəhd et
+let _shareModalAttempted = false;
+
+// Kartı lazım olduqda göstər (cəmi maksimum 3 dəfə)
+function maybeShowShareModal() {
+    if (_shareModalAttempted) return;      // hər yükləmədə yalnız 1 dəfə
+    _shareModalAttempted = true;
+    if (getShareShownCount() >= SHARE_MAX_SHOWS) return;
+    setShareShownCount(getShareShownCount() + 1);
+    // Kiçik gecikmə - səhifə tam render olsun
+    setTimeout(openShareModal, 400);
+}
+
+// Esc düyməsi ilə bağla
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('share-modal');
+        if (modal && modal.style.display === 'flex') closeShareModal();
+    }
+});
 
 // ============================================
 // Dark / Light Mode Toggle - Donmasız
@@ -1144,6 +1243,8 @@ function renderLinksList() {
 function initApp() {
     initTheme();
     setLanguage(currentLang);
+    // İlk girişlərdə paylaşma kartını göstər (maksimum 3 dəfə)
+    maybeShowShareModal();
 }
 
 // DOM hazır olduqda dərhal başla (gözləmə yoxdur)

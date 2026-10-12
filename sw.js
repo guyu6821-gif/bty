@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v7.0.0';
+const CACHE_VERSION = 'v8.0.0';
 const CACHE_NAME = `unify-${CACHE_VERSION}`;
 
 // Kritik resurslar - ilk açılışda mütləq lazım olanlar (kiçik fayllar)
@@ -9,13 +9,14 @@ const CRITICAL_CACHE = [
     '/styles.css',
     '/app.js',
     '/manifest.json',
-    '/icon-192.png',
+    '/logo-256.png',
 ];
 
 // Əlavə resurslar - arxa planda yüklənir (böyük fayllar)
 const SECONDARY_CACHE = [
+    '/icon-192.png',
     '/icon-512.png',
-    '/logo.png',
+    '/apple-touch-icon.png',
     '/ios-chrome-install.js',
 ];
 

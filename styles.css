@@ -900,6 +900,161 @@ body.dark-mode .lang-btn:hover {
 }
 
 /* ============================================
+   Paylaşma Kartı (Share Modal)
+   ============================================ */
+.share-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.share-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 20, 35, 0.62);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: shareFadeIn 0.25s ease;
+}
+
+.share-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--page-bg);
+    border-radius: 20px;
+    padding: 34px 26px 26px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    animation: sharePopIn 0.32s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    box-sizing: border-box;
+}
+
+.share-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: var(--form-section-bg);
+    color: var(--text-dark);
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 2;
+}
+
+.share-modal-close:hover {
+    background: var(--danger-color);
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.share-modal-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.share-modal-icon img {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 16px rgba(74, 144, 226, 0.35));
+}
+
+.share-modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 0 6px;
+    padding: 0 24px;
+}
+
+.share-modal-subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 16px;
+}
+
+.share-modal-preview {
+    text-align: left;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dark);
+    background: var(--form-section-bg);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    white-space: pre-line;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.share-whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    box-sizing: border-box;
+}
+
+.share-whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.55);
+    filter: brightness(1.05);
+}
+
+.share-whatsapp-btn:active {
+    transform: translateY(0);
+}
+
+.share-whatsapp-btn svg {
+    flex-shrink: 0;
+}
+
+@keyframes shareFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes sharePopIn {
+    from { opacity: 0; transform: scale(0.9) translateY(14px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+body.share-modal-open {
+    overflow: hidden;
+}
+
+/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 768px) {
@@ -999,6 +1154,24 @@ body.dark-mode .lang-btn:hover {
 
     .absence-grid {
         grid-template-columns: 1fr;
+    }
+
+    .share-modal-card {
+        padding: 30px 20px 22px;
+        border-radius: 18px;
+    }
+
+    .share-modal-title {
+        font-size: 20px;
+    }
+
+    .share-modal-preview {
+        font-size: 13px;
+    }
+
+    .share-whatsapp-btn {
+        font-size: 15px;
+        padding: 14px 16px;
     }
 }
 
