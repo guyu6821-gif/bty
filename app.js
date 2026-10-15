@@ -506,8 +506,10 @@ function updateWhatsAppLink() {
 // ============================================
 // Paylaşma Kartı (Share Modal)
 // ============================================
-const SHARE_MAX_SHOWS = 3;          // Kart maksimum 3 dəfə göstərilir
-const SHARE_STORAGE_KEY = 'unify_share_shown';
+// Limit YOXDUR: kart hər girişdə (hər səhifə açılışında) göstərilir.
+// Saytda gəzənlər və tətbiqi telefona endirənlər üçün fərq qoyulmur -
+// hamıda (brauzer, Android PWA, iOS PWA/standalone) eyni şəkildə çıxır.
+const SHARE_STORAGE_KEY = 'unify_share_shown'; // köhnə limit datasını təmizləmək üçün
 
 // Cari dilə uyğun paylaşma mesajını qaytarır (linklər qorunur)
 function getShareMessage() {
@@ -523,20 +525,9 @@ function updateShareMessage() {
     btn.href = 'https://wa.me/?text=' + text;
 }
 
-// Göstərilmə sayını oxu (təhlükəsiz)
-function getShareShownCount() {
-    try {
-        const raw = localStorage.getItem(SHARE_STORAGE_KEY);
-        const n = parseInt(raw, 10);
-        return isNaN(n) || n < 0 ? 0 : n;
-    } catch (e) {
-        return 0;
-    }
-}
-
-// Göstərilmə sayını yaz (təhlükəsiz)
-function setShareShownCount(n) {
-    try { localStorage.setItem(SHARE_STORAGE_KEY, String(n)); } catch (e) {}
+// Köhnə "3 dəfə" limiti datasını təmizlə (bir dəfəlik, təhlükəsiz)
+function clearLegacyShareLimit() {
+    try { localStorage.removeItem(SHARE_STORAGE_KEY); } catch (e) {}
 }
 
 // Kartı aç
@@ -561,17 +552,16 @@ function logShareClick() {
     logInstallClickToSupabase('share_whatsapp');
 }
 
-// Bir səhifə yükləməsində yalnız bir dəfə cəhd et
+// Bir səhifə yükləməsində yalnız bir dəfə göstər (limit yoxdur, hər girişdə çıxır)
 let _shareModalAttempted = false;
 
-// Kartı lazım olduqda göstər (cəmi maksimum 3 dəfə)
+// Kartı göstər - həmişə, hamı üçün, limitsiz
 function maybeShowShareModal() {
-    if (_shareModalAttempted) return;      // hər yükləmədə yalnız 1 dəfə
+    if (_shareModalAttempted) return;      // eyni yükləmədə təkrar açılmasın
     _shareModalAttempted = true;
-    if (getShareShownCount() >= SHARE_MAX_SHOWS) return;
-    setShareShownCount(getShareShownCount() + 1);
-    // Kiçik gecikmə - səhifə tam render olsun
-    setTimeout(openShareModal, 400);
+    clearLegacyShareLimit();               // köhnə 3 dəfə limitini sil
+    // Kiçik gecikmə - səhifə tam render olsun (donma yoxdur)
+    setTimeout(openShareModal, 300);
 }
 
 // Esc düyməsi ilə bağla
@@ -1264,13 +1254,16 @@ if ('serviceWorker' in navigator) {
 
         navigator.serviceWorker.register('/sw.js', { scope: '/', updateViaCache: 'none' })
             .then(registration => {
-                if (isIOSDevice) registration.update();
+                // Diqqət: qeydiyyatdan sonra dərhal registration.update() ÇAĞIRILMIR.
+                // Hər açılışda məcburi update → əlavə şəbəkə sorğusu və gecikmə yaradırdı.
 
                 registration.addEventListener('updatefound', () => {
                     const newWorker = registration.installing;
+                    if (!newWorker) return;
                     newWorker.addEventListener('statechange', () => {
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                             if (isIOSDevice) {
+                                // iOS-da sürətli, səssiz yeniləmə (gecikmə yoxdur)
                                 newWorker.postMessage({ type: 'SKIP_WAITING' });
                                 window.location.reload();
                             } else {
@@ -1283,9 +1276,15 @@ if ('serviceWorker' in navigator) {
                     });
                 });
 
+                // Performans: əvvəl hər 60 saniyədə update sorğusu gedirdi.
+                // İndi 15 dəqiqədə bir + yalnız tab görünəndə (boş sorğuların qarşısı).
                 if (isIOSDevice) {
                     navigator.serviceWorker.ready.then(reg => {
-                        setInterval(() => reg.update(), 60000);
+                        const checkForUpdate = () => {
+                            if (document.visibilityState === 'visible') reg.update();
+                        };
+                        setInterval(checkForUpdate, 15 * 60 * 1000);
+                        document.addEventListener('visibilitychange', checkForUpdate);
                     });
                 }
             })

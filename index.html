@@ -55,16 +55,10 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://glcgixnfjohomjoyyrwk.supabase.co">
 
-    <!-- Preload kritik resurslar - anında yüklənmə üçün -->
-    <link rel="preload" href="/styles.css" as="style" fetchpriority="high">
-    <link rel="preload" href="/logo-256.png" as="image" fetchpriority="high">
+    <!-- Kritik resurslar - tək stylesheet (dublikat preload silindi: 2 dəfə yükləmənin qarşısı) -->
     <link rel="stylesheet" href="/styles.css">
-
-    <!-- Critical inline style: splash ekranını gizlət, əsas layout strukturunu göstər -->
-    <style>
-      body{visibility:visible;}
-      .container{opacity:1;}
-    </style>
+    <!-- app.js-i paralel olaraq əvvəlcədən yüklə - "defer" ilə birlikdə gecikmə azalır -->
+    <link rel="preload" href="/app.js" as="script">
     
     <!-- JSON-LD Structured Data for SEO -->
     <script type="application/ld+json">

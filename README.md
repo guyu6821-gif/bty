@@ -1,6 +1,6 @@
 # 🎓 BDU Tələbə Hesablayıcı (UniFy)
 
-**Versiya:** 1.5.0 (Paylaşma Kartı + Performans Optimizasiyası)
+**Versiya:** 1.6.0 (Limitsiz Paylaşma Kartı + Performans Optimizasiyası)
 
 ## 📱 PWA Tətbiqi - Proqressiv Veb Tətbiq
 

@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v9.0.0';
+const CACHE_VERSION = 'v10.0.0';
 const CACHE_NAME = `unify-${CACHE_VERSION}`;
 
 // Kritik resurslar - ilk açılışda mütləq lazım olanlar (kiçik fayllar)
@@ -63,18 +63,36 @@ self.addEventListener('activate', (event) => {
 // ============================================
 // Fetch handler - cache-first strategiyası (sürətli)
 // ============================================
+// Cache açılışını bir dəfə saxlayırıq - hər sorğuda yenidən açılmasın (performans)
+let _cachePromise = null;
+function getCache() {
+    if (!_cachePromise) _cachePromise = caches.open(CACHE_NAME);
+    return _cachePromise;
+}
+
 self.addEventListener('fetch', (event) => {
     const { request } = event;
-    const url = new URL(request.url);
 
-    // Yalnız GET və same-origin
-    if (request.method !== 'GET' || url.origin !== location.origin) return;
+    // Yalnız GET sorğuları
+    if (request.method !== 'GET') return;
+
+    // Yalnız http(s) sxemləri (chrome-extension və s. kənar qalsın)
+    if (!request.url.startsWith('http')) return;
+
+    let url;
+    try { url = new URL(request.url); } catch (e) { return; }
+
+    // Yalnız öz domenimiz (Supabase/analytics kənardır - toxunmuruq)
+    if (url.origin !== self.location.origin) return;
+
+    // Range sorğuları (media) cache-ə yazılmır
+    if (request.headers.has('range')) return;
 
     event.respondWith(
-        caches.open(CACHE_NAME).then((cache) =>
+        getCache().then((cache) =>
             cache.match(request).then((cached) => {
                 if (cached) {
-                    // Arxa planda yenilə
+                    // Arxa planda səssiz yenilə (istifadəçini gözlətmədən)
                     fetch(request).then((response) => {
                         if (response && response.status === 200 && response.type === 'basic') {
                             cache.put(request, response.clone());
@@ -83,13 +101,15 @@ self.addEventListener('fetch', (event) => {
                     return cached;
                 }
                 return fetch(request).then((response) => {
-                    if (response && response.status === 200 && response.type === 'basic') {
+                    // Yalnız uğurlu və tam cavabları yaz (səhv səhifələri yazmırıq)
+                    if (response && response.status === 200 &&
+                        response.type === 'basic' && !response.headers.has('content-range')) {
                         cache.put(request, response.clone());
                     }
                     return response;
                 });
             })
-        ).catch(() => caches.match('/index.html'))
+        ).catch(() => caches.match('/index.html').then(r => r || fetch('/index.html')))
     );
 });
 

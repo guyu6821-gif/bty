@@ -73,6 +73,20 @@ body {
     min-height: 100vh;
     padding-top: 60px;
     color: var(--text-dark);
+    /* Mobil: toxunma gecikməsini (300ms) və tap flash-ını aradan qaldırır */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Bütün düymələr üçün sürətli toxunma - gecikmə/donma olmasın */
+button,
+a,
+.menu-btn,
+.calculate-btn,
+.generate-btn,
+.back-btn,
+.lang-btn,
+.install-btn {
+    touch-action: manipulation;
 }
 
 /* Theme dəyişimi zamanı animasiya olmadan - donma qarşısı */
@@ -171,9 +185,9 @@ body.theme-transitioning * {
     width: 120px;
     height: 120px;
     object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(74, 144, 226, 0.3));
+    /* Performans: drop-shadow filter yerinə box-shadow (eyni görünüş, daha ucuz render) */
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
     /* Anında render - gecikməsiz görünmə */
-    content-visibility: auto;
     will-change: auto;
 }
 
@@ -372,8 +386,9 @@ body.theme-transitioning * {
     box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4);
     z-index: 999;
     transition: transform 0.2s, box-shadow 0.2s;
-    /* Gecikməsiz - anında göstər */
-    animation: pulse 2s ease-in-out infinite;
+    /* Performans: sonsuz box-shadow animasiyası silindi (mobil donmaların səbəbi).
+       Düymə yalnız hover zamanı yumşaq dəyişir - daim repaint olmur. */
+    will-change: transform;
 }
 
 .install-btn:hover {
@@ -642,7 +657,9 @@ body.theme-transitioning * {
     position: fixed;
     top: 70px;
     right: 15px;
-    background: rgba(255, 255, 255, 0.15);
+    /* Performans: backdrop-filter silindi - scroll zamanı repaint/jank yaradırdı.
+       Vizual görünüş eyni qalır (yarı-şəffaf fon + kölgə). */
+    background: rgba(255, 255, 255, 0.22);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50px;
     width: 46px;
@@ -652,7 +669,7 @@ body.theme-transitioning * {
     display: flex;
     align-items: center;
     padding: 2px;
-    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
 }
 
 .theme-toggle-btn .toggle-circle {
@@ -688,11 +705,10 @@ body.dark-mode .theme-toggle-btn {
     z-index: 998;
     display: flex;
     gap: 3px;
+    /* Performans: backdrop-filter silindi - sabit (fixed) elementdə scroll jank yaradırdı */
     background: var(--lang-bg);
     border-radius: 20px;
     padding: 4px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1.5px solid var(--lang-border);
     box-shadow: 0 2px 12px rgba(0,0,0,0.18);
 }
@@ -916,10 +932,10 @@ body.dark-mode .lang-btn:hover {
 .share-modal-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(15, 20, 35, 0.62);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    animation: shareFadeIn 0.25s ease;
+    /* Performans: blur silindi - modal açılışında gecikmə yaradırdı */
+    background: rgba(15, 20, 35, 0.7);
+    animation: shareFadeIn 0.2s ease;
+    contain: strict;
 }
 
 .share-modal-card {
@@ -975,7 +991,8 @@ body.dark-mode .lang-btn:hover {
     height: 64px;
     border-radius: 16px;
     object-fit: contain;
-    filter: drop-shadow(0 6px 16px rgba(74, 144, 226, 0.35));
+    /* Performans: filter yerinə box-shadow (repaint daha ucuz) */
+    box-shadow: 0 6px 16px rgba(74, 144, 226, 0.35);
 }
 
 .share-modal-title {
