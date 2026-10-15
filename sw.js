@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v10.0.0';
+const CACHE_VERSION = 'v11.0.0';
 const CACHE_NAME = `unify-${CACHE_VERSION}`;
 
 // Kritik resurslar - ilk açılışda mütləq lazım olanlar (kiçik fayllar)
