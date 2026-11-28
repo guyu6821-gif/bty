@@ -3,6 +3,7 @@
 // ============================================
 const translations = {
     az: {
+        banner_text: "Əməkdaşlıq üçün 🤝",
         main_subtitle: "Tələbələr üçün semestr balı, ÜOMG, kəsr ödənişi və digər akademik hesablamalar",
         footer_note: "Bu sayt Google AdSense reklamlarından istifadə edir. Reklamlar fərdiləşdirilmiş ola bilər.",
         privacy_title: "Məxfilik Siyasəti",
@@ -157,6 +158,7 @@ const translations = {
         share_message: "https://edu-unify.vercel.app/\nSemestr balını və ÜOMG-ni asan hesablamağa, akademik göstəriciləri izləməyə və digər faydalı akademik hesablamalar aparmağa imkan verir.\n\nAndroid üçün:\nLinkə keçid etdikdən sonra endirmə ikonuna basaraq tətbiqi ana ekrana əlavə edə bilərsiniz.\n\niOS üçün:\nLinkə keçid etdikdən sonra aşağıdakı mavi təlimat addımlarını izləyərək tətbiqi ana ekrana əlavə edə bilərsiniz.\n\nAna ekrana əlavə olunduqda offline işləyir.\n\nhttps://edu-unify.vercel.app/",
     },
     ru: {
+        banner_text: "Для сотрудничества 🤝",
         main_subtitle: "Семестровый балл, ÜOMG, оплата за экзамен и другие академические расчёты для студентов",
         footer_note: "Сайт использует рекламу Google AdSense. Реклама может быть персонализированной.",
         privacy_title: "Политика конфиденциальности",
@@ -310,6 +312,7 @@ const translations = {
         share_message: "https://edu-unify.vercel.app/\nПозволяет легко рассчитывать семестровый балл и ÜOMG, отслеживать академические показатели и выполнять другие полезные академические расчёты.\n\nДля Android:\nПерейдя по ссылке, нажмите на иконку загрузки, чтобы добавить приложение на главный экран.\n\nДля iOS:\nПерейдя по ссылке, следуйте синим инструкциям ниже, чтобы добавить приложение на главный экран.\n\nПосле добавления на главный экран работает офлайн.\n\nhttps://edu-unify.vercel.app/",
     },
     en: {
+        banner_text: "For cooperation 🤝",
         main_subtitle: "Semester score, GPA, exam fee and other academic calculations for students",
         footer_note: "This site uses Google AdSense advertising. Ads may be personalized.",
         privacy_title: "Privacy Policy",
