@@ -13,6 +13,7 @@ Sitemap: https://edu-unify.vercel.app/sitemap.xml
 
 # Yalnız əsas səhifələrə icazə ver
 Allow: /index.html
+Allow: /ads.txt
 Allow: /ios-test.html
 Allow: /manifest.json
 Allow: /logo.png
@@ -39,6 +40,14 @@ Disallow: /server.log
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
+
+# Google AdSense crawler (reklam üçün tələb olunur)
+User-agent: Mediapartners-Google
+Allow: /
+
+# Google AdsBot
+User-agent: AdsBot-Google
+Allow: /
 
 # Bing Bot
 User-agent: Bingbot

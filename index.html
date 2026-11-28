@@ -54,6 +54,11 @@
     <!-- DNS prefetch & preconnect -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://glcgixnfjohomjoyyrwk.supabase.co">
+    <!-- Google reklam şəbəkəsi üçün əvvəlcədən bağlantı (sürətli yüklənmə) -->
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+    <link rel="preconnect" href="https://tpc.googlesyndication.com" crossorigin>
 
     <!-- Kritik resurslar - tək stylesheet (dublikat preload silindi: 2 dəfə yükləmənin qarşısı) -->
     <link rel="stylesheet" href="/styles.css">
@@ -84,6 +89,18 @@
       gtag('js', new Date());
       gtag('config', 'G-9Q3VC90V6V');
     </script>
+
+    <!-- ============================================ -->
+    <!-- Google AdSense - Auto Ads (tək dəfə yüklənir) -->
+    <!-- Publisher ID: ca-pub-4652011000539116        -->
+    <!-- Bu script YALNIZ bu faylda var; başqa HTML   -->
+    <!-- səhifə yoxdur, ona görə təkrar yüklənmir.    -->
+    <!-- ============================================ -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4652011000539116"
+            crossorigin="anonymous"></script>
+
+    <!-- AdSense sayt təsdiqi (meta) -->
+    <meta name="google-adsense-account" content="ca-pub-4652011000539116">
 </head>
 <body>
     <h1 style="position:absolute; left:-9999px;">
@@ -179,12 +196,26 @@ https://edu-unify.vercel.app/</div>
 
     <!-- Ana Container -->
     <div class="container">
+        <!-- ============ REKLAM: ÜST (header) ============
+             Responsive, məzmunu örtmür, CLS yaratmır.
+             AdSense doldurmayanda avtomatik gizlədilir. -->
+        <aside class="ad-wrapper" id="ad-slot-top" aria-label="Reklam">
+            <span class="ad-label">Reklam</span>
+            <ins class="adsbygoogle ad-unit"
+                 style="display:block"
+                 data-ad-client="ca-pub-4652011000539116"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </aside>
+
         <!-- Ana Səhifə -->
         <div id="home-page" class="page active">
             <div class="logo-container">
                 <img src="/logo-256.png" alt="UniFy Logo" class="main-logo" width="120" height="120" decoding="async" fetchpriority="high">
             </div>
             <h1 class="main-title">UniFy</h1>
+            <p class="main-subtitle" data-i18n="main_subtitle">Tələbələr üçün semestr balı, ÜOMG, kəsr ödənişi və digər akademik hesablamalar</p>
             
             <div class="menu-grid">
                 <button class="menu-btn" onclick="showPage('semestr-page')">
@@ -390,7 +421,7 @@ https://edu-unify.vercel.app/</div>
                 </p>
                 <br>
                 <p>
-                   <span data-i18n="about_contact">İş birliyi üçün:</span><a href="https://wa.me/994778000983" data-i18n="about_contact_link">WhatsApp ilə əlaqə saxlayın</a>
+                   <span data-i18n="about_contact">Əməkdaşlıq üçün:</span><a href="https://wa.me/994778000983" data-i18n="about_contact_link">WhatsApp ilə əlaqə saxlayın</a>
                 </p>
                 <br>
                 <p>© 2026 v1.05.0</p>
@@ -417,6 +448,47 @@ https://edu-unify.vercel.app/</div>
             <h2 class="page-title" data-i18n="links_title">Sürətli Linklər</h2>
             <div class="links-list" id="links-list"></div>
         </div>
+
+        <!-- Məxfilik Siyasəti Səhifəsi (AdSense tələbi) -->
+        <div id="mexfilik-page" class="page">
+            <button class="back-btn" onclick="showPage('home-page')" data-i18n="back_btn">← Geri</button>
+            <h2 class="page-title" data-i18n="privacy_title">Məxfilik Siyasəti</h2>
+            <div class="info-box privacy-box">
+                <p data-i18n="privacy_p1">Bu sayt (UniFy - edu-unify.vercel.app) Google AdSense reklam xidmətindən istifadə edir.</p>
+                <br>
+                <p data-i18n="privacy_p2">Google və onun tərəfdaşları saytımıza daxil olduğunuzda kuki (cookie) fayllarından istifadə edərək reklamları göstərə bilər.</p>
+                <br>
+                <p data-i18n="privacy_p3">Google-un reklam kukiləri sayəsində sizə və digər istifadəçilərə daha uyğun reklamlar təqdim olunur. Bu kukilər fərdi identifikasiya üçün deyil, reklamların uyğunlaşdırılması üçün istifadə olunur.</p>
+                <br>
+                <p data-i18n="privacy_p4">Reklamların fərdiləşdirilməsini istəmirsinizsə, Google-un reklam parametrləri səhifəsindən (adssettings.google.com) bunu deaktiv edə bilərsiniz.</p>
+                <br>
+                <p data-i18n="privacy_p5">Saytımız hesablamaları yalnız sizin brauzerinizdə aparır; daxil etdiyiniz akademik məlumatlar heç bir serverə göndərilmir və saxlanmır.</p>
+                <br>
+                <p data-i18n="privacy_p6">Üçüncü tərəf reklam provayderləri haqqında ətraflı məlumat üçün Google-un məxfilik siyasətinə (policies.google.com/technologies/ads) baxa bilərsiniz.</p>
+            </div>
+        </div>
+
+        <!-- ============ REKLAM: ALT (footer) ============
+             Məzmundan sonra yerləşir - heç nəyi örtmür. -->
+        <aside class="ad-wrapper ad-wrapper-bottom" id="ad-slot-bottom" aria-label="Reklam">
+            <span class="ad-label">Reklam</span>
+            <ins class="adsbygoogle ad-unit"
+                 style="display:block"
+                 data-ad-client="ca-pub-4652011000539116"
+                 data-ad-slot="9876543210"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </aside>
+
+        <!-- Məxfilik & Şərtlər məlumatı (AdSense siyasəti tələbi) -->
+        <footer class="site-footer">
+            <p class="footer-note" data-i18n="footer_note">
+                Bu sayt Google AdSense reklamlarından istifadə edir. Reklamlar fərdiləşdirilmiş ola bilər.
+            </p>
+            <p class="footer-copy">© 2026 UniFy ·
+                <a href="#" class="footer-link" onclick="showPage('mexfilik-page'); return false;" data-i18n="privacy_title">Məxfilik Siyasəti</a>
+            </p>
+        </footer>
     </div>
 
     <script src="/app.js" defer></script>

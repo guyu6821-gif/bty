@@ -75,7 +75,7 @@
 - ✅ Ana səhifədə bütün bölmələr sıra ilə
 - ✅ İstifadəçi istədiyi bölməyə daxil ola bilir
 - ✅ Geri düyməsi ilə ana səhifəyə qayıtma
-- ✅ Yuxarı hissədə sabit banner: "ən ucuz sərbəst iş hazırlanması"
+- ✅ Yuxarı hissədə sabit banner: "Əməkdaşlıq üçün 🤝" (yalnız əməkdaşlıq, xidmət satışı deyil)
 - ✅ Banner yanında WhatsApp ikonu (+994778000983)
 - ✅ WhatsApp tətbiqi üzərindən yönləndirmə
 - ✅ Banner bütün səhifələrdə sabit

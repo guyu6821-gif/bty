@@ -1,5 +1,5 @@
 // Version - Cache yeniləmə üçün bu nömrəni artır
-const CACHE_VERSION = 'v12.0.0';
+const CACHE_VERSION = 'v13.0.0';
 const CACHE_NAME = `unify-${CACHE_VERSION}`;
 
 // Kritik resurslar - ilk açılışda mütləq lazım olanlar (kiçik fayllar)
@@ -10,6 +10,7 @@ const CRITICAL_CACHE = [
     '/app.js',
     '/manifest.json',
     '/logo-256.png',
+    '/ads.txt',
 ];
 
 // Əlavə resurslar - arxa planda yüklənir (böyük fayllar)
@@ -84,6 +85,12 @@ self.addEventListener('fetch', (event) => {
 
     // Yalnız öz domenimiz (Supabase/analytics kənardır - toxunmuruq)
     if (url.origin !== self.location.origin) return;
+
+    // AdSense / ads.txt heç vaxt keşlənməsin - həmişə şəbəkədən
+    // (AdSense crawler-i və reklam skriptləri təzə məlumat almalıdır)
+    if (url.pathname === '/ads.txt' ||
+        url.pathname.indexOf('/pagead/') !== -1 ||
+        url.pathname.indexOf('/adsbygoogle') !== -1) return;
 
     // Range sorğuları (media) cache-ə yazılmır
     if (request.headers.has('range')) return;

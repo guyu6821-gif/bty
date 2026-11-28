@@ -3,7 +3,15 @@
 // ============================================
 const translations = {
     az: {
-        banner_text: "ən ucuz və keyfiyyətli sərbəst işlərin hazırlanması 🤝",
+        main_subtitle: "Tələbələr üçün semestr balı, ÜOMG, kəsr ödənişi və digər akademik hesablamalar",
+        footer_note: "Bu sayt Google AdSense reklamlarından istifadə edir. Reklamlar fərdiləşdirilmiş ola bilər.",
+        privacy_title: "Məxfilik Siyasəti",
+        privacy_p1: "Bu sayt (UniFy - edu-unify.vercel.app) Google AdSense reklam xidmətindən istifadə edir.",
+        privacy_p2: "Google və onun tərəfdaşları saytımıza daxil olduğunuzda kuki (cookie) fayllarından istifadə edərək reklamları göstərə bilər.",
+        privacy_p3: "Google-un reklam kukiləri sayəsində sizə və digər istifadəçilərə daha uyğun reklamlar təqdim olunur. Bu kukilər fərdi identifikasiya üçün deyil, reklamların uyğunlaşdırılması üçün istifadə olunur.",
+        privacy_p4: "Reklamların fərdiləşdirilməsini istəmirsinizsə, Google-un reklam parametrləri səhifəsindən (adssettings.google.com) bunu deaktiv edə bilərsiniz.",
+        privacy_p5: "Saytımız hesablamaları yalnız sizin brauzerinizdə aparır; daxil etdiyiniz akademik məlumatlar heç bir serverə göndərilmir və saxlanmır.",
+        privacy_p6: "Üçüncü tərəf reklam provayderləri haqqında ətraflı məlumat üçün Google-un məxfilik siyasətinə (policies.google.com/technologies/ads) baxa bilərsiniz.",
         install_app: "Tətbiqi Endir",
         ios_install_title: "UniFy Tətbiqini Quraşdır",
         ios_install_desc: "Safari-də <strong>Paylaş</strong> düyməsinə basın və <strong>\"Add to Home Screen\"</strong> seçin",
@@ -57,7 +65,7 @@ const translations = {
         about_p2: "İstifadəçilər tətbiqin daxilində olan alətlərdən istifadə edərək işlərinə yarayacaq məlumatlar əldə edə bilərlər.",
         about_p3: "Tətbiqə giriş etdikdə \"Yeni versiya mövcuddur\" bildirişi gəlirsə, yeniləməyiniz tövsiyə olunur.",
         about_p4: "(Heç bir şəkildə məlumatlarınız toplanmır.)",
-        about_contact: "İş birliyi üçün:",
+        about_contact: "Əməkdaşlıq üçün:",
         about_contact_link: "WhatsApp ilə əlaqə saxlayın",
         about_designer: "",
         about_thanks: "",
@@ -116,7 +124,7 @@ const translations = {
         msg_zero: "0 BAL",
         msg_try: "🗿 YAXŞI OLACAQ 🆒",
         new_version: "Yeni versiya mövcuddur. Yeniləmək istəyirsiniz?",
-        wa_greeting: "Salam! Mənə sərbəst iş haqqında məlumat verin.",
+        wa_greeting: "Salam! Əməkdaşlıq barədə məlumat almaq istəyirəm.",
         link_bdu_web: "Bakı Dövlət Universitetinin Rəsmi Web Saytı",
         link_bdu_student: "Bakı Dövlət Universitetinin Tələbə Akademik Web Saytı (SemsLogin)",
         link_whatsapp_group: "Məlumat Qrupu (WhatsApp)",
@@ -149,7 +157,15 @@ const translations = {
         share_message: "https://edu-unify.vercel.app/\nSemestr balını və ÜOMG-ni asan hesablamağa, akademik göstəriciləri izləməyə və digər faydalı akademik hesablamalar aparmağa imkan verir.\n\nAndroid üçün:\nLinkə keçid etdikdən sonra endirmə ikonuna basaraq tətbiqi ana ekrana əlavə edə bilərsiniz.\n\niOS üçün:\nLinkə keçid etdikdən sonra aşağıdakı mavi təlimat addımlarını izləyərək tətbiqi ana ekrana əlavə edə bilərsiniz.\n\nAna ekrana əlavə olunduqda offline işləyir.\n\nhttps://edu-unify.vercel.app/",
     },
     ru: {
-        banner_text: "подготовка самых дешёвых и качественных самостоятельных работ 🤝",
+        main_subtitle: "Семестровый балл, ÜOMG, оплата за экзамен и другие академические расчёты для студентов",
+        footer_note: "Сайт использует рекламу Google AdSense. Реклама может быть персонализированной.",
+        privacy_title: "Политика конфиденциальности",
+        privacy_p1: "Этот сайт (UniFy - edu-unify.vercel.app) использует рекламный сервис Google AdSense.",
+        privacy_p2: "Google и его партнёры могут использовать файлы cookie для показа рекламы при посещении вами нашего сайта.",
+        privacy_p3: "Благодаря рекламным cookie Google вам и другим пользователям показывается более подходящая реклама. Эти cookie не используются для личной идентификации, а служат для подбора рекламы.",
+        privacy_p4: "Если вы не хотите персонализированную рекламу, её можно отключить в настройках рекламы Google (adssettings.google.com).",
+        privacy_p5: "Все расчёты выполняются только в вашем браузере; введённые академические данные не отправляются и не сохраняются ни на одном сервере.",
+        privacy_p6: "Подробнее о сторонних рекламных поставщиках можно узнать в политике конфиденциальности Google (policies.google.com/technologies/ads).",
         install_app: "Установить приложение",
         ios_install_title: "Установить приложение UniFy",
         ios_install_desc: "В Safari нажмите кнопку <strong>Поделиться</strong> и выберите <strong>\"Добавить на главный экран\"</strong>",
@@ -262,7 +278,7 @@ const translations = {
         msg_zero: "0 БАЛЛОВ",
         msg_try: "🗿 ПОЛУЧИТСЯ 🆒",
         new_version: "Доступна новая версия. Хотите обновить?",
-        wa_greeting: "Здравствуйте! Дайте мне информацию о самостоятельной работе.",
+        wa_greeting: "Здравствуйте! Хочу узнать о сотрудничестве.",
         link_bdu_web: "Официальный сайт Бакинского государственного университета",
         link_bdu_student: "Академический сайт студентов БГУ (SemsLogin)",
         link_whatsapp_group: "Информационная Группа (WhatsApp)",
@@ -294,7 +310,15 @@ const translations = {
         share_message: "https://edu-unify.vercel.app/\nПозволяет легко рассчитывать семестровый балл и ÜOMG, отслеживать академические показатели и выполнять другие полезные академические расчёты.\n\nДля Android:\nПерейдя по ссылке, нажмите на иконку загрузки, чтобы добавить приложение на главный экран.\n\nДля iOS:\nПерейдя по ссылке, следуйте синим инструкциям ниже, чтобы добавить приложение на главный экран.\n\nПосле добавления на главный экран работает офлайн.\n\nhttps://edu-unify.vercel.app/",
     },
     en: {
-        banner_text: "preparation of the cheapest and highest-quality independent works 🤝",
+        main_subtitle: "Semester score, GPA, exam fee and other academic calculations for students",
+        footer_note: "This site uses Google AdSense advertising. Ads may be personalized.",
+        privacy_title: "Privacy Policy",
+        privacy_p1: "This site (UniFy - edu-unify.vercel.app) uses the Google AdSense advertising service.",
+        privacy_p2: "Google and its partners may use cookies to serve ads when you visit our site.",
+        privacy_p3: "Thanks to Google's advertising cookies, more relevant ads are shown to you and other users. These cookies are not used for personal identification; they serve to tailor advertising.",
+        privacy_p4: "If you do not want personalized ads, you can disable them in Google's Ad Settings (adssettings.google.com).",
+        privacy_p5: "All calculations run only in your browser; the academic data you enter is not sent to or stored on any server.",
+        privacy_p6: "For details about third-party ad providers, see Google's privacy policy (policies.google.com/technologies/ads).",
         install_app: "Install App",
         ios_install_title: "Install UniFy App",
         ios_install_desc: "In Safari, tap the <strong>Share</strong> button and select <strong>\"Add to Home Screen\"</strong>",
@@ -407,7 +431,7 @@ const translations = {
         msg_zero: "0 SCORE",
         msg_try: "🗿 YOU'LL DO BETTER 🆒",
         new_version: "New version available. Would you like to update?",
-        wa_greeting: "Hello! Please give me information about the independent study.",
+        wa_greeting: "Hello! I would like to learn about cooperation.",
         link_bdu_web: "Official Website of Baku State University",
         link_bdu_student: "BSU Student Academic Website (SemsLogin)",
         link_whatsapp_group: "Information Group (WhatsApp)",
@@ -1228,6 +1252,68 @@ function renderLinksList() {
 }
 
 // ============================================
+// Google AdSense - reklam sahələri
+// ============================================
+// QEYD: Auto Ads skripti index.html <head> içində BİR DƏFƏ yüklənir.
+// Buradakı kod yalnız əl ilə yerləşdirilmiş reklam bloklarını idarə edir.
+
+const ADSENSE_CLIENT = 'ca-pub-4652011000539116';
+
+// UYDURMA (placeholder) slot ID-lər.
+// REAL slot ID-ləri AdSense panelindən (Reklamlar → Reklam bölməsi → kod)
+// götürüb index.html-də data-ad-slot dəyərini dəyişin VƏ səhifədəki
+// data-ad-slot dəyərini aşağıdakı siyahıdan SİLİN.
+const ADSENSE_PLACEHOLDER_SLOTS = ['1234567890', '9876543210'];
+
+// Boş qalmış reklam bloklarını gizlət (məzmunu örtməsin, boş yer görünməsin)
+function hideEmptyAdWrappers() {
+    document.querySelectorAll('ins.adsbygoogle.ad-unit').forEach(function (ins) {
+        const wrapper = ins.closest('.ad-wrapper');
+        if (!wrapper) return;
+        const status = ins.getAttribute('data-ad-status');
+        const filled = ins.getAttribute('data-ad-filled');
+        const isUnfilled = status === 'unfilled' || filled === 'false';
+        const hasContent = ins.offsetHeight > 0 && ins.innerHTML.trim() !== '';
+        if (isUnfilled || !hasContent) {
+            wrapper.classList.add('is-empty');
+        } else {
+            wrapper.classList.remove('is-empty');
+        }
+    });
+}
+
+function initAdsenseSlots() {
+    const units = document.querySelectorAll('ins.adsbygoogle.ad-unit');
+    if (!units.length) return;
+
+    units.forEach(function (ins) {
+        const wrapper = ins.closest('.ad-wrapper');
+        const slot = (ins.getAttribute('data-ad-slot') || '').trim();
+
+        // Placeholder slot → reklam sorğusu göndərmirik (xəta olmasın)
+        if (!slot || ADSENSE_PLACEHOLDER_SLOTS.indexOf(slot) !== -1) {
+            if (wrapper) wrapper.classList.add('is-empty');
+            return;
+        }
+
+        // Real slot → AdSense-ə bir dəfə bildiriş
+        if (ins.getAttribute('data-ad-requested') === '1') return;
+        ins.setAttribute('data-ad-requested', '1');
+        try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            // Script hələ yüklənməyibsə - səssiz keç (Auto Ads yenə işləyir)
+            if (wrapper) wrapper.classList.add('is-empty');
+        }
+    });
+
+    // Reklam doldurulmasını yoxla (gecikməli, səhifəni yükləməyi bloklamır)
+    [1200, 2500, 4000].forEach(function (delay) {
+        setTimeout(hideEmptyAdWrappers, delay);
+    });
+}
+
+// ============================================
 // Səhifə yükləndikdə işə sal - Sürətli başlanğıc
 // ============================================
 function initApp() {
@@ -1235,6 +1321,8 @@ function initApp() {
     setLanguage(currentLang);
     // İlk girişlərdə paylaşma kartını göstər (maksimum 3 dəfə)
     maybeShowShareModal();
+    // Reklam bloklarını hazırla (yalnız real slot ID varsa sorğu gedir)
+    initAdsenseSlots();
 }
 
 // DOM hazır olduqda dərhal başla (gözləmə yoxdur)

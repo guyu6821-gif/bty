@@ -155,6 +155,7 @@ webapp/
 ├── manifest.json       # PWA manifest (iOS compatible)
 ├── sitemap.xml         # SEO sitemap ⭐ YENİ
 ├── robots.txt          # SEO robots ⭐ YENİ
+├── ads.txt             # Google AdSense təsdiqi (publisher)
 ├── logo.png            # UniFy loqosu (1024×1024)
 ├── icon-192.png        # PWA ikonu (192×192)
 ├── icon-512.png        # PWA ikonu (512×512)
@@ -182,6 +183,63 @@ webapp/
 - **Cache-First:** Əsas fayllar (HTML, CSS, JS)
 - **Network-First:** API sorğuları
 - **Offline Fallback:** İnternet olmadıqda cache-dən
+- **AdSense:** `/ads.txt` və reklam skriptləri **heç vaxt** keşlənmir (həmişə şəbəkədən)
+
+## 💰 Google AdSense İnteqrasiyası
+
+**Publisher ID:** `ca-pub-4652011000539116`
+
+### 1. ads.txt (təsdiq üçün tələb olunur)
+Fayl: `ads.txt` (layihənin kökündə)
+
+```
+google.com, pub-4652011000539116, DIRECT, f08c47fec0942fa0
+```
+
+Yoxlama URL-i: **https://edu-unify.vercel.app/ads.txt**
+`vercel.json` daxilində `Content-Type: text/plain; charset=utf-8` başlığı ilə xidmət olunur.
+
+### 2. Auto Ads skripti (head daxilində, TƏK DƏFƏ)
+`index.html` → `<head>`:
+
+```html
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4652011000539116"
+        crossorigin="anonymous"></script>
+<meta name="google-adsense-account" content="ca-pub-4652011000539116">
+```
+
+> Layihədə yalnız **bir** HTML faylı (`index.html`) var. Bütün "səhifələr" SPA şəklində
+> həmin faylın içindədir — ona görə skript **təkrar yüklənmir**.
+
+### 3. Əl ilə reklam sahələri (uyğun struktur)
+| Sahə | `id` | `data-ad-slot` | Yer |
+|------|------|----------------|-----|
+| Üst | `ad-slot-top` | `1234567890` *(uydurma)* | `.container` başlanğıcı |
+| Alt | `ad-slot-bottom` | `9876543210` *(uydurma)* | Məzmundan sonra, footer-dən əvvəl |
+
+**Xüsusiyyətlər:**
+- ✅ `data-ad-format="auto"` + `data-full-width-responsive="true"` → mobil uyğun
+- ✅ Məzmunu **örtmür** (heç bir `position: fixed/absolute` yoxdur)
+- ✅ CLS yaratmır (`min-height: 0`, hündürlük əvvəlcədən ayrılmır)
+- ✅ Reklam doldurulmadıqda blok **tamamilə gizlədilir** (`.is-empty` → `display:none`)
+- ✅ Hər blokda "Reklam" etiketi (AdSense siyasətinə uyğun)
+
+### 4. Real slot ID-lərlə əvəz etmək
+1. AdSense paneli → **Reklamlar** → **Reklam bölməsi yarat** → kod götür
+2. `index.html`-də `data-ad-slot` dəyərini dəyiş
+3. `app.js`-də `ADSENSE_PLACEHOLDER_SLOTS` siyahısından köhnə uydurma ID-ni **sil**
+
+> Uydurma ID-lər siyahıda olduğu müddətcə reklam sorğusu **göndərilmir** →
+> AdSense panelində "xətalı slot" problemi yaranmır.
+
+### 5. Məxfilik Siyasəti (AdSense tələbi)
+`index.html` → `#mexfilik-page` bölməsi + footer linki.
+Məzmun: kuki bildirişi, fərdiləşdirməni söndürmə linki, məlumatların saxlanmaması.
+
+### 6. Yoxlama
+- `https://edu-unify.vercel.app/ads.txt` → 200 + düzgün sətir
+- `https://edu-unify.vercel.app/` → `<head>`-də 1 dəfə AdSense skripti
+- Chrome DevTools → Network → `adsbygoogle.js` → 200
 
 ## 📦 Render.com-a Deploy
 

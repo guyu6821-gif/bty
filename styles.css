@@ -1281,3 +1281,176 @@ body.share-modal-open {
         font-size: 16px;
     }
 }
+
+/* ============================================
+   Google AdSense - Reklam sahələri
+   Məqsəd: məzmunu örtməyən, mobil-uyğun,
+   CLS yaratmayan sabit reklam blokları.
+   Reklam doldurulmayanda blok tamamilə gizlədilir.
+   ============================================ */
+
+.ad-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 0 18px;
+    padding: 0;
+    background: transparent;
+    /* Reklam yüklənməmişdən əvvəl hündürlük ayırmırıq - sıçrayış (CLS) olmasın */
+    min-height: 0;
+    overflow: hidden;
+    /* Reklamın üzərinə heç nə düşməsin */
+    isolation: isolate;
+    z-index: 0;
+}
+
+.ad-wrapper-bottom {
+    margin: 22px 0 8px;
+}
+
+/* "Reklam" etiketi - AdSense siyasətinə uyğun şəffaf bildiriş */
+.ad-label {
+    display: block;
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    opacity: 0.65;
+    margin-bottom: 4px;
+    text-align: left;
+    user-select: none;
+}
+
+/* Reklam konteyneri */
+.ad-unit {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    /* Boş reklam yerində görünməz qalsın */
+    overflow: hidden;
+}
+
+/* AdSense tərəfindən doldurulmadıqda konteyner yox olsun */
+.ad-wrapper.is-empty {
+    display: none !important;
+}
+
+/* Ana səhifə alt başlığı */
+.main-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 620px;
+    margin: -18px auto 26px;
+    padding: 0 6px;
+}
+
+/* Sayt footer-i (məxfilik/reklam bildirişi) */
+.site-footer {
+    margin-top: 26px;
+    padding: 18px 10px 6px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    opacity: 0.85;
+}
+
+.site-footer .footer-note {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-light);
+    max-width: 720px;
+    margin: 0 auto 6px;
+}
+
+.site-footer .footer-copy {
+    font-size: 12px;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Mobil uyğunlaşma - reklam sahələri tam enlə, sığdırılmış */
+@media (max-width: 768px) {
+    .ad-wrapper {
+        margin-bottom: 14px;
+    }
+
+    .ad-wrapper-bottom {
+        margin: 18px 0 4px;
+    }
+
+    .ad-label {
+        font-size: 9px;
+        margin-bottom: 3px;
+    }
+
+    .main-subtitle {
+        font-size: 13px;
+        margin: -12px auto 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ad-wrapper {
+        margin-bottom: 12px;
+    }
+
+    .site-footer {
+        padding: 14px 6px 4px;
+    }
+
+    .site-footer .footer-note {
+        font-size: 11px;
+    }
+}
+
+/* Çap üçün - reklamları göstərmə */
+@media print {
+    .ad-wrapper,
+    .ad-label,
+    .site-footer {
+        display: none !important;
+    }
+}
+
+/* Məxfilik siyasəti səhifəsi */
+.privacy-box {
+    text-align: left;
+    padding: 24px 22px;
+    line-height: 1.7;
+}
+
+.privacy-box p {
+    font-size: 15px;
+    color: var(--text-dark);
+    margin: 0;
+    word-break: break-word;
+}
+
+.privacy-box br {
+    display: block;
+    content: "";
+    margin-top: 10px;
+}
+
+.site-footer .footer-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dotted currentColor;
+}
+
+.site-footer .footer-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .privacy-box {
+        padding: 18px 14px;
+    }
+
+    .privacy-box p {
+        font-size: 13.5px;
+    }
+}
